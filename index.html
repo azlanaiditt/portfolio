@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Azlan Aiditt - App Portfolio</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Default Theme: LIGHT MODE */
+        :root {
+            --bg-app: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-sub: #ffffff;
+            --primary: #2563eb;
+            --primary-glow: rgba(37, 99, 235, 0.15);
+            --accent: #7c3aed;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --pill-bg: rgba(0, 0, 0, 0.05);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Dark Theme Activated via [data-theme="dark"] */
+        [data-theme="dark"] {
+            --bg-app: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-sub: #161b22;
+            --primary: #3b82f6;
+            --primary-glow: rgba(59, 130, 246, 0.3);
+            --accent: #8b5cf6;
+            --text-main: #f0f6fc;
+            --text-sub: #8b949e;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --nav-bg: rgba(22, 27, 34, 0.85);
+            --pill-bg: rgba(255, 255, 255, 0.08);
+            --shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 110px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            padding: 1.2rem;
+            position: relative;
+        }
+
+        /* Top Header Bar */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0.5rem 0 1.5rem 0;
+        }
+
+        .header-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .app-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        .header-date {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        .icon-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, background-color 0.3s;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .icon-btn:active {
+            transform: scale(0.92);
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-sub);
+            margin: 1.5rem 0 0.8rem 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-label .hint-badge {
+            font-size: 0.7rem;
+            text-transform: none;
+            background: var(--pill-bg);
+            padding: 2px 8px;
+            border-radius: 10px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .app-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.25rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            transition: background-color 0.3s;
+        }
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .avatar-img {
+            width: 84px;
+            height: 84px;
+            border-radius: 22px;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+
+        .profile-info h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+
+        .profile-info p {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* BLINKING GREEN DOT STATUS */
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 12px;
+            background: rgba(34, 197, 94, 0.12);
+            color: #16a34a;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .blinking-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+            animation: pulse-green 1.5s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .profile-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        .bio-btn-wrapper {
+            margin-top: 0.8rem;
+        }
+
+        .app-btn {
+            padding: 12px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .app-btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .app-btn-secondary {
+            background: var(--pill-bg);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .app-btn-outline {
+            width: 100%;
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        /* ANIMATED GRAPH COMPONENT */
+        .wave-chart-container {
+            width: 100%;
+            height: 130px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .wave-svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .wave-path {
+            fill: url(#waveGradient);
+            animation: wavePulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes wavePulse {
+            0% { transform: translateY(0px) scaleY(1); }
+            100% { transform: translateY(4px) scaleY(1.08); }
+        }
+
+        /* CIRCULAR GRAPH GRID */
+        .circle-graph-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .circle-graph-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 12px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s;
+        }
+
+        .circle-svg {
+            width: 64px;
+            height: 64px;
+            transform: rotate(-90deg);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: var(--pill-bg);
+            stroke-width: 6;
+        }
+
+        .circle-bar {
+            fill: none;
+            stroke: url(#circleGradient);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 163;
+            stroke-dashoffset: 163;
+            transition: stroke-dashoffset 1.5s ease-out;
+        }
+
+        .circle-text {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-top: 6px;
+        }
+
+        .circle-label {
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+            font-weight: 600;
+        }
+
+        /* RADIAL CONCENTRIC CHART */
+        .perspective-wrapper {
+            perspective: 800px;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        .radial-chart-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 1.5rem 1rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            transform: rotateX(32deg) rotateY(-12deg) rotateZ(8deg) scale(0.92);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease, background-color 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .radial-chart-card.upright {
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+            box-shadow: var(--shadow);
+        }
+
+        .radial-svg-container {
+            width: 100%;
+            max-width: 310px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .ring-bg {
+            fill: none;
+            stroke: var(--pill-bg);
+            stroke-width: 10;
+        }
+
+        .ring-progress {
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.1, 0.5, 0.1, 1);
+        }
+
+        .ring-label-text {
+            fill: var(--text-main);
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .ring-val-text {
+            fill: var(--text-sub);
+            font-size: 8px;
+            font-weight: 700;
+        }
+
+        .software-legend-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 12px;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.73rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ANIMATED GRAPH BARS FOR COMPETENCIES */
+        .bar-group { margin-bottom: 12px; }
+        .bar-group:last-child { margin-bottom: 0; }
+
+        .bar-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.83rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .bar-title { color: var(--text-main); }
+        .bar-val { color: var(--primary); font-weight: 700; }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background: var(--pill-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.1, 0.5, 0.1, 1);
+        }
+
+        /* LANGUAGE PROFICIENCY CARDS */
+        .lang-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .lang-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .lang-name { font-weight: 700; font-size: 0.95rem; }
+
+        .lang-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .badge-native { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
+        .badge-pro { background: rgba(59, 130, 246, 0.15); color: #2563eb; }
+        .badge-inter { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+
+        .lang-scores {
+            display: flex;
+            gap: 16px;
+            font-size: 0.78rem;
+            color: var(--text-sub);
+        }
+
+        /* TIMELINE ITEMS (WORK & EDUCATION) */
+        .exp-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .exp-item:last-child { border-bottom: none; }
+
+        .exp-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .exp-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(139, 92, 246, 0.12);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .edu-icon {
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--primary);
+        }
+
+        .exp-details { flex: 1; }
+
+        .exp-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .exp-company { font-size: 0.82rem; color: var(--text-sub); }
+        .exp-date { font-size: 0.75rem; color: var(--primary); font-weight: 600; }
+
+        .exp-expand {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            padding-left: 58px;
+        }
+
+        .exp-item.active .exp-expand {
+            max-height: 350px;
+            margin-top: 10px;
+        }
+
+        .exp-expand ul { list-style: none; }
+
+        .exp-expand li {
+            margin-bottom: 6px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .exp-expand li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .achieve-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .achieve-item:active { transform: scale(0.98); }
+
+        .achieve-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .achieve-icon { font-size: 1.4rem; color: #f59e0b; }
+        .achieve-title { font-weight: 700; font-size: 0.88rem; color: var(--text-main); }
+        .achieve-sub { font-size: 0.75rem; color: var(--text-sub); }
+
+        /* PERSONAL BACKGROUND LIST (INSIDE MODAL) */
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--pill-bg);
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s;
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.83rem;
+            color: var(--text-sub);
+            font-weight: 600;
+        }
+
+        .info-label i {
+            color: var(--primary);
+            width: 16px;
+            text-align: center;
+        }
+
+        .info-value {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-align: right;
+        }
+
+        /* FORM INPUTS */
+        .form-group { margin-bottom: 12px; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+            transition: background-color 0.3s;
+        }
+
+        .form-control:focus { border-color: var(--primary); }
+
+        textarea.form-control { resize: none; height: 90px; }
+
+        /* FLOATING NAV BAR */
+        .floating-nav-wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 1rem;
+        }
+
+        .floating-oval-nav {
+            background: var(--nav-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 40px;
+            padding: 4px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.3s;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-sub);
+            text-decoration: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: var(--pill-bg);
+        }
+
+        .nav-center-btn {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+            margin: 0 4px;
+        }
+
+        .nav-center-btn:active { transform: scale(0.9); }
+
+        .nav-center-btn i {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CONTINUOUS CONFETTI ANIMATION */
+        .confetti-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 5px;
+            height: 10px;
+            background-color: var(--c);
+            opacity: 0;
+            border-radius: 2px;
+            animation: pop-confetti 2.5s infinite ease-out var(--d);
+        }
+
+        @keyframes pop-confetti {
+            0% {
+                transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            40% {
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty) - 15px)) scale(1) rotate(calc(var(--rot) / 2));
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(-50% + var(--tx) * 1.2), calc(-50% + var(--ty) + 15px)) scale(0.5) rotate(var(--rot));
+                opacity: 0;
+            }
+        }
+
+        /* APP SECTIONS TOGGLE */
+        .app-section {
+            display: none;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        .app-section.active-section { display: block; }
+
+        /* MODAL POPUPS */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.5rem;
+            max-width: 440px;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            box-shadow: var(--shadow);
+            max-height: 85vh;
+            overflow-y: auto;
+            transition: background-color 0.3s;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            color: var(--text-sub);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .cert-img-preview {
+            width: 100%;
+            max-height: 60vh;
+            border-radius: 12px;
+            object-fit: contain;
+            margin-top: 10px;
+        }
+
+        .bio-content p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PRINT / PDF OPTIMIZATION STYLES */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #0f172a !important;
+                padding-bottom: 0 !important;
+                height: auto !important;
+            }
+            .floating-nav-wrapper, .header-controls, .icon-btn {
+                display: none !important;
+            }
+            .app-container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                min-height: auto !important;
+            }
+            /* Paksa semua seksyen tampil serentak ketika print */
+            .app-section {
+                display: block !important;
+                opacity: 1 !important;
+                page-break-inside: avoid;
+            }
+            .exp-expand {
+                max-height: none !important; /* Supaya isi dalam senarai kerja turut keluar ketika dicetak */
+            }
+            .app-card, .profile-card, .wave-chart-container, .circle-graph-item, .radial-chart-card, .lang-card, .achieve-item {
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+                background: #ffffff !important;
+                color: #0f172a !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Shared SVG Gradients -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
+      <defs>
+        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2563eb" stop-opacity="0.5" />
+          <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.15" />
+        </linearGradient>
+        <linearGradient id="circleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2563eb" />
+          <stop offset="100%" stop-color="#7c3aed" />
+        </linearGradient>
+      </defs>
+    </svg>
+
+    <div class="app-container">
+        
+        <!-- App Header (Theme Toggle & Language Toggle stacked on top right) -->
+        <header class="app-header">
+            <div>
+                <div class="app-title">Assalamualaikum | Hello,</div>
+                <div class="header-date" id="currentDate">Loading date...</div>
+            </div>
+            <div class="header-controls">
+                <button class="icon-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-btn" id="langToggle" title="Switch Language" onclick="toggleLanguage()">
+                    <span id="langLabel" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 0.5px;">BM</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- TAB 1: PROFILE / HOME -->
+        <main id="tab-profile" class="app-section active-section">
+            <div class="profile-card">
+                <div class="profile-top">
+                    <img src="https://lh3.googleusercontent.com/d/1skcHTd8FmP6IneMxLnjgKzPUH6SZdyqf" alt="Azlan Aiditt" class="avatar-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=400&h=400';">
+                    <div class="profile-info">
+                        <h1>Azlan Aiditt</h1>
+                        <p data-i18n="roleDesc">Designer & Developer</p>
+                        <!-- Blinking Green Status -->
+                        <div class="badge-status">
+                            <span class="blinking-dot"></span> <span data-i18n="availStatus">Available for Hire</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button onclick="switchTab('tab-contact', document.querySelectorAll('.nav-link')[3])" class="app-btn app-btn-primary">
+                        <i class="fa-solid fa-paper-plane"></i> <span data-i18n="collabBtn">Let's Collab</span>
+                    </button>
+                    <a href="mailto:ambidextrousabi@gmail.com" class="app-btn app-btn-secondary">
+                        <i class="fa-solid fa-envelope"></i> <span data-i18n="emailBtn">Email</span>
+                    </a>
+                </div>
+
+                <!-- My Bio Button -->
+                <div class="bio-btn-wrapper">
+                    <button onclick="openBioModal()" class="app-btn app-btn-outline">
+                        <i class="fa-solid fa-user-gear"></i> <span data-i18n="bioBtn">My Bio</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SKILLS GRAPH DASHBOARD SECTION -->
+            <div class="section-label">
+                <span><i class="fa-solid fa-chart-line"></i> <span data-i18n="competencyDash">Competency Dashboard</span></span>
+            </div>
+            
+            <!-- Animated Wave Area Chart -->
+            <div class="wave-chart-container">
+                <svg class="wave-svg" viewBox="0 0 500 150" preserveAspectRatio="none">
+                    <path class="wave-path" d="M0,80 Q75,30 150,70 T300,50 T450,90 T500,40 L500,150 L0,150 Z"></path>
+                </svg>
+                <div style="position: absolute; top: 12px; left: 16px; font-weight: 800; font-size: 0.8rem; color: var(--text-sub);" data-i18n="overallMetrics">
+                    OVERALL METRICS
+                </div>
+            </div>
+
+            <!-- Animated Circle Rings Graph -->
+            <div class="circle-graph-grid">
+                <div class="circle-graph-item">
+                    <svg class="circle-svg" viewBox="0 0 60 60">
+                        <circle class="circle-bg" cx="30" cy="30" r="26"></circle>
+                        <circle class="circle-bar" cx="30" cy="30" r="26" data-percent="90"></circle>
+                    </svg>
+                    <div class="circle-text">90%</div>
+                    <div class="circle-label">Illustrator</div>
+                </div>
+                <div class="circle-graph-item">
+                    <svg class="circle-svg" viewBox="0 0 60 60">
+                        <circle class="circle-bg" cx="30" cy="30" r="26"></circle>
+                        <circle class="circle-bar" cx="30" cy="30" r="26" data-percent="88"></circle>
+                    </svg>
+                    <div class="circle-text">88%</div>
+                    <div class="circle-label">Photoshop</div>
+                </div>
+                <div class="circle-graph-item">
+                    <svg class="circle-svg" viewBox="0 0 60 60">
+                        <circle class="circle-bg" cx="30" cy="30" r="26"></circle>
+                        <circle class="circle-bar" cx="30" cy="30" r="26" data-percent="85"></circle>
+                    </svg>
+                    <div class="circle-text">85%</div>
+                    <div class="circle-label">Flutter</div>
+                </div>
+            </div>
+
+            <!-- SOFTWARE & TOOLS RADIAL RINGS CHART -->
+            <div class="section-label">
+                <span><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="softwareTools">Software & Tools</span></span>
+                <span class="hint-badge"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="tapStraighten">Tap chart to straighten</span></span>
+            </div>
+
+            <div class="perspective-wrapper" onclick="toggleStraighten(this)">
+                <div class="radial-chart-card" id="softwareCard">
+                    
+                    <svg class="radial-svg-container" viewBox="0 0 240 240">
+                        <g transform="rotate(-90 120 120)">
+                            <!-- Ring 1: Illustrator (Radius 100) - Pink -->
+                            <circle class="ring-bg" cx="120" cy="120" r="100"></circle>
+                            <circle class="ring-progress" cx="120" cy="120" r="100" stroke="#ff2a85" data-r="100" data-pct="90"></circle>
+                            
+                            <!-- Ring 2: Photoshop (Radius 86) - Yellow -->
+                            <circle class="ring-bg" cx="120" cy="120" r="86"></circle>
+                            <circle class="ring-progress" cx="120" cy="120" r="86" stroke="#ffb703" data-r="86" data-pct="88"></circle>
+                            
+                            <!-- Ring 3: Flutter (Radius 72) - Cyan/Blue -->
+                            <circle class="ring-bg" cx="120" cy="120" r="72"></circle>
+                            <circle class="ring-progress" cx="120" cy="120" r="72" stroke="#00b4d8" data-r="72" data-pct="85"></circle>
+                            
+                            <!-- Ring 4: Web Dev (Radius 58) - Purple -->
+                            <circle class="ring-bg" cx="120" cy="120" r="58"></circle>
+                            <circle class="ring-progress" cx="120" cy="120" r="58" stroke="#a855f7" data-r="58" data-pct="80"></circle>
+                            
+                            <!-- Ring 5: Plotter/Vinyl Tools (Radius 44) - Green -->
+                            <circle class="ring-bg" cx="120" cy="120" r="44"></circle>
+                            <circle class="ring-progress" cx="120" cy="120" r="44" stroke="#22c55e" data-r="44" data-pct="85"></circle>
+                        </g>
+
+                        <!-- Labels plotted vertically in middle -->
+                        <text x="120" y="24" class="ring-label-text" text-anchor="middle">AI</text>
+                        <text x="120" y="38" class="ring-label-text" text-anchor="middle">PS</text>
+                        <text x="120" y="52" class="ring-label-text" text-anchor="middle">PY</text>
+                        <text x="120" y="66" class="ring-label-text" text-anchor="middle">WEB</text>
+                        <text x="120" y="80" class="ring-label-text" text-anchor="middle">CAD</text>
+
+                        <!-- Percentages -->
+                        <text x="210" y="123" class="ring-val-text" text-anchor="start">90%</text>
+                        <text x="196" y="123" class="ring-val-text" text-anchor="start">88%</text>
+                        <text x="182" y="123" class="ring-val-text" text-anchor="start">85%</text>
+                        <text x="168" y="123" class="ring-val-text" text-anchor="start">80%</text>
+                        <text x="154" y="123" class="ring-val-text" text-anchor="start">85%</text>
+                    </svg>
+
+                    <!-- Legend Items List -->
+                    <div class="software-legend-grid">
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #ff2a85;"></span>
+                            <span>Adobe Illustrator (90%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #ffb703;"></span>
+                            <span>Adobe Photoshop (88%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #00b4d8;"></span>
+                            <span>Flutter Programming (85%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #a855f7;"></span>
+                            <span>PHP / HTML / CSS / JS (80%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #22c55e;"></span>
+                            <span>Artcut & Silhouette (85%)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot" style="background: #f43f5e;"></span>
+                            <span>cPanel & CRM System (85%)</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PROFESSIONAL COMPETENCIES ANIMATED BARS -->
+            <div class="section-label"><span><i class="fa-solid fa-user-check"></i> <span data-i18n="profCompetencies">Professional Competencies</span></span></div>
+            <div class="app-card">
+                <div class="bar-group">
+                    <div class="bar-info"><span class="bar-title" data-i18n="comp1">Customer Service</span><span class="bar-val" data-i18n="expertVal">Expert</span></div>
+                    <div class="progress-track"><div class="progress-fill" data-width="95%"></div></div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-info"><span class="bar-title" data-i18n="comp2">Sales & Strategy</span><span class="bar-val" data-i18n="advVal">Advanced</span></div>
+                    <div class="progress-track"><div class="progress-fill" data-width="85%"></div></div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-info"><span class="bar-title" data-i18n="comp3">Project Monitoring</span><span class="bar-val" data-i18n="advVal">Advanced</span></div>
+                    <div class="progress-track"><div class="progress-fill" data-width="85%"></div></div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-info"><span class="bar-title" data-i18n="comp4">Team Work</span><span class="bar-val" data-i18n="expertVal">Expert</span></div>
+                    <div class="progress-track"><div class="progress-fill" data-width="92%"></div></div>
+                </div>
+                <div class="bar-group">
+                    <div class="bar-info"><span class="bar-title" data-i18n="comp5">Presentations & Communication</span><span class="bar-val" data-i18n="advVal">Advanced</span></div>
+                    <div class="progress-track"><div class="progress-fill" data-width="88%"></div></div>
+                </div>
+            </div>
+
+            <!-- LANGUAGE PROFICIENCY -->
+            <div class="section-label"><span><i class="fa-solid fa-language"></i> <span data-i18n="langProf">Language Proficiency</span></span></div>
+            <div class="app-card">
+                <div class="lang-card">
+                    <div class="lang-top">
+                        <span class="lang-name" data-i18n="langMalay">Malay</span>
+                        <span class="lang-badge badge-native" data-i18n="langNative">Native</span>
+                    </div>
+                    <div class="lang-scores">
+                        <span><span data-i18n="writtenLabel">Written</span>: <b>10 / 10</b></span>
+                        <span><span data-i18n="spokenLabel">Spoken</span>: <b>10 / 10</b></span>
+                    </div>
+                </div>
+
+                <div class="lang-card">
+                    <div class="lang-top">
+                        <span class="lang-name" data-i18n="langEnglish">English</span>
+                        <span class="lang-badge badge-pro" data-i18n="langPro">Professional</span>
+                    </div>
+                    <div class="lang-scores">
+                        <span><span data-i18n="writtenLabel">Written</span>: <b>8 / 10</b></span>
+                        <span><span data-i18n="spokenLabel">Spoken</span>: <b>8 / 10</b></span>
+                    </div>
+                </div>
+
+                <div class="lang-card">
+                    <div class="lang-top">
+                        <span class="lang-name" data-i18n="langArabic">Arabic</span>
+                        <span class="lang-badge badge-inter" data-i18n="langInter">Intermediate</span>
+                    </div>
+                    <div class="lang-scores">
+                        <span><span data-i18n="writtenLabel">Written</span>: <b>7 / 10</b></span>
+                        <span><span data-i18n="spokenLabel">Spoken</span>: <b>5 / 10</b></span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- TAB 2: CAREER & EDUCATION TIMELINE -->
+        <section id="tab-timeline" class="app-section">
+            
+            <!-- 1. WORK EXPERIENCE TIMELINE -->
+            <div class="section-label"><span><i class="fa-solid fa-briefcase"></i> <span data-i18n="workExpTitle">Work Experience Timeline</span></span></div>
+            <div class="app-card">
+                
+                <!-- Job 1 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon"><i class="fa-solid fa-brush"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="job1Title">Graphic Design & Web Dev</div>
+                            <div class="exp-company">KSA Equilibrium Services</div>
+                            <div class="exp-date">Apr 2020 - Present</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="job1Desc1">Designed creative materials including stickers, t-shirts, banners, signage, and promotional items.</li>
+                            <li data-i18n="job1Desc2">Managed business operations, project management, and quality control.</li>
+                            <li data-i18n="job1Desc3">Developed responsive websites and user-friendly mobile applications.</li>
+                            <li data-i18n="job1Desc4">Implemented Google AdSense, SEO optimization, and monetization strategies.</li>
+                            <li data-i18n="job1Desc5">Led process improvements to maintain business sustainability amidst competition.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon"><i class="fa-solid fa-headset"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="job2Title">Enterprise Customer Service Unit</div>
+                            <div class="exp-company">Maxis Broadband Sdn Bhd</div>
+                            <div class="exp-date">Oct 2018 - Oct 2019</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="job2Desc1">Provided technical and customer support for Maxis enterprise products.</li>
+                            <li data-i18n="job2Desc2">Troubleshot fiber and network-related issues as first-level technical support.</li>
+                            <li data-i18n="job2Desc3">Created and escalated cases to relevant departments.</li>
+                            <li data-i18n="job2Desc4">Ensured excellent customer service and met key performance indicators (KPIs).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="job3Title">Sales & Customer Service</div>
+                            <div class="exp-company">Eusu Logistics (M) Sdn. Bhd.</div>
+                            <div class="exp-date">July 2016 - Dec 2016</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="job3Desc1">Developed and executed sales strategies for business growth.</li>
+                            <li data-i18n="job3Desc2">Maintained customer relationships and service excellence.</li>
+                            <li data-i18n="job3Desc3">Conducted monthly sales forecasting and customer retention programs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon"><i class="fa-solid fa-warehouse"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="job4Title">Warehouse Supervisor</div>
+                            <div class="exp-company">Graphic Press Group Sdn Bhd</div>
+                            <div class="exp-date">Apr 2015 - June 2016</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="job4Desc1">Supervised warehouse operations and stock inventory.</li>
+                            <li data-i18n="job4Desc2">Managed logistics, order fulfillment, and safety compliance.</li>
+                            <li data-i18n="job4Desc3">Coordinated transportation for local and outstation deliveries.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 5 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon"><i class="fa-solid fa-ship"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="job5Title">Europe Outbound Coordinator</div>
+                            <div class="exp-company">APL NOL Global Services Centre Sdn Bhd</div>
+                            <div class="exp-date">Mar 2010 - Mar 2015</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="job5Desc1">Prepared and processed bills of lading for international shipments.</li>
+                            <li data-i18n="job5Desc2">Managed shipping rates, surcharges, and compliance.</li>
+                            <li data-i18n="job5Desc3">Maintained accuracy and efficiency in documentation processing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 2. EDUCATION TIMELINE -->
+            <div class="section-label" style="margin-top: 2rem;"><span><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="eduExpTitle">Education Timeline</span></span></div>
+            <div class="app-card">
+                
+                <!-- Edu 1 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon edu-icon"><i class="fa-solid fa-certificate"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="edu1Title">Train & Place</div>
+                            <div class="exp-company">Universiti Kebangsaan Malaysia (UKM)</div>
+                            <div class="exp-date">2008 - 2009</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="edu1Desc">Specialized training program designed for professional development and industry readiness.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Edu 2 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon edu-icon"><i class="fa-solid fa-utensils"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="edu2Title">Food Handling Programme</div>
+                            <div class="exp-company">Universiti Kebangsaan Malaysia (UKM)</div>
+                            <div class="exp-date">2008 - 2009</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="edu2Desc">Certified training on food safety standards, hygiene management, and handling compliance.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Edu 3 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="edu3Title">Diploma in Multimedia</div>
+                            <div class="exp-company">Kolej Islam Selangor (KISDAR / KUIS)</div>
+                            <div class="exp-date">2003 - 2005</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="edu3Desc">Focused on digital media design, graphic design, interactive media, and web development fundamentals.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Edu 4 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon edu-icon"><i class="fa-solid fa-language"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="edu4Title">English Intensive Program</div>
+                            <div class="exp-company">Kolej Putra, Troy State University</div>
+                            <div class="exp-date">2003</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="edu4Desc">Comprehensive English language proficiency course covering written communication and public speaking. TOEFL (Test of English Foreign Language) band 4 certification</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Edu 5 -->
+                <div class="exp-item active" onclick="toggleExp(this)">
+                    <div class="exp-header">
+                        <div class="exp-icon edu-icon"><i class="fa-solid fa-school"></i></div>
+                        <div class="exp-details">
+                            <div class="exp-title" data-i18n="edu5Title">Sijil Pelajaran Malaysia (SPM)</div>
+                            <div class="exp-company" data-i18n="edu5Sub">High School / Secondary Education</div>
+                            <div class="exp-date">2001</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                    </div>
+                    <div class="exp-expand">
+                        <ul>
+                            <li data-i18n="edu5Desc">Completed Malaysian Certificate of Education (SPM).</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- TAB 3: ACHIEVEMENTS -->
+        <section id="tab-achievements" class="app-section">
+            <div class="section-label"><span data-i18n="honorsTitle">Honors & Achievements</span></div>
+            <div class="app-card">
+                <div class="achieve-item" onclick="openCert('1st Q/2012 Performance Certificate', 'https://lh3.googleusercontent.com/d/1lnDDrkts6m6QXonG_uRqjS5pVd9fVxAN')">
+                    <div class="achieve-info">
+                        <i class="fa-solid fa-trophy achieve-icon"></i>
+                        <div>
+                            <div class="achieve-title" data-i18n="cert1Title">Outstanding Performance 1st Q/2012</div>
+                            <div class="achieve-sub">APL NOL Global Services</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
+                </div>
+
+                <div class="achieve-item" onclick="openCert('2nd Q/2012 Performance Certificate', 'https://lh3.googleusercontent.com/d/1htfCuh6Qjc9fofIqM48VD0SnrKPqb-pT')">
+                    <div class="achieve-info">
+                        <i class="fa-solid fa-trophy achieve-icon"></i>
+                        <div>
+                            <div class="achieve-title" data-i18n="cert2Title">Outstanding Performance 2nd Q/2012</div>
+                            <div class="achieve-sub">APL NOL Global Services</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
+                </div>
+
+                <div class="achieve-item" onclick="openCert('1st Q/2013 Performance Certificate', 'https://lh3.googleusercontent.com/d/15G-lzMehyQwyOY5tY8EBSuFReAuLK0RD')">
+                    <div class="achieve-info">
+                        <i class="fa-solid fa-trophy achieve-icon"></i>
+                        <div>
+                            <div class="achieve-title" data-i18n="cert3Title">Outstanding Performance 1st Q/2013</div>
+                            <div class="achieve-sub">APL NOL Global Services</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: LET'S COLLAB / HIRE ME & DOWNLOAD PORTFOLIO -->
+        <section id="tab-contact" class="app-section">
+            <div class="section-label"><span data-i18n="collabTitle">Let's Collab / Hire Me</span></div>
+            <div class="app-card">
+                <form id="waForm" onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <label data-i18n="formNameLabel">Your Name / Company</label>
+                        <input type="text" id="waName" class="form-control" placeholder="e.g. John Doe / Tech Corp" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="formSubjectLabel">Subject / Inquiry</label>
+                        <input type="text" id="waSubject" class="form-control" placeholder="e.g. Web Development / Design Project" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="formMsgLabel">Your Message</label>
+                        <textarea id="waMessage" class="form-control" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="app-btn app-btn-primary" style="width: 100%; margin-top: 10px;">
+                        <i class="fa-brands fa-whatsapp"></i> <span data-i18n="formSendBtn">Send via WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- DOWNLOAD / PRINT PORTFOLIO BUTTON -->
+            <div class="section-label"><span data-i18n="exportSectionTitle">Export Portfolio</span></div>
+            <div class="app-card" style="text-align: center;">
+                <p style="font-size: 0.85rem; color: var(--text-sub); margin-bottom: 1rem;" data-i18n="exportDesc">Save this full portfolio as a PDF document or print a hard copy directly.</p>
+                <button onclick="downloadPortfolio()" class="app-btn app-btn-secondary" style="width: 100%; justify-content: center; background: var(--primary); color: #ffffff;">
+                    <i class="fa-solid fa-file-arrow-down"></i> <span data-i18n="downloadBtnText">Download / Print Portfolio</span>
+                </button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FLOATING OVAL BOTTOM NAVIGATION BAR -->
+    <div class="floating-nav-wrapper">
+        <nav class="floating-oval-nav">
+            <a href="#" class="nav-link active" onclick="switchTab('tab-profile', this)" title="Profile">
+                <i class="fa-solid fa-user"></i>
+            </a>
+
+            <a href="#" class="nav-link" onclick="switchTab('tab-timeline', this)" title="Career Timeline">
+                <i class="fa-solid fa-briefcase"></i>
+            </a>
+
+            <!-- TROPHY BUTTON DENGAN CONTINUOUS CONFETTI -->
+            <button class="nav-center-btn" onclick="switchTab('tab-achievements', this)" title="Achievements">
+                <i class="fa-solid fa-trophy"></i>
+                <div class="confetti-container">
+                    <span class="confetti-piece" style="--tx: -35px; --ty: -40px; --rot: 45deg; --c: #ff3b30; --d: 0s;"></span>
+                    <span class="confetti-piece" style="--tx: 35px; --ty: -35px; --rot: 120deg; --c: #34c759; --d: 0.3s;"></span>
+                    <span class="confetti-piece" style="--tx: -20px; --ty: -55px; --rot: 200deg; --c: #007aff; --d: 0.6s;"></span>
+                    <span class="confetti-piece" style="--tx: 20px; --ty: -50px; --rot: 75deg; --c: #ffcc00; --d: 0.9s;"></span>
+                    <span class="confetti-piece" style="--tx: -45px; --ty: -10px; --rot: 180deg; --c: #af52de; --d: 1.2s;"></span>
+                    <span class="confetti-piece" style="--tx: 45px; --ty: -15px; --rot: 30deg; --c: #ffffff; --d: 1.5s;"></span>
+                </div>
+            </button>
+
+            <a href="#" class="nav-link" onclick="switchTab('tab-contact', this)" title="Let's Collab / Hire Me">
+                <i class="fa-solid fa-paper-plane"></i>
+            </a>
+        </nav>
+    </div>
+
+    <!-- BIOGRAPHY MODAL POPUP -->
+    <div id="bioModal" class="modal-overlay" onclick="closeBioModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeBioModal()">&times;</span>
+            <h3 style="font-size: 1.1rem; color: var(--text-main); font-weight: 800;">
+                <i class="fa-solid fa-address-card" style="color: var(--primary);"></i> <span data-i18n="bioModalTitle">About Me / Biography</span>
+            </h3>
+            
+            <div class="bio-content">
+                <p data-i18n="bioP1">Hello! I'm <b>Azlan Aiditt</b>, a versatile Graphic Designer, Web Developer, and Operations Specialist with over a decade of multi-industry experience spanning logistics, customer service, and digital creative solutions.</p>
+                <p data-i18n="bioP2">I specialize in building user-centered web applications, optimizing business workflows, creating impactful visual designs, and scaling brands online through SEO & monetization strategies.</p>
+                <p data-i18n="bioP3">Always open to exciting creative collaborations, freelance projects, or full-time opportunities where design meets functional technology.</p>
+            </div>
+
+            <!-- PERSONAL BACKGROUND INSIDE MY BIO -->
+            <h4 style="font-size: 0.95rem; color: var(--text-main); font-weight: 800; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                <i class="fa-solid fa-id-card" style="color: var(--primary);"></i> <span data-i18n="personalBgTitle">Personal Background</span>
+            </h4>
+
+            <div class="info-list">
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-user"></i> <span data-i18n="infoName">Name</span></div>
+                    <div class="info-value">Azlan Aiditt Bin Mohd Isa</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-cake-candles"></i> <span data-i18n="infoAge">Age</span></div>
+                    <div class="info-value">40</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="infoEdu">Highest Education</span></div>
+                    <div class="info-value" data-i18n="infoEduVal">Diploma (2005)</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-laptop-code"></i> <span data-i18n="infoMajor">Major</span></div>
+                    <div class="info-value" data-i18n="infoMajorVal">Multimedia</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-briefcase"></i> <span data-i18n="infoExp">Experience</span></div>
+                    <div class="info-value" data-i18n="infoExpVal">16 years</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-ring"></i> <span data-i18n="infoMarital">Marital Status</span></div>
+                    <div class="info-value" data-i18n="infoMaritalVal">Married</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-child"></i> <span data-i18n="infoChildren">No. of Children</span></div>
+                    <div class="info-value" data-i18n="infoChildrenVal">2</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-hospital-user"></i> <span data-i18n="infoBirth">Place of Birth</span></div>
+                    <div class="info-value" data-i18n="infoBirthVal">Klang</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label"><i class="fa-solid fa-location-dot"></i> <span data-i18n="infoLocation">Current Location</span></div>
+                    <div class="info-value" data-i18n="infoLocationVal">Pantai Sentral, KL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CERTIFICATE MODAL POPUP -->
+    <div id="certModal" class="modal-overlay" onclick="closeCert()">
+        <div class="modal-box" onclick="event.stopPropagation()" style="text-align: center;">
+            <span class="modal-close" onclick="closeCert()">&times;</span>
+            <h3 id="certTitle" style="font-size: 1rem; color: var(--text-main);" data-i18n="certModalTitle">Achievement Certificate</h3>
+            <img id="certImg" src="" alt="Certificate" class="cert-img-preview">
+        </div>
+    </div>
+
+    <!-- JavaScript Interactivity & Bilingual Translation Dictionary -->
+    <script>
+        // TRANSLATION DICTIONARY (EN & BM)
+        const translations = {
+            en: {
+                roleDesc: "Designer & Developer",
+                availStatus: "Available for Hire",
+                collabBtn: "Let's Collab",
+                emailBtn: "Email",
+                bioBtn: "My Bio",
+                competencyDash: "Competency Dashboard",
+                overallMetrics: "OVERALL METRICS",
+                softwareTools: "Software & Tools",
+                tapStraighten: "Tap chart to straighten",
+                profCompetencies: "Professional Competencies",
+                comp1: "Customer Service",
+                comp2: "Sales & Strategy",
+                comp3: "Project Monitoring",
+                comp4: "Team Work",
+                comp5: "Presentations & Communication",
+                expertVal: "Expert",
+                advVal: "Advanced",
+                langProf: "Language Proficiency",
+                langMalay: "Malay",
+                langEnglish: "English",
+                langArabic: "Arabic",
+                langNative: "Native",
+                langPro: "Professional",
+                langInter: "Intermediate",
+                writtenLabel: "Written",
+                spokenLabel: "Spoken",
+                workExpTitle: "Work Experience Timeline",
+                job1Title: "Graphic Design & Web Dev",
+                job1Desc1: "Designed creative materials including stickers, t-shirts, banners, signage, and promotional items.",
+                job1Desc2: "Managed business operations, project management, and quality control.",
+                job1Desc3: "Developed responsive websites and user-friendly mobile applications.",
+                job1Desc4: "Implemented Google AdSense, SEO optimization, and monetization strategies.",
+                job1Desc5: "Led process improvements to maintain business sustainability amidst competition.",
+                job2Title: "Enterprise Customer Service Unit",
+                job2Desc1: "Provided technical and customer support for Maxis enterprise products.",
+                job2Desc2: "Troubleshot fiber and network-related issues as first-level technical support.",
+                job2Desc3: "Created and escalated cases to relevant departments.",
+                job2Desc4: "Ensured excellent customer service and met key performance indicators (KPIs).",
+                job3Title: "Sales & Customer Service",
+                job3Desc1: "Developed and executed sales strategies for business growth.",
+                job3Desc2: "Maintained customer relationships and service excellence.",
+                job3Desc3: "Conducted monthly sales forecasting and customer retention programs.",
+                job4Title: "Warehouse Supervisor",
+                job4Desc1: "Supervised warehouse operations and stock inventory.",
+                job4Desc2: "Managed logistics, order fulfillment, and safety compliance.",
+                job4Desc3: "Coordinated transportation for local and outstation deliveries.",
+                job5Title: "Europe Outbound Coordinator",
+                job5Desc1: "Prepared and processed bills of lading for international shipments.",
+                job5Desc2: "Managed shipping rates, surcharges, and compliance.",
+                job5Desc3: "Maintained accuracy and efficiency in documentation processing.",
+                eduExpTitle: "Education Timeline",
+                edu1Title: "Train & Place",
+                edu1Desc: "Specialized training program designed for professional development and industry readiness.",
+                edu2Title: "Food Handling Programme",
+                edu2Desc: "Certified training on food safety standards, hygiene management, and handling compliance.",
+                edu3Title: "Diploma in Multimedia",
+                edu3Desc: "Focused on digital media design, graphic design, interactive media, and web development fundamentals.",
+                edu4Title: "English Intensive Program",
+                edu4Desc: "Comprehensive English language proficiency course covering written communication and public speaking.",
+                edu5Title: "Sijil Pelajaran Malaysia (SPM)",
+                edu5Sub: "High School / Secondary Education",
+                edu5Desc: "Completed Malaysian Certificate of Education (SPM).",
+                honorsTitle: "Honors & Achievements",
+                cert1Title: "Outstanding Performance 1st Q/2012",
+                cert2Title: "Outstanding Performance 2nd Q/2012",
+                cert3Title: "Outstanding Performance 1st Q/2013",
+                collabTitle: "Let's Collab / Hire Me",
+                formNameLabel: "Your Name / Company",
+                formSubjectLabel: "Subject / Inquiry",
+                formMsgLabel: "Your Message",
+                formSendBtn: "Send via WhatsApp",
+                exportSectionTitle: "Export Portfolio",
+                exportDesc: "Save this full portfolio as a PDF document or print a hard copy directly.",
+                downloadBtnText: "Download / Print Portfolio",
+                bioModalTitle: "About Me / Biography",
+                bioP1: "Hello! I'm <b>Azlan Aiditt</b>, a versatile Graphic Designer, Web Developer, and Operations Specialist with over a decade of multi-industry experience spanning logistics, customer service, and digital creative solutions.",
+                bioP2: "I specialize in building user-centered web applications, optimizing business workflows, creating impactful visual designs, and scaling brands online through SEO & monetization strategies.",
+                bioP3: "Always open to exciting creative collaborations, freelance projects, or full-time opportunities where design meets functional technology.",
+                personalBgTitle: "Personal Background",
+                infoName: "Name",
+                infoAge: "Age",
+                infoEdu: "Highest Education",
+                infoEduVal: "Diploma (2005)",
+                infoMajor: "Major",
+                infoMajorVal: "Multimedia",
+                infoExp: "Experience",
+                infoExpVal: "16 years",
+                infoMarital: "Status Perkahwinan",
+                infoMaritalVal: "Married",
+                infoChildren: "No. of Children",
+                infoChildrenVal: "2",
+                infoBirth: "Place of Birth",
+                infoBirthVal: "Klang",
+                infoLocation: "Current Location",
+                infoLocationVal: "Pantai Sentral, KL",
+                certModalTitle: "Achievement Certificate"
+            },
+            bm: {
+                roleDesc: "Pereka & Pembangun Web",
+                availStatus: "Bersedia untuk Tawaran",
+                collabBtn: "Jom Bekerjasama",
+                emailBtn: "Emel",
+                bioBtn: "Bio Saya",
+                competencyDash: "Papan Pemuka Kecekapan",
+                overallMetrics: "METRIK KESELURUHAN",
+                softwareTools: "Perisian & Alatan",
+                tapStraighten: "Tekan carta untuk luruskan",
+                profCompetencies: "Kecekapan Profesional",
+                comp1: "Khidmat Pelanggan",
+                comp2: "Jualan & Strategi",
+                comp3: "Pemantauan Projek",
+                comp4: "Kerjasama Berpasukan",
+                comp5: "Persembahan & Komunikasi",
+                expertVal: "Pakar",
+                advVal: "Mahir",
+                langProf: "Penguasaan Bahasa",
+                langMalay: "Bahasa Melayu",
+                langEnglish: "Bahasa Inggeris",
+                langArabic: "Bahasa Arab",
+                langNative: "Bahasa Ibunda",
+                langPro: "Profesional",
+                langInter: "Pertengahan",
+                writtenLabel: "Penulisan",
+                spokenLabel: "Pertuturan",
+                workExpTitle: "Garis Masa Pengalaman Kerja",
+                job1Title: "Reka Bentuk Grafik & Pembangunan Web",
+                job1Desc1: "Mereka bentuk bahan kreatif termasuk pelekat, baju T, sepanduk, papan tanda, dan barangan promosi.",
+                job1Desc2: "Menguruskan operasi perniagaan, pengurusan projek, dan kawalan kualiti.",
+                job1Desc3: "Membangunkan laman web responsif dan aplikasi mudah alih yang mesra pengguna.",
+                job1Desc4: "Melaksanakan Google AdSense, pengoptimuman SEO, dan strategi pengewangan.",
+                job1Desc5: "Menerajui penambahbaikan proses untuk mengekalkan kelestarian perniagaan.",
+                job2Title: "Unit Khidmat Pelanggan Perusahaan",
+                job2Desc1: "Menyediakan sokongan teknikal dan pelanggan untuk produk perusahaan Maxis.",
+                job2Desc2: "Menyelesaikan isu berkaitan gentian optik dan rangkaian sebagai sokongan teknikal tahap pertama.",
+                job2Desc3: "Mencipta dan mengeskalasi kes kepada jabatan berkaitan.",
+                job2Desc4: "Memastikan khidmat pelanggan yang cemerlang dan memenuhi petunjuk prestasi utama (KPI).",
+                job3Title: "Jualan & Khidmat Pelanggan",
+                job3Desc1: "Membangunkan dan melaksanakan strategi jualan untuk pertumbuhan perniagaan.",
+                job3Desc2: "Mengekalkan hubungan pelanggan dan kecemerlangan perkhidmatan.",
+                job3Desc3: "Menjalankan ramalan jualan bulanan dan program pengekalan pelanggan.",
+                job4Title: "Pengelia Gudang",
+                job4Desc1: "Melia operasi gudang dan inventori stok.",
+                job4Desc2: "Menguruskan logistik, pemenuhan pesanan, dan pematuhan keselamatan.",
+                job4Desc3: "Menyelaraskan pengangkutan untuk penghantaran tempatan dan luar stesen.",
+                job5Title: "Penyelaras Perkapalan Eropah",
+                job5Desc1: "Menyedia dan memproses bil muatan untuk penghantaran antarabangsa.",
+                job5Desc2: "Menguruskan kadar perkapalan, caj tambahan, dan pematuhan.",
+                job5Desc3: "Mengekalkan ketepatan dan kecekapan dalam pemprosesan dokumentasi.",
+                eduExpTitle: "Garis Masa Pendidikan",
+                edu1Title: "Latihan & Penempatan (Train & Place)",
+                edu1Desc: "Program latihan khusus yang direka untuk pembangunan profesional dan kesediaan industri.",
+                edu2Title: "Program Pengendalian Makanan",
+                edu2Desc: "Latihan bersijil mengenai standard keselamatan makanan, pengurusan kebersihan, dan pematuhan.",
+                edu3Title: "Diploma Multimedia",
+                edu3Desc: "Berfokus pada reka bentuk media digital, grafik, media interaktif, dan asas pembangunan web.",
+                edu4Title: "Program Intensif Bahasa Inggeris",
+                edu4Desc: "Kursus penguasaan bahasa Inggeris komprehensif merangkumi komunikasi bertulis dan ucapan awam. Band 4 TOEFL - Test of English Foreign Language",
+                edu5Title: "Sijil Pelajaran Malaysia (SPM)",
+                edu5Sub: "Sekolah Menengah / Pendidikan Menengah",
+                edu5Desc: "Menamatkan Sijil Pelajaran Malaysia (SPM).",
+                honorsTitle: "Anugerah & Pencapaian",
+                cert1Title: "Prestasi Cemerlang Q1/2012",
+                cert2Title: "Prestasi Cemerlang Q2/2012",
+                cert3Title: "Prestasi Cemerlang Q1/2013",
+                collabTitle: "Jom Bekerjasama / Tawaran Kerja",
+                formNameLabel: "Nama / Syarikat Anda",
+                formSubjectLabel: "Subjek / Pertanyaan",
+                formMsgLabel: "Mesej Anda",
+                formSendBtn: "Hantar melalui WhatsApp",
+                exportSectionTitle: "Eksport Portfolio",
+                exportDesc: "Simpan portfolio lengkap ini sebagai dokumen PDF atau cetak salinan fizikal secara terus.",
+                downloadBtnText: "Muat Turun / Cetak Portfolio",
+                bioModalTitle: "Mengenai Saya / Biodata",
+                bioP1: "Helo! Saya <b>Azlan Aiditt</b>, seorang Pereka Grafik, Pembangun Web, and Pakar Operasi serba boleh dengan pengalaman lebih sedekad merangkumi logistik, khidmat pelanggan, dan penyelesaian kreatif digital.",
+                bioP2: "Saya pakar dalam membina aplikasi web berpusatkan pengguna, mengoptimumkan aliran kerja perniagaan, mencipta reka bentuk visual yang berkesan, dan memperluaskan jenama dalam talian melalui SEO.",
+                bioP3: "Sentiasa terbuka kepada kolaborasi kreatif, projek bebas (freelance), atau peluang kerjaya sepenuh masa di mana reka bentuk bertemu teknologi fungsi.",
+                personalBgTitle: "Latar Belakang Peribadi",
+                infoName: "Nama",
+                infoAge: "Umur",
+                infoEdu: "Kelulusan Tertinggi",
+                infoEduVal: "Diploma (2005)",
+                infoMajor: "Pengkhususan",
+                infoMajorVal: "Multimedia",
+                infoExp: "Pengalaman",
+                infoExpVal: "16 tahun",
+                infoMarital: "Status Perkahwinan",
+                infoMaritalVal: "Berkahwin",
+                infoChildren: "Bil. Anak",
+                infoChildrenVal: "2",
+                infoBirth: "Tempat Lahir",
+                infoBirthVal: "Klang",
+                infoLocation: "Lokasi Semasa",
+                infoLocationVal: "Pantai Sentral, KL",
+                certModalTitle: "Sijil Pencapaian"
+            }
+        };
+
+        let currentLang = 'en';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'bm' : 'en';
+            document.getElementById('langLabel').innerText = currentLang === 'en' ? 'BM' : 'EN';
+            
+            // Apply translations
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            // Update Dynamic Date Language
+            updateDynamicDate();
+        }
+
+        // Display Current Day & Date dynamically based on selected language
+        function updateDynamicDate() {
+            const dateObj = new Date();
+            const locale = currentLang === 'bm' ? 'ms-MY' : 'en-US';
+            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = dateObj.toLocaleDateString(locale, options);
+            document.getElementById('currentDate').innerText = formattedDate;
+        }
+
+        // Tab Switcher
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.app-section').forEach(sec => {
+                sec.classList.remove('active-section');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active-section');
+            if(element && element.classList) {
+                element.classList.add('active');
+            }
+
+            if(tabId === 'tab-profile') {
+                animateGraphs();
+            }
+        }
+
+        // Toggle Straighten for 3D Chart
+        function toggleStraighten(wrapper) {
+            const card = wrapper.querySelector('.radial-chart-card');
+            card.classList.toggle('upright');
+        }
+
+        // Accordion for Experience & Education
+        function toggleExp(item) {
+            item.classList.toggle('active');
+        }
+
+        // Bio Modal Handler
+        function openBioModal() {
+            document.getElementById('bioModal').style.display = 'flex';
+        }
+
+        function closeBioModal() {
+            document.getElementById('bioModal').style.display = 'none';
+        }
+
+        // Certificate Modal
+        function openCert(title, imgUrl) {
+            document.getElementById('certTitle').innerText = title;
+            document.getElementById('certImg').src = imgUrl;
+            document.getElementById('certModal').style.display = 'flex';
+        }
+
+        function closeCert() {
+            document.getElementById('certModal').style.display = 'none';
+        }
+
+        // Download / Print Portfolio Handler
+        function downloadPortfolio() {
+            window.print();
+        }
+
+        // WhatsApp Form Handler
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            const phone = "60102606368";
+            const name = document.getElementById('waName').value;
+            const subject = document.getElementById('waSubject').value;
+            const message = document.getElementById('waMessage').value;
+
+            const text = `Hi Azlan,\n\nName: ${name}\nSubject: ${subject}\n\nMessage:\n${message}`;
+            const encodedText = encodeURIComponent(text);
+            
+            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
+        }
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('themeToggle');
+        const themeIcon = themeBtn.querySelector('i');
+
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.body.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        // GRAPH ANIMATION ENGINE
+        function animateGraphs() {
+            // Horizontal Progress Bars
+            const fills = document.querySelectorAll('.progress-fill');
+            fills.forEach(fill => {
+                fill.style.width = '0%';
+                setTimeout(() => {
+                    fill.style.width = fill.getAttribute('data-width');
+                }, 100);
+            });
+
+            // Top Circle Graphs
+            const circles = document.querySelectorAll('.circle-bar');
+            circles.forEach(circle => {
+                const percent = circle.getAttribute('data-percent');
+                const circumference = 163;
+                const offset = circumference - (percent / 100) * circumference;
+                circle.style.strokeDashoffset = circumference;
+                setTimeout(() => {
+                    circle.style.strokeDashoffset = offset;
+                }, 150);
+            });
+
+            // Concentric Radial Rings Graph
+            const ringProgresses = document.querySelectorAll('.ring-progress');
+            ringProgresses.forEach(ring => {
+                const r = parseFloat(ring.getAttribute('data-r'));
+                const pct = parseFloat(ring.getAttribute('data-pct'));
+                const circumference = 2 * Math.PI * r;
+                
+                ring.style.strokeDasharray = circumference;
+                ring.style.strokeDashoffset = circumference;
+
+                const offset = circumference - (pct / 100) * circumference;
+                setTimeout(() => {
+                    ring.style.strokeDashoffset = offset;
+                }, 200);
+            });
+        }
+
+        // Initial trigger
+        window.addEventListener('DOMContentLoaded', () => {
+            updateDynamicDate();
+            animateGraphs();
+        });
+    </script>
+</body>
+</html>
