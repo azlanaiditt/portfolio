@@ -1029,6 +1029,23 @@
             color: var(--text-sub);
         }
 
+        /* IFRAME MODAL STYLES */
+        .iframe-container {
+            width: 100%;
+            height: 60vh;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-top: 12px;
+            background: #ffffff;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .bio-content p {
             font-size: 0.9rem;
             color: var(--text-sub);
@@ -1649,8 +1666,12 @@
                         <div class="project-details-text">
                             Student management system, COOP POS system, two-way communication (parents & school) system.
                         </div>
+                        <!-- Pautan Membuka Modal Flipbook SAMSES Mutaqaddim -->
+                        <a href="javascript:void(0);" onclick="openFlipbook('samses')" class="view-project-link">
+                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                        </a>
                     </div>
-                    <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>EdTech Management Solution</span>
                     </div>
                 </div>
@@ -1671,6 +1692,29 @@
                     </div>
                     <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Logistics Solution</span>
+                    </div>
+                </div>
+
+                <!-- Project 5: Invitation Card / E-Card -->
+                <div class="project-card-item">
+                    <div>
+                        <div class="project-header-row">
+                            <div class="project-name">Invitation Card / E-Card</div>
+                            <span class="project-status-badge status-released">Active</span>
+                        </div>
+                        <div class="project-meta-info">
+                            <span><i class="fa-solid fa-calendar"></i> 2026 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Web</span>
+                        </div>
+                        <div class="project-details-text">
+                            Wedding invitation card, birthday invitation card & RSVP
+                        </div>
+                        <!-- Pautan Membuka Modal iFrame untuk ansarnadia.netlify.app -->
+                        <a href="javascript:void(0);" onclick="openIframeModal('https://ansarnadia.netlify.app', 'Invitation Card / E-Card')" class="view-project-link">
+                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                        </a>
+                    </div>
+                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Digital Invitation Platform</span>
                     </div>
                 </div>
 
@@ -1834,6 +1878,27 @@
                         <span data-i18n="nextBtn">Next</span> <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IFRAME PREVIEW MODAL POPUP -->
+    <div id="iframeModal" class="modal-overlay" onclick="closeIframeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeIframeModal()">&times;</span>
+            <h3 id="iframeTitle" style="font-size: 1.1rem; color: var(--text-main); font-weight: 800;">
+                <i class="fa-solid fa-globe" style="color: var(--primary);"></i> Live Web Preview
+            </h3>
+            <p style="font-size: 0.78rem; color: var(--text-sub);">Interactive Website Preview</p>
+            
+            <div class="iframe-container">
+                <iframe id="projectIframe" src="" title="Live Preview"></iframe>
+            </div>
+            
+            <div style="margin-top: 12px; text-align: right;">
+                <a id="iframeExternalLink" href="#" target="_blank" class="app-btn app-btn-primary" style="display: inline-flex; font-size: 0.8rem; padding: 8px 14px;">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab
+                </a>
             </div>
         </div>
     </div>
@@ -2160,6 +2225,19 @@
                     "https://lh3.googleusercontent.com/d/1YPpMAcqw6E2dzGZEdj_yH79keHUNoXSN",
                     "https://lh3.googleusercontent.com/d/1vkxZijubK6bjgtc8jU4dvT3CHARCjAeV"
                 ]
+            },
+            samses: {
+                title: "SAMSES Mutaqaddim Overview",
+                subtitle: "Student, COOP & School Management System Showcase",
+                images: [
+                    "https://lh3.googleusercontent.com/d/1Hn5nazqw-WAllWkAfqclHbph0zl6bj2E",
+                    "https://lh3.googleusercontent.com/d/1f5GWnuuDUmzYktEfjM1RJst-MYWm8s3B",
+                    "https://lh3.googleusercontent.com/d/1169OEIGKTS30tcJbi7fmiFr3uaZQSRgm",
+                    "https://lh3.googleusercontent.com/d/1DVH1DrnYSP_13kDRvb_89NhrVAxYQuhy",
+                    "https://lh3.googleusercontent.com/d/1dOy4gS6jrDQ2PLU0HfBk4zJbYiQ0FdOs",
+                    "https://lh3.googleusercontent.com/d/1qXz4ooiXKwwwQrttIIyHdtf7xxnMfCN5",
+                    "https://lh3.googleusercontent.com/d/1pri7VrJ1W_Zn2MRHH27F-b7q02jzxtnV"
+                ]
             }
         };
 
@@ -2212,6 +2290,19 @@
             document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${slides.length}`;
             document.getElementById('prevSlideBtn').disabled = currentSlideIndex === 0;
             document.getElementById('nextSlideBtn').disabled = currentSlideIndex === slides.length - 1;
+        }
+
+        // IFRAME MODAL LOGIC FOR LIVE WEB PREVIEW
+        function openIframeModal(url, title) {
+            document.getElementById('iframeTitle').innerHTML = `<i class="fa-solid fa-globe" style="color: var(--primary);"></i> ${title}`;
+            document.getElementById('projectIframe').src = url;
+            document.getElementById('iframeExternalLink').href = url;
+            document.getElementById('iframeModal').style.display = 'flex';
+        }
+
+        function closeIframeModal() {
+            document.getElementById('iframeModal').style.display = 'none';
+            document.getElementById('projectIframe').src = ''; // Clear source upon closing
         }
 
         // Download / Print Portfolio Handler
