@@ -701,6 +701,22 @@
             line-height: 1.5;
         }
 
+        .view-project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .view-project-link:hover {
+            text-decoration: underline;
+        }
+
         /* PERSONAL BACKGROUND LIST (INSIDE MODAL) */
         .info-list {
             display: flex;
@@ -926,6 +942,7 @@
             color: var(--text-sub);
             font-size: 1.4rem;
             cursor: pointer;
+            z-index: 10;
         }
 
         .cert-img-preview {
@@ -934,6 +951,82 @@
             border-radius: 12px;
             object-fit: contain;
             margin-top: 10px;
+        }
+
+        /* FLIPBOOK MODAL STYLES */
+        .flipbook-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .flipbook-view-area {
+            width: 100%;
+            height: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 15px 0;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .flipbook-slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .flipbook-slide.active-slide {
+            display: flex;
+        }
+
+        .flipbook-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .flipbook-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .flip-btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px var(--primary-glow);
+            transition: transform 0.2s;
+        }
+
+        .flip-btn:active { transform: scale(0.95); }
+        .flip-btn:disabled { background: var(--border-color); color: var(--text-sub); cursor: not-allowed; box-shadow: none; }
+
+        .flipbook-counter {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-sub);
         }
 
         .bio-content p {
@@ -964,7 +1057,6 @@
                 padding: 0 !important;
                 min-height: auto !important;
             }
-            /* Paksa semua seksyen tampil serentak ketika print */
             .app-section {
                 display: block !important;
                 opacity: 1 !important;
@@ -1498,7 +1590,7 @@
             
             <div class="projects-slider-container">
                 
-                <!-- Project 1 -->
+                <!-- Project 1 (Opah Gangnam Stall) -->
                 <div class="project-card-item">
                     <div>
                         <div class="project-header-row">
@@ -1511,8 +1603,12 @@
                         <div class="project-details-text">
                             Order taking & POS System integrated with online payment gateway.
                         </div>
+                        <!-- Pautan Membuka Modal Flipbook Opah Gangnam Stall -->
+                        <a href="javascript:void(0);" onclick="openFlipbook('opah')" class="view-project-link">
+                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                        </a>
                     </div>
-                    <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Client Portfolio Project</span>
                     </div>
                 </div>
@@ -1536,7 +1632,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3 -->
+                <!-- Project 3 (DBM DENGAN VIEW PROJECT & FLIPBOOK MODAL POPUP) -->
                 <div class="project-card-item">
                     <div>
                         <div class="project-header-row">
@@ -1549,8 +1645,12 @@
                         <div class="project-details-text">
                             Final year project by Politeknik Ungku Omar's student. DBM is a one stop application to monitor diesels in various sites.
                         </div>
+                        <!-- Pautan Membuka Modal Flipbook DBM -->
+                        <a href="javascript:void(0);" onclick="openFlipbook('dbm')" class="view-project-link">
+                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                        </a>
                     </div>
-                    <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Academic / Industry Collaboration</span>
                     </div>
                 </div>
@@ -1566,7 +1666,7 @@
                             <span><i class="fa-solid fa-calendar"></i> 2024 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android, IOS & POS</span>
                         </div>
                         <div class="project-details-text">
-                            Student management system, COOP POS system, two-way communication (parents & school) system[cite: 3].
+                            Student management system, COOP POS system, two-way communication (parents & school) system.
                         </div>
                     </div>
                     <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
@@ -1711,6 +1811,33 @@
         </div>
     </div>
 
+    <!-- FLIPBOOK MODAL POPUP (MULTI-PROJECT SLIDER) -->
+    <div id="flipbookModal" class="modal-overlay" onclick="closeFlipbook()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeFlipbook()">&times;</span>
+            <h3 id="flipbookTitle" style="font-size: 1.1rem; color: var(--text-main); font-weight: 800; margin-bottom: 4px;">
+                <i class="fa-solid fa-book-open" style="color: var(--primary);"></i> Project Overview
+            </h3>
+            <p id="flipbookSubtitle" style="font-size: 0.78rem; color: var(--text-sub);">Project Showcase</p>
+            
+            <div class="flipbook-container">
+                <div class="flipbook-view-area" id="flipbookSlidesContainer">
+                    <!-- Slides loaded dynamically via JS -->
+                </div>
+
+                <div class="flipbook-controls">
+                    <button class="flip-btn" id="prevSlideBtn" onclick="changeSlide(-1)" disabled>
+                        <i class="fa-solid fa-chevron-left"></i> <span data-i18n="prevBtn">Previous</span>
+                    </button>
+                    <div class="flipbook-counter" id="flipCounter">Page 1</div>
+                    <button class="flip-btn" id="nextSlideBtn" onclick="changeSlide(1)">
+                        <span data-i18n="nextBtn">Next</span> <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JavaScript Interactivity & Bilingual Translation Dictionary -->
     <script>
         // TRANSLATION DICTIONARY (EN & BM)
@@ -1784,6 +1911,7 @@
                 cert3Title: "Outstanding Performance 1st Q/2013",
                 projectsSectionTitle: "Projects",
                 swipeHint: "Swipe to view",
+                viewProjectLink: "View Project Overview",
                 collabTitle: "Let's Collab / Hire Me",
                 formNameLabel: "Your Name / Company",
                 formSubjectLabel: "Subject / Inquiry",
@@ -1813,7 +1941,9 @@
                 infoBirthVal: "Klang",
                 infoLocation: "Current Location",
                 infoLocationVal: "Pantai Sentral, KL",
-                certModalTitle: "Achievement Certificate"
+                certModalTitle: "Achievement Certificate",
+                prevBtn: "Previous",
+                nextBtn: "Next"
             },
             bm: {
                 roleDesc: "Pereka & Pembangun Web",
@@ -1884,6 +2014,7 @@
                 cert3Title: "Prestasi Cemerlang Q1/2013",
                 projectsSectionTitle: "Projek",
                 swipeHint: "Leret ke sisi untuk lihat",
+                viewProjectLink: "Lihat Ringkasan Projek",
                 collabTitle: "Jom Bekerjasama / Tawaran Kerja",
                 formNameLabel: "Nama / Syarikat Anda",
                 formSubjectLabel: "Subjek / Pertanyaan",
@@ -1913,7 +2044,9 @@
                 infoBirthVal: "Klang",
                 infoLocation: "Lokasi Semasa",
                 infoLocationVal: "Pantai Sentral, KL",
-                certModalTitle: "Sijil Pencapaian"
+                certModalTitle: "Sijil Pencapaian",
+                prevBtn: "Sebelum",
+                nextBtn: "Seterusnya"
             }
         };
 
@@ -1993,6 +2126,92 @@
 
         function closeCert() {
             document.getElementById('certModal').style.display = 'none';
+        }
+
+        // PROJECT FLIPBOOK DATA
+        const projectFlipbooks = {
+            opah: {
+                title: "Opah Gangnam Stall Overview",
+                subtitle: "PWA & Web Based POS System Showcase",
+                images: [
+                    "https://lh3.googleusercontent.com/d/1MY-sbDp5kD8STsHhXG2I63cpZqWI1u6m",
+                    "https://lh3.googleusercontent.com/d/1lsknoMknyevk55cdDn_yihAwCMyQfMDH",
+                    "https://lh3.googleusercontent.com/d/1DLqrPpAIX4STwDwSH_cHSp_FZCVtox71",
+                    "https://lh3.googleusercontent.com/d/1E_UXj-yQXUmGVKb4lJ9K3eMQOQEvlMkw",
+                    "https://lh3.googleusercontent.com/d/1l73wpzT20zjUgZzvxTS5B05VR4N1R5pJ",
+                    "https://lh3.googleusercontent.com/d/1BDe8IOq9pNThRhKJtJ39A3tfqy7ceule",
+                    "https://lh3.googleusercontent.com/d/1YPpMAcqw6E2dzGZEdj_yH79keHUNoXSN",
+                    "https://lh3.googleusercontent.com/d/1vkxZijubK6bjgtc8jU4dvT3CHARCjAeV"
+                ]
+            },
+            dbm: {
+                title: "DBM Project Overview",
+                subtitle: "Diesel Balance Management System Showcase",
+                images: [
+                    "https://lh3.googleusercontent.com/d/1tq0xXttqmiSryNjLpjd_o-TFDZVYSEa3",
+                    "https://lh3.googleusercontent.com/d/1Sc3o4BujeNEA73mPMaXyYHkwA5D6ozGl",
+                    "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq",
+                    "https://lh3.googleusercontent.com/d/1ecSda-Li_Po8KiiuqfbgZzdjQyGiGvqv",
+                    "https://lh3.googleusercontent.com/d/1UGCvg6yb9qBwA2bNSACr3toqWs-44WgC",
+                    "https://lh3.googleusercontent.com/d/1KY1LK81FhSTf54HAbObKdlVKgi34R25a",
+                    "https://lh3.googleusercontent.com/d/1Eo5d3H0iWq8EMAuBIK44QGfuc-p4ITHy",
+                    "https://lh3.googleusercontent.com/d/1MVh65dGb2f4-EH20EJh6o0bTnVo0Q-Fb",
+                    "https://lh3.googleusercontent.com/d/1sPGYO_35tQ_TC-k-IIgD3xBwTRt_EoXl",
+                    "https://lh3.googleusercontent.com/d/14-iQ3voDRY2oL4dEzrW5VcPZvNp-L9R2",
+                    "https://lh3.googleusercontent.com/d/1k4lISt9QDKdzt6SFkNIil8-7h4VePiiO"
+                ]
+            }
+        };
+
+        // FLIPBOOK MODAL LOGIC (DINAMIK DENGAN BANYAK PROJEK)
+        let currentSlideIndex = 0;
+        let activeProjectKey = 'opah';
+
+        function openFlipbook(projectKey) {
+            activeProjectKey = projectKey || 'opah';
+            const data = projectFlipbooks[activeProjectKey];
+            if(!data) return;
+
+            // Set Tajuk & Subtajuk
+            document.getElementById('flipbookTitle').innerHTML = `<i class="fa-solid fa-book-open" style="color: var(--primary);"></i> ${data.title}`;
+            document.getElementById('flipbookSubtitle').innerText = data.subtitle;
+
+            // Bina HTML untuk Slide Gambar
+            const container = document.getElementById('flipbookSlidesContainer');
+            container.innerHTML = '';
+            data.images.forEach((imgUrl, idx) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = `flipbook-slide ${idx === 0 ? 'active-slide' : ''}`;
+                slideDiv.innerHTML = `<img src="${imgUrl}" alt="${data.title} Slide ${idx + 1}">`;
+                container.appendChild(slideDiv);
+            });
+
+            currentSlideIndex = 0;
+            updateFlipbookView();
+            document.getElementById('flipbookModal').style.display = 'flex';
+        }
+
+        function closeFlipbook() {
+            document.getElementById('flipbookModal').style.display = 'none';
+        }
+
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('#flipbookSlidesContainer .flipbook-slide');
+            slides[currentSlideIndex].classList.remove('active-slide');
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = slides.length - 1;
+
+            slides[currentSlideIndex].classList.add('active-slide');
+            updateFlipbookView();
+        }
+
+        function updateFlipbookView() {
+            const slides = document.querySelectorAll('#flipbookSlidesContainer .flipbook-slide');
+            document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${slides.length}`;
+            document.getElementById('prevSlideBtn').disabled = currentSlideIndex === 0;
+            document.getElementById('nextSlideBtn').disabled = currentSlideIndex === slides.length - 1;
         }
 
         // Download / Print Portfolio Handler
