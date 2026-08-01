@@ -1590,49 +1590,7 @@
             
             <div class="projects-slider-container">
                 
-                <!-- Project 1 (Opah Gangnam Stall) -->
-                <div class="project-card-item">
-                    <div>
-                        <div class="project-header-row">
-                            <div class="project-name">Opah Gangnam Stall</div>
-                            <span class="project-status-badge status-released">Released</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> PWA & Web Based POS</span>
-                        </div>
-                        <div class="project-details-text">
-                            Order taking & POS System integrated with online payment gateway.
-                        </div>
-                        <!-- Pautan Membuka Modal Flipbook Opah Gangnam Stall -->
-                        <a href="javascript:void(0);" onclick="openFlipbook('opah')" class="view-project-link">
-                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
-                        </a>
-                    </div>
-                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Client Portfolio Project</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card-item">
-                    <div>
-                        <div class="project-header-row">
-                            <div class="project-name">Landit Delivery</div>
-                            <span class="project-status-badge status-prototype">Prototype</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Web App</span>
-                        </div>
-                        <div class="project-details-text">
-                            On demand delivery services.
-                        </div>
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Logistics Solution</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 (DBM DENGAN VIEW PROJECT & FLIPBOOK MODAL POPUP) -->
+                <!-- Project 1: Diesel Balance Management -->
                 <div class="project-card-item">
                     <div>
                         <div class="project-header-row">
@@ -1655,7 +1613,30 @@
                     </div>
                 </div>
 
-                <!-- Project 4 -->
+                <!-- Project 2: Opah Gangnam Stall -->
+                <div class="project-card-item">
+                    <div>
+                        <div class="project-header-row">
+                            <div class="project-name">Opah Gangnam Stall</div>
+                            <span class="project-status-badge status-released">Released</span>
+                        </div>
+                        <div class="project-meta-info">
+                            <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> PWA & Web Based POS</span>
+                        </div>
+                        <div class="project-details-text">
+                            Order taking & POS System integrated with online payment gateway.
+                        </div>
+                        <!-- Pautan Membuka Modal Flipbook Opah Gangnam Stall -->
+                        <a href="javascript:void(0);" onclick="openFlipbook('opah')" class="view-project-link">
+                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                        </a>
+                    </div>
+                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Client Portfolio Project</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: SAMSES Mutaqaddim -->
                 <div class="project-card-item">
                     <div>
                         <div class="project-header-row">
@@ -1671,6 +1652,25 @@
                     </div>
                     <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>EdTech Management Solution</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: Landit Delivery -->
+                <div class="project-card-item">
+                    <div>
+                        <div class="project-header-row">
+                            <div class="project-name">Landit Delivery</div>
+                            <span class="project-status-badge status-prototype">Prototype</span>
+                        </div>
+                        <div class="project-meta-info">
+                            <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Web App</span>
+                        </div>
+                        <div class="project-details-text">
+                            On demand delivery services.
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Logistics Solution</span>
                     </div>
                 </div>
 
@@ -2130,20 +2130,6 @@
 
         // PROJECT FLIPBOOK DATA
         const projectFlipbooks = {
-            opah: {
-                title: "Opah Gangnam Stall Overview",
-                subtitle: "PWA & Web Based POS System Showcase",
-                images: [
-                    "https://lh3.googleusercontent.com/d/1MY-sbDp5kD8STsHhXG2I63cpZqWI1u6m",
-                    "https://lh3.googleusercontent.com/d/1lsknoMknyevk55cdDn_yihAwCMyQfMDH",
-                    "https://lh3.googleusercontent.com/d/1DLqrPpAIX4STwDwSH_cHSp_FZCVtox71",
-                    "https://lh3.googleusercontent.com/d/1E_UXj-yQXUmGVKb4lJ9K3eMQOQEvlMkw",
-                    "https://lh3.googleusercontent.com/d/1l73wpzT20zjUgZzvxTS5B05VR4N1R5pJ",
-                    "https://lh3.googleusercontent.com/d/1BDe8IOq9pNThRhKJtJ39A3tfqy7ceule",
-                    "https://lh3.googleusercontent.com/d/1YPpMAcqw6E2dzGZEdj_yH79keHUNoXSN",
-                    "https://lh3.googleusercontent.com/d/1vkxZijubK6bjgtc8jU4dvT3CHARCjAeV"
-                ]
-            },
             dbm: {
                 title: "DBM Project Overview",
                 subtitle: "Diesel Balance Management System Showcase",
@@ -2160,15 +2146,29 @@
                     "https://lh3.googleusercontent.com/d/14-iQ3voDRY2oL4dEzrW5VcPZvNp-L9R2",
                     "https://lh3.googleusercontent.com/d/1k4lISt9QDKdzt6SFkNIil8-7h4VePiiO"
                 ]
+            },
+            opah: {
+                title: "Opah Gangnam Stall Overview",
+                subtitle: "PWA & Web Based POS System Showcase",
+                images: [
+                    "https://lh3.googleusercontent.com/d/1MY-sbDp5kD8STsHhXG2I63cpZqWI1u6m",
+                    "https://lh3.googleusercontent.com/d/1lsknoMknyevk55cdDn_yihAwCMyQfMDH",
+                    "https://lh3.googleusercontent.com/d/1DLqrPpAIX4STwDwSH_cHSp_FZCVtox71",
+                    "https://lh3.googleusercontent.com/d/1E_UXj-yQXUmGVKb4lJ9K3eMQOQEvlMkw",
+                    "https://lh3.googleusercontent.com/d/1l73wpzT20zjUgZzvxTS5B05VR4N1R5pJ",
+                    "https://lh3.googleusercontent.com/d/1BDe8IOq9pNThRhKJtJ39A3tfqy7ceule",
+                    "https://lh3.googleusercontent.com/d/1YPpMAcqw6E2dzGZEdj_yH79keHUNoXSN",
+                    "https://lh3.googleusercontent.com/d/1vkxZijubK6bjgtc8jU4dvT3CHARCjAeV"
+                ]
             }
         };
 
         // FLIPBOOK MODAL LOGIC (DINAMIK DENGAN BANYAK PROJEK)
         let currentSlideIndex = 0;
-        let activeProjectKey = 'opah';
+        let activeProjectKey = 'dbm';
 
         function openFlipbook(projectKey) {
-            activeProjectKey = projectKey || 'opah';
+            activeProjectKey = projectKey || 'dbm';
             const data = projectFlipbooks[activeProjectKey];
             if(!data) return;
 
