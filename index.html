@@ -1672,7 +1672,7 @@
                     <div class="project-card-item">
                         <div>
                             <div class="project-header-row">
-                                <div class="project-name">Habit Hijrah - In Development</div>
+                                <div class="project-name">Habit Hijrah</div>
                                 <span class="project-status-badge status-prototype">In Dev</span>
                             </div>
                             <div class="project-meta-info">
@@ -1681,9 +1681,9 @@
                             <div class="project-details-text">
                                 An app to transform your bad habit to a good habit. Equipped with daily reminder and customizable app front page with drag & drop functions added.
                             </div>
-                            <!-- Pautan Membuka Modal Flipbook Habit Hijrah -->
+                            <!-- Pautan Membuka Modal Flipbook / Video Showcase Habit Hijrah -->
                             <a href="javascript:void(0);" onclick="openFlipbook('habithijrah')" class="view-project-link">
-                                <i class="fa-solid fa-video"></i> <span data-i18n="viewVideoLink">View Video Showcase</span>
+                                <i class="fa-solid fa-expand"></i> <span data-i18n="viewVideoLink">View Video Showcase (Full Screen)</span>
                             </a>
                         </div>
                         <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
@@ -2054,7 +2054,7 @@
                 projectsSectionTitle: "Projects",
                 swipeHint: "Swipe to view",
                 viewProjectLink: "View Project Overview",
-                viewVideoLink: "View Video Showcase",
+                viewVideoLink: "View Video Showcase (Full Screen)",
                 collabTitle: "Let's Collab / Hire Me",
                 formNameLabel: "Your Name / Company",
                 formSubjectLabel: "Subject / Inquiry",
@@ -2157,7 +2157,7 @@
                 projectsSectionTitle: "Projek",
                 swipeHint: "Leret ke sisi untuk lihat",
                 viewProjectLink: "Lihat Ringkasan Projek",
-                viewVideoLink: "Tonton Pratonton Video",
+                viewVideoLink: "Tonton Video Showcase (Skrin Penuh)",
                 collabTitle: "Jom Bekerjasama / Tawaran Kerja",
                 formNameLabel: "Nama / Syarikat Anda",
                 formSubjectLabel: "Subjek / Pertanyaan",
@@ -2361,10 +2361,27 @@
                 slideDiv.className = `flipbook-slide ${idx === 0 ? 'active-slide' : ''}`;
                 
                 if (item.type === 'video') {
+                    // Container video dengan iframe
+                    slideDiv.style.flexDirection = 'column';
+                    slideDiv.style.gap = '10px';
+
                     const iframe = document.createElement('iframe');
                     iframe.src = item.src;
-                    iframe.allow = "autoplay";
+                    iframe.allow = "autoplay; fullscreen";
+                    iframe.allowFullscreen = true;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
                     slideDiv.appendChild(iframe);
+
+                    // Butang Buka Skrin Penuh / Tab Baru
+                    const fsBtn = document.createElement('a');
+                    fsBtn.href = item.src.replace('/preview', '/view');
+                    fsBtn.target = '_blank';
+                    fsBtn.className = 'app-btn app-btn-primary';
+                    fsBtn.style.padding = '6px 12px';
+                    fsBtn.style.fontSize = '0.75rem';
+                    fsBtn.innerHTML = '<i class="fa-solid fa-up-right-and-down-left-from-center"></i> Full Screen Video';
+                    slideDiv.appendChild(fsBtn);
                 } else {
                     const img = document.createElement('img');
                     img.src = item.src;
@@ -2380,6 +2397,22 @@
 
             updateFlipbookState();
             document.getElementById('flipbookModal').style.display = 'flex';
+
+            // Jika item adalah video, secara automatik cuba minta mod Skrin Penuh (Fullscreen API)
+            if (data.slides && data.slides[0] && data.slides[0].type === 'video') {
+                setTimeout(() => {
+                    const elem = container.querySelector('iframe');
+                    if (elem) {
+                        if (elem.requestFullscreen) {
+                            elem.requestFullscreen().catch(err => console.log(err));
+                        } else if (elem.webkitRequestFullscreen) { /* Safari */
+                            elem.webkitRequestFullscreen();
+                        } else if (elem.msRequestFullscreen) { /* IE11 */
+                            elem.msRequestFullscreen();
+                        }
+                    }
+                }, 400);
+            }
         }
 
         function openCertFlipbook(certKey) {
