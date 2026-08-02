@@ -613,7 +613,7 @@
         .achieve-title { font-weight: 700; font-size: 0.88rem; color: var(--text-main); }
         .achieve-sub { font-size: 0.75rem; color: var(--text-sub); }
 
-        /* INTERNAL TAB SWITCHER (FOR ACHIEVEMENTS & PROJECTS) */
+        /* INTERNAL TAB SWITCHER */
         .sub-tab-container {
             display: flex;
             background: var(--pill-bg);
@@ -1394,212 +1394,226 @@
 
         </main>
 
-        <!-- TAB 2: CAREER & EDUCATION TIMELINE -->
+        <!-- TAB 2: CAREER & EDUCATION TIMELINE (WITH SUB TABS) -->
         <section id="tab-timeline" class="app-section">
             
-            <!-- 1. WORK EXPERIENCE TIMELINE -->
-            <div class="section-label"><span><i class="fa-solid fa-briefcase"></i> <span data-i18n="workExpTitle">Work Experience Timeline</span></span></div>
-            <div class="app-card">
-                
-                <!-- Job 1 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon"><i class="fa-solid fa-brush"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="job1Title">Graphic Design & Web Dev</div>
-                            <div class="exp-company">KSA Equilibrium Services</div>
-                            <div class="exp-date">Apr 2020 - Jan 2025</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
-                    </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="job1Desc1">Designed creative materials including stickers, t-shirts, banners, signage, and promotional items.</li>
-                            <li data-i18n="job1Desc2">Managed business operations, project management, and quality control.</li>
-                            <li data-i18n="job1Desc3">Developed responsive websites and user-friendly mobile applications.</li>
-                            <li data-i18n="job1Desc4">Implemented Google AdSense, SEO optimization, and monetization strategies.</li>
-                            <li data-i18n="job1Desc5">Led process improvements to maintain business sustainability amidst competition.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon"><i class="fa-solid fa-headset"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="job2Title">Enterprise Customer Service Unit</div>
-                            <div class="exp-company">Maxis Broadband Sdn Bhd</div>
-                            <div class="exp-date">Oct 2018 - Oct 2019</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
-                    </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="job2Desc1">Provided technical and customer support for Maxis enterprise products.</li>
-                            <li data-i18n="job2Desc2">Troubleshot fiber and network-related issues as first-level technical support.</li>
-                            <li data-i18n="job2Desc3">Created and escalated cases to relevant departments.</li>
-                            <li data-i18n="job2Desc4">Ensured excellent customer service and met key performance indicators (KPIs).</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 3 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="job3Title">Sales & Customer Service</div>
-                            <div class="exp-company">Eusu Logistics (M) Sdn. Bhd.</div>
-                            <div class="exp-date">July 2016 - Dec 2016</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
-                    </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="job3Desc1">Developed and executed sales strategies for business growth.</li>
-                            <li data-i18n="job3Desc2">Maintained customer relationships and service excellence.</li>
-                            <li data-i18n="job3Desc3">Conducted monthly sales forecasting and customer retention programs.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 4 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon"><i class="fa-solid fa-warehouse"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="job4Title">Warehouse Supervisor</div>
-                            <div class="exp-company">Graphic Press Group Sdn Bhd</div>
-                            <div class="exp-date">Apr 2015 - June 2016</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
-                    </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="job4Desc1">Supervised warehouse operations and stock inventory.</li>
-                            <li data-i18n="job4Desc2">Managed logistics, order fulfillment, and safety compliance.</li>
-                            <li data-i18n="job4Desc3">Coordinated transportation for local and outstation deliveries.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 5 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon"><i class="fa-solid fa-ship"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="job5Title">Europe Outbound Coordinator</div>
-                            <div class="exp-company">APL NOL Global Services Centre Sdn Bhd</div>
-                            <div class="exp-date">Mar 2010 - Mar 2015</div>
-                        </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
-                    </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="job5Desc1">Prepared and processed bills of lading for international shipments.</li>
-                            <li data-i18n="job5Desc2">Managed shipping rates, surcharges, and compliance.</li>
-                            <li data-i18n="job5Desc3">Maintained accuracy and efficiency in documentation processing.</li>
-                        </ul>
-                    </div>
-                </div>
-
+            <!-- SUB TAB NAVIGATION BUTTONS FOR TIMELINE -->
+            <div class="sub-tab-container">
+                <button class="sub-tab-btn active-subtab" onclick="switchSubTab('subtab-work', this)">
+                    <i class="fa-solid fa-briefcase"></i> <span data-i18n="workExpTitle">Work Experience</span>
+                </button>
+                <button class="sub-tab-btn" onclick="switchSubTab('subtab-edu', this)">
+                    <i class="fa-solid fa-graduation-cap"></i> <span data-i18n="eduExpTitle">Education</span>
+                </button>
             </div>
 
-            <!-- 2. EDUCATION TIMELINE -->
-            <div class="section-label" style="margin-top: 2rem;"><span><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="eduExpTitle">Education Timeline</span></span></div>
-            <div class="app-card">
-                
-                <!-- Edu 1 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon edu-icon"><i class="fa-solid fa-certificate"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="edu1Title">Train & Place</div>
-                            <div class="exp-company">Universiti Kebangsaan Malaysia (UKM)</div>
-                            <div class="exp-date">2008 - 2009</div>
+            <!-- SUB TAB CONTENT 1: WORK EXPERIENCE TIMELINE -->
+            <div id="subtab-work" class="sub-tab-content active-subcontent">
+                <div class="section-label" style="margin-top: 0.5rem;"><span><i class="fa-solid fa-briefcase"></i> <span data-i18n="workExpTitle">Work Experience Timeline</span></span></div>
+                <div class="app-card">
+                    
+                    <!-- Job 1 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fa-solid fa-brush"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="job1Title">Graphic Design & Web Dev</div>
+                                <div class="exp-company">KSA Equilibrium Services</div>
+                                <div class="exp-date">Apr 2020 - Jan 2025</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
                         </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
-                    </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="edu1Desc">Specialized training program designed for professional development and industry readiness.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Edu 2 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon edu-icon"><i class="fa-solid fa-utensils"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="edu2Title">Food Handling Programme</div>
-                            <div class="exp-company">Universiti Kebangsaan Malaysia (UKM)</div>
-                            <div class="exp-date">2008 - 2009</div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="job1Desc1">Designed creative materials including stickers, t-shirts, banners, signage, and promotional items.</li>
+                                <li data-i18n="job1Desc2">Managed business operations, project management, and quality control.</li>
+                                <li data-i18n="job1Desc3">Developed responsive websites and user-friendly mobile applications.</li>
+                                <li data-i18n="job1Desc4">Implemented Google AdSense, SEO optimization, and monetization strategies.</li>
+                                <li data-i18n="job1Desc5">Led process improvements to maintain business sustainability amidst competition.</li>
+                            </ul>
                         </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
                     </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="edu2Desc">Certified training on food safety standards, hygiene management, and handling compliance.</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <!-- Edu 3 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="edu3Title">Diploma in Multimedia</div>
-                            <div class="exp-company">Kolej Islam Selangor (KISDAR / KUIS)</div>
-                            <div class="exp-date">2003 - 2005</div>
+                    <!-- Job 2 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fa-solid fa-headset"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="job2Title">Enterprise Customer Service Unit</div>
+                                <div class="exp-company">Maxis Broadband Sdn Bhd</div>
+                                <div class="exp-date">Oct 2018 - Oct 2019</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
                         </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
-                    </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="edu3Desc">Focused on digital media design, graphic design, interactive media, and web development fundamentals.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Edu 4 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon edu-icon"><i class="fa-solid fa-language"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="edu4Title">English Intensive Program</div>
-                            <div class="exp-company">Kolej Putra, Troy State University</div>
-                            <div class="exp-date">2003</div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="job2Desc1">Provided technical and customer support for Maxis enterprise products.</li>
+                                <li data-i18n="job2Desc2">Troubleshot fiber and network-related issues as first-level technical support.</li>
+                                <li data-i18n="job2Desc3">Created and escalated cases to relevant departments.</li>
+                                <li data-i18n="job2Desc4">Ensured excellent customer service and met key performance indicators (KPIs).</li>
+                            </ul>
                         </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
                     </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="edu4Desc">Comprehensive English language proficiency course covering written communication and public speaking. TOEFL (Test of English Foreign Language) band 4 certification</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <!-- Edu 5 -->
-                <div class="exp-item active" onclick="toggleExp(this)">
-                    <div class="exp-header">
-                        <div class="exp-icon edu-icon"><i class="fa-solid fa-school"></i></div>
-                        <div class="exp-details">
-                            <div class="exp-title" data-i18n="edu5Title">Sijil Pelajaran Malaysia (SPM)</div>
-                            <div class="exp-company" data-i18n="edu5Sub">High School / Secondary Education</div>
-                            <div class="exp-date">2001</div>
+                    <!-- Job 3 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="job3Title">Sales & Customer Service</div>
+                                <div class="exp-company">Eusu Logistics (M) Sdn. Bhd.</div>
+                                <div class="exp-date">July 2016 - Dec 2016</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
                         </div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="job3Desc1">Developed and executed sales strategies for business growth.</li>
+                                <li data-i18n="job3Desc2">Maintained customer relationships and service excellence.</li>
+                                <li data-i18n="job3Desc3">Conducted monthly sales forecasting and customer retention programs.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="exp-expand">
-                        <ul>
-                            <li data-i18n="edu5Desc">Completed Malaysian Certificate of Education (SPM).</li>
-                        </ul>
-                    </div>
-                </div>
 
+                    <!-- Job 4 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fa-solid fa-warehouse"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="job4Title">Warehouse Supervisor</div>
+                                <div class="exp-company">Graphic Press Group Sdn Bhd</div>
+                                <div class="exp-date">Apr 2015 - June 2016</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        </div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="job4Desc1">Supervised warehouse operations and stock inventory.</li>
+                                <li data-i18n="job4Desc2">Managed logistics, order fulfillment, and safety compliance.</li>
+                                <li data-i18n="job4Desc3">Coordinated transportation for local and outstation deliveries.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job 5 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon"><i class="fa-solid fa-ship"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="job5Title">Europe Outbound Coordinator</div>
+                                <div class="exp-company">APL NOL Global Services Centre Sdn Bhd</div>
+                                <div class="exp-date">Mar 2010 - Mar 2015</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        </div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="job5Desc1">Prepared and processed bills of lading for international shipments.</li>
+                                <li data-i18n="job5Desc2">Managed shipping rates, surcharges, and compliance.</li>
+                                <li data-i18n="job5Desc3">Maintained accuracy and efficiency in documentation processing.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SUB TAB CONTENT 2: EDUCATION TIMELINE -->
+            <div id="subtab-edu" class="sub-tab-content">
+                <div class="section-label" style="margin-top: 0.5rem;"><span><i class="fa-solid fa-graduation-cap"></i> <span data-i18n="eduExpTitle">Education Timeline</span></span></div>
+                <div class="app-card">
+                    
+                    <!-- Edu 1 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon edu-icon"><i class="fa-solid fa-certificate"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="edu1Title">Train & Place</div>
+                                <div class="exp-company">Universiti Kebangsaan Malaysia (UKM)</div>
+                                <div class="exp-date">2008 - 2009</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        </div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="edu1Desc">Specialized training program designed for professional development and industry readiness.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Edu 2 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon edu-icon"><i class="fa-solid fa-utensils"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="edu2Title">Food Handling Programme</div>
+                                <div class="exp-company">Universiti Kebangsaan Malaysia (UKM)</div>
+                                <div class="exp-date">2008 - 2009</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        </div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="edu2Desc">Certified training on food safety standards, hygiene management, and handling compliance.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Edu 3 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="edu3Title">Diploma in Multimedia</div>
+                                <div class="exp-company">Kolej Islam Selangor (KISDAR / KUIS)</div>
+                                <div class="exp-date">2003 - 2005</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        </div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="edu3Desc">Focused on digital media design, graphic design, interactive media, and web development fundamentals.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Edu 4 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon edu-icon"><i class="fa-solid fa-language"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="edu4Title">English Intensive Program</div>
+                                <div class="exp-company">Kolej Putra, Troy State University</div>
+                                <div class="exp-date">2003</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        </div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="edu4Desc">Comprehensive English language proficiency course covering written communication and public speaking. TOEFL (Test of English Foreign Language) band 4 certification</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Edu 5 -->
+                    <div class="exp-item active" onclick="toggleExp(this)">
+                        <div class="exp-header">
+                            <div class="exp-icon edu-icon"><i class="fa-solid fa-school"></i></div>
+                            <div class="exp-details">
+                                <div class="exp-title" data-i18n="edu5Title">Sijil Pelajaran Malaysia (SPM)</div>
+                                <div class="exp-company" data-i18n="edu5Sub">High School / Secondary Education</div>
+                                <div class="exp-date">2001</div>
+                            </div>
+                            <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; color: var(--text-sub);"></i>
+                        </div>
+                        <div class="exp-expand">
+                            <ul>
+                                <li data-i18n="edu5Desc">Completed Malaysian Certificate of Education (SPM).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
         </section>
@@ -1676,7 +1690,7 @@
                                 <span class="project-status-badge status-prototype">In Dev</span>
                             </div>
                             <div class="project-meta-info">
-                                <span><i class="fa-solid fa-calendar"></i> 2006 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android</span>
+                                <span><i class="fa-solid fa-calendar"></i> 2026 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android</span>
                             </div>
                             <div class="project-details-text">
                                 An app to transform your bad habit to a good habit. Equipped with daily reminder and customizable app front page with drag & drop functions added.
@@ -2011,7 +2025,7 @@
                 langInter: "Intermediate",
                 writtenLabel: "Written",
                 spokenLabel: "Spoken",
-                workExpTitle: "Work Experience Timeline",
+                workExpTitle: "Work Experience",
                 job1Title: "Graphic Design & Web Dev",
                 job1Desc1: "Designed creative materials including stickers, t-shirts, banners, signage, and promotional items.",
                 job1Desc2: "Managed business operations, project management, and quality control.",
@@ -2035,7 +2049,7 @@
                 job5Desc1: "Prepared and processed bills of lading for international shipments.",
                 job5Desc2: "Managed shipping rates, surcharges, and compliance.",
                 job5Desc3: "Maintained accuracy and efficiency in documentation processing.",
-                eduExpTitle: "Education Timeline",
+                eduExpTitle: "Education",
                 edu1Title: "Train & Place",
                 edu1Desc: "Specialized training program designed for professional development and industry readiness.",
                 edu2Title: "Food Handling Programme",
@@ -2114,7 +2128,7 @@
                 langInter: "Pertengahan",
                 writtenLabel: "Penulisan",
                 spokenLabel: "Pertuturan",
-                workExpTitle: "Garis Masa Pengalaman Kerja",
+                workExpTitle: "Pengalaman Kerja",
                 job1Title: "Reka Bentuk Grafik & Pembangunan Web",
                 job1Desc1: "Mereka bentuk bahan kreatif termasuk pelekat, baju T, sepanduk, papan tanda, dan barangan promosi.",
                 job1Desc2: "Menguruskan operasi perniagaan, pengurusan projek, dan kawalan kualiti.",
@@ -2138,7 +2152,7 @@
                 job5Desc1: "Menyedia dan memproses bil muatan untuk penghantaran antarabangsa.",
                 job5Desc2: "Menguruskan kadar perkapalan, caj tambahan, dan pematuhan.",
                 job5Desc3: "Mengekalkan ketepatan dan kecekapan dalam pemprosesan dokumentasi.",
-                eduExpTitle: "Garis Masa Pendidikan",
+                eduExpTitle: "Pendidikan",
                 edu1Title: "Latihan & Penempatan (Train & Place)",
                 edu1Desc: "Program latihan khusus yang direka untuk pembangunan profesional dan kesediaan industri.",
                 edu2Title: "Program Pengendalian Makanan",
@@ -2239,14 +2253,17 @@
             }
         }
 
-        // Sub Tab Switcher (For Honors & Projects)
+        // Sub Tab Switcher (Scoped to Section)
         function switchSubTab(subTabId, element) {
-            document.querySelectorAll('.sub-tab-content').forEach(content => {
-                content.classList.remove('active-subcontent');
-            });
-            document.querySelectorAll('.sub-tab-btn').forEach(btn => {
-                btn.classList.remove('active-subtab');
-            });
+            const parentSection = element.closest('.app-section');
+            if (parentSection) {
+                parentSection.querySelectorAll('.sub-tab-content').forEach(content => {
+                    content.classList.remove('active-subcontent');
+                });
+                parentSection.querySelectorAll('.sub-tab-btn').forEach(btn => {
+                    btn.classList.remove('active-subtab');
+                });
+            }
 
             document.getElementById(subTabId).classList.add('active-subcontent');
             if (element) {
@@ -2274,9 +2291,8 @@
             document.getElementById('bioModal').style.display = 'none';
         }
 
-        // FLIPBOOK DATA FOR PROJECTS & CERTIFICATES
+        // FLIPBOOK DATA FOR PROJECTS & CERTIFICATES WITH UPDATED LINKS
         const flipbookDataStore = {
-            // PROJEK HABIT HIJRAH - VIDEO SAHAJA
             habithijrah: {
                 title: "Habit Hijrah Video Demo",
                 subtitle: "Video Preview (In Development Showcase)",
@@ -2293,47 +2309,60 @@
                     "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq",
                     "https://lh3.googleusercontent.com/d/1ecSda-Li_Po8KiiuqfbgZzdjQyGiGvqv",
                     "https://lh3.googleusercontent.com/d/1UGCvg6yb9qBwA2bNSACr3toqWs-44WgC",
-                    "https://lh3.googleusercontent.com/d/1206-tlyV8L3bUpxlV3C60E_3g7uP2S8c",
-                    "https://lh3.googleusercontent.com/d/17a-JtA7U-jG5nQ0F2R7X8c0r0-5k0m8Q"
+                    "https://lh3.googleusercontent.com/d/1KY1LK81FhSTf54HAbObKdlVKgi34R25a",
+                    "https://lh3.googleusercontent.com/d/1Eo5d3H0iWq8EMAuBIK44QGfuc-p4ITHy",
+                    "https://lh3.googleusercontent.com/d/1MVh65dGb2f4-EH20EJh6o0bTnVo0Q-Fb",
+                    "https://lh3.googleusercontent.com/d/1sPGYO_35tQ_TC-k-IIgD3xBwTRt_EoXl",
+                    "https://lh3.googleusercontent.com/d/14-iQ3voDRY2oL4dEzrW5VcPZvNp-L9R2",
+                    "https://lh3.googleusercontent.com/d/1k4lISt9QDKdzt6SFkNIil8-7h4VePiiO"
                 ]
             },
             opah: {
                 title: "Opah Gangnam Stall",
                 subtitle: "PWA & Web Based POS Platform",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq",
-                    "https://lh3.googleusercontent.com/d/1ecSda-Li_Po8KiiuqfbgZzdjQyGiGvqv",
-                    "https://lh3.googleusercontent.com/d/1UGCvg6yb9qBwA2bNSACr3toqWs-44WgC"
+                    "https://lh3.googleusercontent.com/d/1MY-sbDp5kD8STsHhXG2I63cpZqWI1u6m",
+                    "https://lh3.googleusercontent.com/d/1lsknoMknyevk55cdDn_yihAwCMyQfMDH",
+                    "https://lh3.googleusercontent.com/d/1DLqrPpAIX4STwDwSH_cHSp_FZCVtox71",
+                    "https://lh3.googleusercontent.com/d/1E_UXj-yQXUmGVKb4lJ9K3eMQOQEvlMkw",
+                    "https://lh3.googleusercontent.com/d/1l73wpzT20zjUgZzvxTS5B05VR4N1R5pJ",
+                    "https://lh3.googleusercontent.com/d/1BDe8IOq9pNThRhKJtJ39A3tfqy7ceule",
+                    "https://lh3.googleusercontent.com/d/1YPpMAcqw6E2dzGZEdj_yH79keHUNoXSN",
+                    "https://lh3.googleusercontent.com/d/1vkxZijubK6bjgtc8jU4dvT3CHARCjAeV"
                 ]
             },
             samses: {
                 title: "SAMSES Mutaqaddim",
                 subtitle: "EdTech Student & COOP Management",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1206-tlyV8L3bUpxlV3C60E_3g7uP2S8c",
-                    "https://lh3.googleusercontent.com/d/17a-JtA7U-jG5nQ0F2R7X8c0r0-5k0m8Q"
+                    "https://lh3.googleusercontent.com/d/1Hn5nazqw-WAllWkAfqclHbph0zl6bj2E",
+                    "https://lh3.googleusercontent.com/d/1f5GWnuuDUmzYktEfjM1RJst-MYWm8s3B",
+                    "https://lh3.googleusercontent.com/d/1169OEIGKTS30tcJbi7fmiFr3uaZQSRgm",
+                    "https://lh3.googleusercontent.com/d/1DVH1DrnYSP_13kDRvb_89NhrVAxYQuhy",
+                    "https://lh3.googleusercontent.com/d/1dOy4gS6jrDQ2PLU0HfBk4zJbYiQ0FdOs",
+                    "https://lh3.googleusercontent.com/d/1qXz4ooiXKwwwQrttIIyHdtf7xxnMfCN5",
+                    "https://lh3.googleusercontent.com/d/1pri7VrJ1W_Zn2MRHH27F-b7q02jzxtnV"
                 ]
             },
-            // SIJIL / CERTIFICATES
             cert1: {
                 title: "Outstanding Performance Q1 2012",
                 subtitle: "APL NOL Global Services Centre",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1tq0xXttqmiSryNjLpjd_o-TFDZVYSEa3"
+                    "https://lh3.googleusercontent.com/d/1lnDDrkts6m6QXonG_uRqjS5pVd9fVxAN"
                 ]
             },
             cert2: {
                 title: "Outstanding Performance Q2 2012",
                 subtitle: "APL NOL Global Services Centre",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1Sc3o4BujeNEA73mPMaXyYHkwA5D6ozGl"
+                    "https://lh3.googleusercontent.com/d/1htfCuh6Qjc9fofIqM48VD0SnrKPqb-pT"
                 ]
             },
             cert3: {
                 title: "Outstanding Performance Q1 2013",
                 subtitle: "APL NOL Global Services Centre",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq"
+                    "https://lh3.googleusercontent.com/d/15G-lzMehyQwyOY5tY8EBSuFReAuLK0RD"
                 ]
             }
         };
@@ -2361,127 +2390,120 @@
                 slideDiv.className = `flipbook-slide ${idx === 0 ? 'active-slide' : ''}`;
                 
                 if (item.type === 'video') {
-                    // Container video dengan iframe
-                    slideDiv.style.flexDirection = 'column';
-                    slideDiv.style.gap = '10px';
-
-                    const iframe = document.createElement('iframe');
-                    iframe.src = item.src;
-                    iframe.allow = "autoplay; fullscreen";
-                    iframe.allowFullscreen = true;
-                    iframe.style.width = "100%";
-                    iframe.style.height = "100%";
-                    slideDiv.appendChild(iframe);
-
-                    // Butang Buka Skrin Penuh / Tab Baru
-                    const fsBtn = document.createElement('a');
-                    fsBtn.href = item.src.replace('/preview', '/view');
-                    fsBtn.target = '_blank';
-                    fsBtn.className = 'app-btn app-btn-primary';
-                    fsBtn.style.padding = '6px 12px';
-                    fsBtn.style.fontSize = '0.75rem';
-                    fsBtn.innerHTML = '<i class="fa-solid fa-up-right-and-down-left-from-center"></i> Full Screen Video';
-                    slideDiv.appendChild(fsBtn);
+                    slideDiv.innerHTML = `<iframe src="${item.src}" allowfullscreen></iframe>`;
                 } else {
-                    const img = document.createElement('img');
-                    img.src = item.src;
-                    img.alt = `${data.title} - Page ${idx + 1}`;
-                    img.onerror = function() {
-                        this.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?fit=crop&w=600&h=400';
-                    };
-                    slideDiv.appendChild(img);
+                    slideDiv.innerHTML = `<img src="${item.src}" alt="Slide ${idx + 1}" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fit=crop&w=600&h=400';">`;
                 }
-                
                 container.appendChild(slideDiv);
             });
 
-            updateFlipbookState();
+            updateFlipbookUI();
             document.getElementById('flipbookModal').style.display = 'flex';
-
-            // Jika item adalah video, secara automatik cuba minta mod Skrin Penuh (Fullscreen API)
-            if (data.slides && data.slides[0] && data.slides[0].type === 'video') {
-                setTimeout(() => {
-                    const elem = container.querySelector('iframe');
-                    if (elem) {
-                        if (elem.requestFullscreen) {
-                            elem.requestFullscreen().catch(err => console.log(err));
-                        } else if (elem.webkitRequestFullscreen) { /* Safari */
-                            elem.webkitRequestFullscreen();
-                        } else if (elem.msRequestFullscreen) { /* IE11 */
-                            elem.msRequestFullscreen();
-                        }
-                    }
-                }, 400);
-            }
         }
 
-        function openCertFlipbook(certKey) {
-            openFlipbook(certKey);
-        }
-
-        function changeSlide(direction) {
-            if (!currentFlipbookKey) return;
-            const data = flipbookDataStore[currentFlipbookKey];
-            if (!data) return;
-
-            const slides = document.querySelectorAll('.flipbook-slide');
-            slides[currentSlideIndex].classList.remove('active-slide');
-
-            currentSlideIndex += direction;
-            
-            if (currentSlideIndex < 0) currentSlideIndex = 0;
-            if (currentSlideIndex >= slides.length) currentSlideIndex = slides.length - 1;
-
-            slides[currentSlideIndex].classList.add('active-slide');
-            updateFlipbookState();
-        }
-
-        function updateFlipbookState() {
-            if (!currentFlipbookKey) return;
-            const data = flipbookDataStore[currentFlipbookKey];
-            const total = data.slides ? data.slides.length : data.images.length;
-
-            document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${total}`;
-            document.getElementById('prevSlideBtn').disabled = currentSlideIndex === 0;
-            document.getElementById('nextSlideBtn').disabled = currentSlideIndex === total - 1;
+        function openCertFlipbook(key) {
+            openFlipbook(key);
         }
 
         function closeFlipbook() {
             document.getElementById('flipbookModal').style.display = 'none';
+            const container = document.getElementById('flipbookSlidesContainer');
+            container.innerHTML = '';
         }
 
-        // IFRAME MODAL PREVIEW
-        function openIframeModal(url, title) {
-            document.getElementById('iframeTitle').innerHTML = `<i class="fa-solid fa-globe" style="color: var(--primary);"></i> ${title}`;
+        function changeSlide(direction) {
+            const data = flipbookDataStore[currentFlipbookKey];
+            if (!data) return;
+            const totalSlides = data.slides ? data.slides.length : data.images.length;
+
+            currentSlideIndex += direction;
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+
+            const slides = document.querySelectorAll('.flipbook-slide');
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active-slide', idx === currentSlideIndex);
+            });
+
+            updateFlipbookUI();
+        }
+
+        function updateFlipbookUI() {
+            const data = flipbookDataStore[currentFlipbookKey];
+            if (!data) return;
+            const totalSlides = data.slides ? data.slides.length : data.images.length;
+
+            document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${totalSlides}`;
+            document.getElementById('prevSlideBtn').disabled = currentSlideIndex === 0;
+            document.getElementById('nextSlideBtn').disabled = currentSlideIndex === totalSlides - 1;
+        }
+
+        // IFrame Modal Handlers
+        function openIframeModal(url, titleText) {
             document.getElementById('projectIframe').src = url;
             document.getElementById('iframeExternalLink').href = url;
+            document.getElementById('iframeTitle').innerHTML = `<i class="fa-solid fa-globe" style="color: var(--primary);"></i> ${titleText}`;
             document.getElementById('iframeModal').style.display = 'flex';
         }
 
         function closeIframeModal() {
-            document.getElementById('projectIframe').src = '';
             document.getElementById('iframeModal').style.display = 'none';
+            document.getElementById('projectIframe').src = '';
         }
 
-        // WHATSAPP FORM SUBMISSION
+        // WhatsApp Form Handler
         function sendToWhatsApp(e) {
             e.preventDefault();
             const name = document.getElementById('waName').value;
             const subject = document.getElementById('waSubject').value;
-            const msg = document.getElementById('waMessage').value;
+            const message = document.getElementById('waMessage').value;
 
-            const text = `Halo Azlan,\n\nSaya ${name}.\nSubjek: ${subject}\n\nMesej:\n${msg}`;
-            const encodedText = encodeURIComponent(text);
-            const waUrl = `https://wa.me/60183184643?text=${encodedText}`;
-            window.open(waUrl, '_blank');
+            const text = `Hello Azlan, my name is ${name}.\nSubject: ${subject}\nMessage: ${message}`;
+            const encoded = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/601111111111?text=${encoded}`;
+            window.open(whatsappUrl, '_blank');
         }
 
-        // DOWNLOAD / PRINT PORTFOLIO
+        // Download / Print Portfolio Handler
         function downloadPortfolio() {
             window.print();
         }
 
-        // DARK MODE TOGGLE
+        // Initialize animations on load
+        window.addEventListener('DOMContentLoaded', () => {
+            updateDynamicDate();
+            animateGraphs();
+        });
+
+        function animateGraphs() {
+            // Animate Circle Bars
+            document.querySelectorAll('.circle-bar').forEach(bar => {
+                const percent = bar.getAttribute('data-percent');
+                const radius = bar.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+                const offset = circumference - (percent / 100) * circumference;
+                bar.style.strokeDasharray = circumference;
+                bar.style.strokeDashoffset = offset;
+            });
+
+            // Animate Radial Rings
+            document.querySelectorAll('.ring-progress').forEach(ring => {
+                const pct = ring.getAttribute('data-pct');
+                const r = parseFloat(ring.getAttribute('data-r'));
+                const circ = 2 * Math.PI * r;
+                const offset = circ - (pct / 100) * circ;
+                ring.style.strokeDasharray = circ;
+                ring.style.strokeDashoffset = offset;
+            });
+
+            // Animate Progress Bars
+            document.querySelectorAll('.progress-fill').forEach(fill => {
+                const width = fill.getAttribute('data-width');
+                fill.style.width = width;
+            });
+        }
+
+        // Theme Toggle Handler
         const themeToggleBtn = document.getElementById('themeToggle');
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -2492,41 +2514,6 @@
                 document.documentElement.setAttribute('data-theme', 'dark');
                 themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
             }
-        });
-
-        // GRAPH ANIMATIONS
-        function animateGraphs() {
-            // Animate Circles
-            const circles = document.querySelectorAll('.circle-bar');
-            circles.forEach(circle => {
-                const percent = circle.getAttribute('data-percent');
-                const offset = 163 - (163 * percent) / 100;
-                circle.style.strokeDashoffset = offset;
-            });
-
-            // Animate Radial Rings
-            const rings = document.querySelectorAll('.ring-progress');
-            rings.forEach(ring => {
-                const r = parseFloat(ring.getAttribute('data-r'));
-                const pct = parseFloat(ring.getAttribute('data-pct'));
-                const circumference = 2 * Math.PI * r;
-                ring.style.strokeDasharray = circumference;
-                const offset = circumference - (circumference * pct) / 100;
-                ring.style.strokeDashoffset = offset;
-            });
-
-            // Animate Competencies Progress Bars
-            const fills = document.querySelectorAll('.progress-fill');
-            fills.forEach(fill => {
-                const w = fill.getAttribute('data-width');
-                fill.style.width = w;
-            });
-        }
-
-        // INIT ON LOAD
-        window.addEventListener('DOMContentLoaded', () => {
-            updateDynamicDate();
-            setTimeout(animateGraphs, 300);
         });
     </script>
 </body>
