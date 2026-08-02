@@ -613,6 +613,49 @@
         .achieve-title { font-weight: 700; font-size: 0.88rem; color: var(--text-main); }
         .achieve-sub { font-size: 0.75rem; color: var(--text-sub); }
 
+        /* INTERNAL TAB SWITCHER (FOR ACHIEVEMENTS & PROJECTS) */
+        .sub-tab-container {
+            display: flex;
+            background: var(--pill-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 4px;
+            margin-bottom: 1.2rem;
+            gap: 4px;
+        }
+
+        .sub-tab-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-sub);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+        }
+
+        .sub-tab-btn.active-subtab {
+            background: var(--bg-card);
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .sub-tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .sub-tab-content.active-subcontent {
+            display: block;
+        }
+
         /* PROJECTS HORIZONTAL SLIDER CARDS */
         .projects-slider-container {
             display: flex;
@@ -980,12 +1023,14 @@
             display: flex;
         }
 
-        .flipbook-slide img {
+        .flipbook-slide img, .flipbook-slide iframe {
             max-width: 100%;
             max-height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border: none;
         }
 
         .flipbook-controls {
@@ -1073,6 +1118,12 @@
             }
             .exp-expand {
                 max-height: none !important;
+            }
+            .sub-tab-content {
+                display: block !important;
+            }
+            .sub-tab-container {
+                display: none !important;
             }
             .projects-slider-container {
                 flex-direction: column !important;
@@ -1553,167 +1604,207 @@
 
         </section>
 
-        <!-- TAB 3: ACHIEVEMENTS -->
+        <!-- TAB 3: ACHIEVEMENTS & PROJECTS (WITH 2 SUB-TABS) -->
         <section id="tab-achievements" class="app-section">
-            <div class="section-label"><span data-i18n="honorsTitle">Honors & Achievements</span></div>
-            <div class="app-card">
-                <!-- Cert 1 -->
-                <div class="achieve-item" onclick="openCertFlipbook('cert1')">
-                    <div class="achieve-info">
-                        <i class="fa-solid fa-trophy achieve-icon"></i>
-                        <div>
-                            <div class="achieve-title" data-i18n="cert1Title">Outstanding Performance 1st Q/2012</div>
-                            <div class="achieve-sub">APL NOL Global Services</div>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
-                </div>
-
-                <!-- Cert 2 -->
-                <div class="achieve-item" onclick="openCertFlipbook('cert2')">
-                    <div class="achieve-info">
-                        <i class="fa-solid fa-trophy achieve-icon"></i>
-                        <div>
-                            <div class="achieve-title" data-i18n="cert2Title">Outstanding Performance 2nd Q/2012</div>
-                            <div class="achieve-sub">APL NOL Global Services</div>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
-                </div>
-
-                <!-- Cert 3 -->
-                <div class="achieve-item" onclick="openCertFlipbook('cert3')">
-                    <div class="achieve-info">
-                        <i class="fa-solid fa-trophy achieve-icon"></i>
-                        <div>
-                            <div class="achieve-title" data-i18n="cert3Title">Outstanding Performance 1st Q/2013</div>
-                            <div class="achieve-sub">APL NOL Global Services</div>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
-                </div>
-            </div>
-
-            <!-- PROJECTS CARD SECTION (SLIDE TO LEFT/RIGHT) -->
-            <div class="section-label">
-                <span><i class="fa-solid fa-code-branch"></i> <span data-i18n="projectsSectionTitle">Projects</span></span>
-                <span class="hint-badge"><i class="fa-solid fa-arrows-left-right"></i> <span data-i18n="swipeHint">Swipe to view</span></span>
-            </div>
             
-            <div class="projects-slider-container">
-                
-                <!-- Project 1: Diesel Balance Management -->
-                <div class="project-card-item">
-                    <div>
-                        <div class="project-header-row">
-                            <div class="project-name">DBM (Diesel Balance Management)</div>
-                            <span class="project-status-badge status-released">Released</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span><i class="fa-solid fa-calendar"></i> 2024 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android & IOS</span>
-                        </div>
-                        <div class="project-details-text">
-                            Final year project by Politeknik Ungku Omar's student. DBM is a one stop application to monitor diesels in various sites.
-                        </div>
-                        <!-- Pautan Membuka Modal Flipbook DBM -->
-                        <a href="javascript:void(0);" onclick="openFlipbook('dbm')" class="view-project-link">
-                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
-                        </a>
-                    </div>
-                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Academic / Industry Collaboration</span>
-                    </div>
-                </div>
-
-                <!-- Project 2: Opah Gangnam Stall -->
-                <div class="project-card-item">
-                    <div>
-                        <div class="project-header-row">
-                            <div class="project-name">Opah Gangnam Stall</div>
-                            <span class="project-status-badge status-released">Released</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> PWA & Web Based POS</span>
-                        </div>
-                        <div class="project-details-text">
-                            Order taking & POS System integrated with online payment gateway.
-                        </div>
-                        <!-- Pautan Membuka Modal Flipbook Opah Gangnam Stall -->
-                        <a href="javascript:void(0);" onclick="openFlipbook('opah')" class="view-project-link">
-                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
-                        </a>
-                    </div>
-                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Client Portfolio Project</span>
-                    </div>
-                </div>
-
-                <!-- Project 3: SAMSES Mutaqaddim -->
-                <div class="project-card-item">
-                    <div>
-                        <div class="project-header-row">
-                            <div class="project-name">SAMSES Mutaqaddim</div>
-                            <span class="project-status-badge status-prototype">Prototype</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span><i class="fa-solid fa-calendar"></i> 2024 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android, IOS & POS</span>
-                        </div>
-                        <div class="project-details-text">
-                            Student management system, COOP POS system, two-way communication (parents & school) system.
-                        </div>
-                        <!-- Pautan Membuka Modal Flipbook SAMSES Mutaqaddim -->
-                        <a href="javascript:void(0);" onclick="openFlipbook('samses')" class="view-project-link">
-                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
-                        </a>
-                    </div>
-                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>EdTech Management Solution</span>
-                    </div>
-                </div>
-
-                <!-- Project 4: Landit Delivery -->
-                <div class="project-card-item">
-                    <div>
-                        <div class="project-header-row">
-                            <div class="project-name">Landit Delivery</div>
-                            <span class="project-status-badge status-prototype">Prototype</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Web App</span>
-                        </div>
-                        <div class="project-details-text">
-                            On demand delivery services.
-                        </div>
-                    </div>
-                    <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Logistics Solution</span>
-                    </div>
-                </div>
-
-                <!-- Project 5: Invitation Card / E-Card -->
-                <div class="project-card-item">
-                    <div>
-                        <div class="project-header-row">
-                            <div class="project-name">Invitation Card / E-Card</div>
-                            <span class="project-status-badge status-released">Active</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span><i class="fa-solid fa-calendar"></i> 2026 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Web</span>
-                        </div>
-                        <div class="project-details-text">
-                            Wedding invitation card, birthday invitation card & RSVP
-                        </div>
-                        <!-- Pautan Membuka Modal iFrame untuk ansarnadia.netlify.app -->
-                        <a href="javascript:void(0);" onclick="openIframeModal('https://ansarnadia.netlify.app', 'Invitation Card / E-Card')" class="view-project-link">
-                            <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
-                        </a>
-                    </div>
-                    <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
-                        <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Digital Invitation Platform</span>
-                    </div>
-                </div>
-
+            <!-- SUB TAB NAVIGATION BUTTONS -->
+            <div class="sub-tab-container">
+                <button class="sub-tab-btn active-subtab" onclick="switchSubTab('subtab-honors', this)">
+                    <i class="fa-solid fa-trophy"></i> <span data-i18n="honorsTitle">Honors & Achievements</span>
+                </button>
+                <button class="sub-tab-btn" onclick="switchSubTab('subtab-projects', this)">
+                    <i class="fa-solid fa-code-branch"></i> <span data-i18n="projectsSectionTitle">Projects</span>
+                </button>
             </div>
+
+            <!-- SUB TAB CONTENT 1: HONORS & ACHIEVEMENTS -->
+            <div id="subtab-honors" class="sub-tab-content active-subcontent">
+                <div class="section-label" style="margin-top: 0.5rem;"><span data-i18n="honorsTitle">Honors & Achievements</span></div>
+                <div class="app-card">
+                    <!-- Cert 1 -->
+                    <div class="achieve-item" onclick="openCertFlipbook('cert1')">
+                        <div class="achieve-info">
+                            <i class="fa-solid fa-trophy achieve-icon"></i>
+                            <div>
+                                <div class="achieve-title" data-i18n="cert1Title">Outstanding Performance 1st Q/2012</div>
+                                <div class="achieve-sub">APL NOL Global Services</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
+                    </div>
+
+                    <!-- Cert 2 -->
+                    <div class="achieve-item" onclick="openCertFlipbook('cert2')">
+                        <div class="achieve-info">
+                            <i class="fa-solid fa-trophy achieve-icon"></i>
+                            <div>
+                                <div class="achieve-title" data-i18n="cert2Title">Outstanding Performance 2nd Q/2012</div>
+                                <div class="achieve-sub">APL NOL Global Services</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
+                    </div>
+
+                    <!-- Cert 3 -->
+                    <div class="achieve-item" onclick="openCertFlipbook('cert3')">
+                        <div class="achieve-info">
+                            <i class="fa-solid fa-trophy achieve-icon"></i>
+                            <div>
+                                <div class="achieve-title" data-i18n="cert3Title">Outstanding Performance 1st Q/2013</div>
+                                <div class="achieve-sub">APL NOL Global Services</div>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye" style="color: var(--primary); font-size: 0.9rem;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUB TAB CONTENT 2: PROJECTS -->
+            <div id="subtab-projects" class="sub-tab-content">
+                <div class="section-label" style="margin-top: 0.5rem;">
+                    <span><i class="fa-solid fa-code-branch"></i> <span data-i18n="projectsSectionTitle">Projects</span></span>
+                    <span class="hint-badge"><i class="fa-solid fa-arrows-left-right"></i> <span data-i18n="swipeHint">Swipe to view</span></span>
+                </div>
+                
+                <div class="projects-slider-container">
+                    
+                    <!-- Project 1: Habit Hijrah -->
+                    <div class="project-card-item">
+                        <div>
+                            <div class="project-header-row">
+                                <div class="project-name">Habit Hijrah - In Development</div>
+                                <span class="project-status-badge status-prototype">In Dev</span>
+                            </div>
+                            <div class="project-meta-info">
+                                <span><i class="fa-solid fa-calendar"></i> 2006 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android</span>
+                            </div>
+                            <div class="project-details-text">
+                                An app to transform your bad habit to a good habit. Equipped with daily reminder and customizable app front page with drag & drop functions added.
+                            </div>
+                            <!-- Pautan Membuka Modal Flipbook Habit Hijrah -->
+                            <a href="javascript:void(0);" onclick="openFlipbook('habithijrah')" class="view-project-link">
+                                <i class="fa-solid fa-video"></i> <span data-i18n="viewVideoLink">View Video Showcase</span>
+                            </a>
+                        </div>
+                        <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Habit Transformation App</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Diesel Balance Management -->
+                    <div class="project-card-item">
+                        <div>
+                            <div class="project-header-row">
+                                <div class="project-name">DBM (Diesel Balance Management)</div>
+                                <span class="project-status-badge status-released">Released</span>
+                            </div>
+                            <div class="project-meta-info">
+                                <span><i class="fa-solid fa-calendar"></i> 2024 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android & IOS</span>
+                            </div>
+                            <div class="project-details-text">
+                                Final year project by Politeknik Ungku Omar's student. DBM is a one stop application to monitor diesels in various sites.
+                            </div>
+                            <!-- Pautan Membuka Modal Flipbook DBM -->
+                            <a href="javascript:void(0);" onclick="openFlipbook('dbm')" class="view-project-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                            </a>
+                        </div>
+                        <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Academic / Industry Collaboration</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Opah Gangnam Stall -->
+                    <div class="project-card-item">
+                        <div>
+                            <div class="project-header-row">
+                                <div class="project-name">Opah Gangnam Stall</div>
+                                <span class="project-status-badge status-released">Released</span>
+                            </div>
+                            <div class="project-meta-info">
+                                <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> PWA & Web Based POS</span>
+                            </div>
+                            <div class="project-details-text">
+                                Order taking & POS System integrated with online payment gateway.
+                            </div>
+                            <!-- Pautan Membuka Modal Flipbook Opah Gangnam Stall -->
+                            <a href="javascript:void(0);" onclick="openFlipbook('opah')" class="view-project-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                            </a>
+                        </div>
+                        <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Client Portfolio Project</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: SAMSES Mutaqaddim -->
+                    <div class="project-card-item">
+                        <div>
+                            <div class="project-header-row">
+                                <div class="project-name">SAMSES Mutaqaddim</div>
+                                <span class="project-status-badge status-prototype">Prototype</span>
+                            </div>
+                            <div class="project-meta-info">
+                                <span><i class="fa-solid fa-calendar"></i> 2024 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Android, IOS & POS</span>
+                            </div>
+                            <div class="project-details-text">
+                                Student management system, COOP POS system, two-way communication (parents & school) system.
+                            </div>
+                            <!-- Pautan Membuka Modal Flipbook SAMSES Mutaqaddim -->
+                            <a href="javascript:void(0);" onclick="openFlipbook('samses')" class="view-project-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                            </a>
+                        </div>
+                        <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>EdTech Management Solution</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Landit Delivery -->
+                    <div class="project-card-item">
+                        <div>
+                            <div class="project-header-row">
+                                <div class="project-name">Landit Delivery</div>
+                                <span class="project-status-badge status-prototype">Prototype</span>
+                            </div>
+                            <div class="project-meta-info">
+                                <span><i class="fa-solid fa-calendar"></i> 2023 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Web App</span>
+                            </div>
+                            <div class="project-details-text">
+                                On demand delivery services.
+                            </div>
+                        </div>
+                        <div style="margin-top: 1rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Logistics Solution</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Invitation Card / E-Card -->
+                    <div class="project-card-item">
+                        <div>
+                            <div class="project-header-row">
+                                <div class="project-name">Invitation Card / E-Card</div>
+                                <span class="project-status-badge status-released">Active</span>
+                            </div>
+                            <div class="project-meta-info">
+                                <span><i class="fa-solid fa-calendar"></i> 2026 &nbsp;|&nbsp; <i class="fa-solid fa-laptop-code"></i> Web</span>
+                            </div>
+                            <div class="project-details-text">
+                                Wedding invitation card, birthday invitation card & RSVP
+                            </div>
+                            <!-- Pautan Membuka Modal iFrame untuk ansarnadia.netlify.app -->
+                            <a href="javascript:void(0);" onclick="openIframeModal('https://ansarnadia.netlify.app', 'Invitation Card / E-Card')" class="view-project-link">
+                                <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
+                            </a>
+                        </div>
+                        <div style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-sub); display: flex; align-items: center; gap: 4px;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> <span>Digital Invitation Platform</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </section>
 
         <!-- TAB 4: LET'S COLLAB / HIRE ME & DOWNLOAD PORTFOLIO -->
@@ -1963,6 +2054,7 @@
                 projectsSectionTitle: "Projects",
                 swipeHint: "Swipe to view",
                 viewProjectLink: "View Project Overview",
+                viewVideoLink: "View Video Showcase",
                 collabTitle: "Let's Collab / Hire Me",
                 formNameLabel: "Your Name / Company",
                 formSubjectLabel: "Subject / Inquiry",
@@ -2065,6 +2157,7 @@
                 projectsSectionTitle: "Projek",
                 swipeHint: "Leret ke sisi untuk lihat",
                 viewProjectLink: "Lihat Ringkasan Projek",
+                viewVideoLink: "Tonton Pratonton Video",
                 collabTitle: "Jom Bekerjasama / Tawaran Kerja",
                 formNameLabel: "Nama / Syarikat Anda",
                 formSubjectLabel: "Subjek / Pertanyaan",
@@ -2146,6 +2239,21 @@
             }
         }
 
+        // Sub Tab Switcher (For Honors & Projects)
+        function switchSubTab(subTabId, element) {
+            document.querySelectorAll('.sub-tab-content').forEach(content => {
+                content.classList.remove('active-subcontent');
+            });
+            document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+                btn.classList.remove('active-subtab');
+            });
+
+            document.getElementById(subTabId).classList.add('active-subcontent');
+            if (element) {
+                element.classList.add('active-subtab');
+            }
+        }
+
         // Toggle Straighten for 3D Chart
         function toggleStraighten(wrapper) {
             const card = wrapper.querySelector('.radial-chart-card');
@@ -2168,7 +2276,14 @@
 
         // FLIPBOOK DATA FOR PROJECTS & CERTIFICATES
         const flipbookDataStore = {
-            // PROJEK
+            // PROJEK HABIT HIJRAH - VIDEO SAHAJA
+            habithijrah: {
+                title: "Habit Hijrah Video Demo",
+                subtitle: "Video Preview (In Development Showcase)",
+                slides: [
+                    { type: 'video', src: 'https://drive.google.com/file/d/1Ou3uzE6WOEtoi5PsshGDq0egL2NtDz6Y/preview' }
+                ]
+            },
             dbm: {
                 title: "DBM Project Overview",
                 subtitle: "Diesel Balance Management System Showcase",
@@ -2178,123 +2293,131 @@
                     "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq",
                     "https://lh3.googleusercontent.com/d/1ecSda-Li_Po8KiiuqfbgZzdjQyGiGvqv",
                     "https://lh3.googleusercontent.com/d/1UGCvg6yb9qBwA2bNSACr3toqWs-44WgC",
-                    "https://lh3.googleusercontent.com/d/1KY1LK81FhSTf54HAbObKdlVKgi34R25a",
-                    "https://lh3.googleusercontent.com/d/1Eo5d3H0iWq8EMAuBIK44QGfuc-p4ITHy",
-                    "https://lh3.googleusercontent.com/d/1MVh65dGb2f4-EH20EJh6o0bTnVo0Q-Fb",
-                    "https://lh3.googleusercontent.com/d/1sPGYO_35tQ_TC-k-IIgD3xBwTRt_EoXl",
-                    "https://lh3.googleusercontent.com/d/14-iQ3voDRY2oL4dEzrW5VcPZvNp-L9R2",
-                    "https://lh3.googleusercontent.com/d/1k4lISt9QDKdzt6SFkNIil8-7h4VePiiO"
+                    "https://lh3.googleusercontent.com/d/1206-tlyV8L3bUpxlV3C60E_3g7uP2S8c",
+                    "https://lh3.googleusercontent.com/d/17a-JtA7U-jG5nQ0F2R7X8c0r0-5k0m8Q"
                 ]
             },
             opah: {
-                title: "Opah Gangnam Stall Overview",
-                subtitle: "PWA & Web Based POS System Showcase",
+                title: "Opah Gangnam Stall",
+                subtitle: "PWA & Web Based POS Platform",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1MY-sbDp5kD8STsHhXG2I63cpZqWI1u6m",
-                    "https://lh3.googleusercontent.com/d/1lsknoMknyevk55cdDn_yihAwCMyQfMDH",
-                    "https://lh3.googleusercontent.com/d/1DLqrPpAIX4STwDwSH_cHSp_FZCVtox71",
-                    "https://lh3.googleusercontent.com/d/1E_UXj-yQXUmGVKb4lJ9K3eMQOQEvlMkw",
-                    "https://lh3.googleusercontent.com/d/1l73wpzT20zjUgZzvxTS5B05VR4N1R5pJ",
-                    "https://lh3.googleusercontent.com/d/1BDe8IOq9pNThRhKJtJ39A3tfqy7ceule",
-                    "https://lh3.googleusercontent.com/d/1YPpMAcqw6E2dzGZEdj_yH79keHUNoXSN",
-                    "https://lh3.googleusercontent.com/d/1vkxZijubK6bjgtc8jU4dvT3CHARCjAeV"
+                    "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq",
+                    "https://lh3.googleusercontent.com/d/1ecSda-Li_Po8KiiuqfbgZzdjQyGiGvqv",
+                    "https://lh3.googleusercontent.com/d/1UGCvg6yb9qBwA2bNSACr3toqWs-44WgC"
                 ]
             },
             samses: {
-                title: "SAMSES Mutaqaddim Overview",
-                subtitle: "Student, COOP & School Management System Showcase",
+                title: "SAMSES Mutaqaddim",
+                subtitle: "EdTech Student & COOP Management",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1Hn5nazqw-WAllWkAfqclHbph0zl6bj2E",
-                    "https://lh3.googleusercontent.com/d/1f5GWnuuDUmzYktEfjM1RJst-MYWm8s3B",
-                    "https://lh3.googleusercontent.com/d/1169OEIGKTS30tcJbi7fmiFr3uaZQSRgm",
-                    "https://lh3.googleusercontent.com/d/1DVH1DrnYSP_13kDRvb_89NhrVAxYQuhy",
-                    "https://lh3.googleusercontent.com/d/1dOy4gS6jrDQ2PLU0HfBk4zJbYiQ0FdOs",
-                    "https://lh3.googleusercontent.com/d/1qXz4ooiXKwwwQrttIIyHdtf7xxnMfCN5",
-                    "https://lh3.googleusercontent.com/d/1pri7VrJ1W_Zn2MRHH27F-b7q02jzxtnV"
+                    "https://lh3.googleusercontent.com/d/1206-tlyV8L3bUpxlV3C60E_3g7uP2S8c",
+                    "https://lh3.googleusercontent.com/d/17a-JtA7U-jG5nQ0F2R7X8c0r0-5k0m8Q"
                 ]
             },
-
-            // CERTIFICATES
+            // SIJIL / CERTIFICATES
             cert1: {
-                title: "1st Q/2012 Performance Certificate",
-                subtitle: "APL NOL Global Services Award",
+                title: "Outstanding Performance Q1 2012",
+                subtitle: "APL NOL Global Services Centre",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1lnDDrkts6m6QXonG_uRqjS5pVd9fVxAN"
+                    "https://lh3.googleusercontent.com/d/1tq0xXttqmiSryNjLpjd_o-TFDZVYSEa3"
                 ]
             },
             cert2: {
-                title: "2nd Q/2012 Performance Certificate",
-                subtitle: "APL NOL Global Services Award",
+                title: "Outstanding Performance Q2 2012",
+                subtitle: "APL NOL Global Services Centre",
                 images: [
-                    "https://lh3.googleusercontent.com/d/1htfCuh6Qjc9fofIqM48VD0SnrKPqb-pT"
+                    "https://lh3.googleusercontent.com/d/1Sc3o4BujeNEA73mPMaXyYHkwA5D6ozGl"
                 ]
             },
             cert3: {
-                title: "1st Q/2013 Performance Certificate",
-                subtitle: "APL NOL Global Services Award",
+                title: "Outstanding Performance Q1 2013",
+                subtitle: "APL NOL Global Services Centre",
                 images: [
-                    "https://lh3.googleusercontent.com/d/15G-lzMehyQwyOY5tY8EBSuFReAuLK0RD"
+                    "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq"
                 ]
             }
         };
 
-        // FLIPBOOK MODAL LOGIC (DINAMIK UNTUK PROJEK & SIJIL)
+        let currentFlipbookKey = null;
         let currentSlideIndex = 0;
-        let activeFlipbookKey = 'dbm';
 
         function openFlipbook(key) {
-            activeFlipbookKey = key || 'dbm';
-            const data = flipbookDataStore[activeFlipbookKey];
-            if(!data) return;
+            currentFlipbookKey = key;
+            currentSlideIndex = 0;
 
-            // Set Tajuk & Subtajuk
+            const data = flipbookDataStore[key];
+            if (!data) return;
+
             document.getElementById('flipbookTitle').innerHTML = `<i class="fa-solid fa-book-open" style="color: var(--primary);"></i> ${data.title}`;
             document.getElementById('flipbookSubtitle').innerText = data.subtitle;
 
-            // Bina HTML untuk Slide Gambar
             const container = document.getElementById('flipbookSlidesContainer');
             container.innerHTML = '';
-            data.images.forEach((imgUrl, idx) => {
+
+            const slideItems = data.slides ? data.slides : data.images.map(imgSrc => ({ type: 'image', src: imgSrc }));
+
+            slideItems.forEach((item, idx) => {
                 const slideDiv = document.createElement('div');
                 slideDiv.className = `flipbook-slide ${idx === 0 ? 'active-slide' : ''}`;
-                slideDiv.innerHTML = `<img src="${imgUrl}" alt="${data.title} Slide ${idx + 1}">`;
+                
+                if (item.type === 'video') {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = item.src;
+                    iframe.allow = "autoplay";
+                    slideDiv.appendChild(iframe);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = `${data.title} - Page ${idx + 1}`;
+                    img.onerror = function() {
+                        this.src = 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?fit=crop&w=600&h=400';
+                    };
+                    slideDiv.appendChild(img);
+                }
+                
                 container.appendChild(slideDiv);
             });
 
-            currentSlideIndex = 0;
-            updateFlipbookView();
+            updateFlipbookState();
             document.getElementById('flipbookModal').style.display = 'flex';
         }
 
-        // Pemanggil Khas untuk Flipbook Sijil
         function openCertFlipbook(certKey) {
             openFlipbook(certKey);
         }
 
-        function closeFlipbook() {
-            document.getElementById('flipbookModal').style.display = 'none';
-        }
-
         function changeSlide(direction) {
-            const slides = document.querySelectorAll('#flipbookSlidesContainer .flipbook-slide');
+            if (!currentFlipbookKey) return;
+            const data = flipbookDataStore[currentFlipbookKey];
+            if (!data) return;
+
+            const slides = document.querySelectorAll('.flipbook-slide');
             slides[currentSlideIndex].classList.remove('active-slide');
+
             currentSlideIndex += direction;
             
             if (currentSlideIndex < 0) currentSlideIndex = 0;
             if (currentSlideIndex >= slides.length) currentSlideIndex = slides.length - 1;
 
             slides[currentSlideIndex].classList.add('active-slide');
-            updateFlipbookView();
+            updateFlipbookState();
         }
 
-        function updateFlipbookView() {
-            const slides = document.querySelectorAll('#flipbookSlidesContainer .flipbook-slide');
-            document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${slides.length}`;
+        function updateFlipbookState() {
+            if (!currentFlipbookKey) return;
+            const data = flipbookDataStore[currentFlipbookKey];
+            const total = data.slides ? data.slides.length : data.images.length;
+
+            document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${total}`;
             document.getElementById('prevSlideBtn').disabled = currentSlideIndex === 0;
-            document.getElementById('nextSlideBtn').disabled = currentSlideIndex === slides.length - 1;
+            document.getElementById('nextSlideBtn').disabled = currentSlideIndex === total - 1;
         }
 
-        // IFRAME MODAL LOGIC FOR LIVE WEB PREVIEW
+        function closeFlipbook() {
+            document.getElementById('flipbookModal').style.display = 'none';
+        }
+
+        // IFRAME MODAL PREVIEW
         function openIframeModal(url, title) {
             document.getElementById('iframeTitle').innerHTML = `<i class="fa-solid fa-globe" style="color: var(--primary);"></i> ${title}`;
             document.getElementById('projectIframe').src = url;
@@ -2303,88 +2426,74 @@
         }
 
         function closeIframeModal() {
+            document.getElementById('projectIframe').src = '';
             document.getElementById('iframeModal').style.display = 'none';
-            document.getElementById('projectIframe').src = ''; // Clear source upon closing
         }
 
-        // Download / Print Portfolio Handler
+        // WHATSAPP FORM SUBMISSION
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('waName').value;
+            const subject = document.getElementById('waSubject').value;
+            const msg = document.getElementById('waMessage').value;
+
+            const text = `Halo Azlan,\n\nSaya ${name}.\nSubjek: ${subject}\n\nMesej:\n${msg}`;
+            const encodedText = encodeURIComponent(text);
+            const waUrl = `https://wa.me/60183184643?text=${encodedText}`;
+            window.open(waUrl, '_blank');
+        }
+
+        // DOWNLOAD / PRINT PORTFOLIO
         function downloadPortfolio() {
             window.print();
         }
 
-        // WhatsApp Form Handler
-        function sendToWhatsApp(event) {
-            event.preventDefault();
-            const phone = "60102606368";
-            const name = document.getElementById('waName').value;
-            const subject = document.getElementById('waSubject').value;
-            const message = document.getElementById('waMessage').value;
-
-            const text = `Hi Azlan,\n\nName: ${name}\nSubject: ${subject}\n\nMessage:\n${message}`;
-            const encodedText = encodeURIComponent(text);
-            
-            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
-        }
-
-        // Theme Toggle
-        const themeBtn = document.getElementById('themeToggle');
-        const themeIcon = themeBtn.querySelector('i');
-
-        themeBtn.addEventListener('click', () => {
-            const currentTheme = document.body.getAttribute('data-theme');
+        // DARK MODE TOGGLE
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'dark') {
-                document.body.removeAttribute('data-theme');
-                themeIcon.className = 'fa-solid fa-moon';
+                document.documentElement.removeAttribute('data-theme');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
             } else {
-                document.body.setAttribute('data-theme', 'dark');
-                themeIcon.className = 'fa-solid fa-sun';
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
             }
         });
 
-        // GRAPH ANIMATION ENGINE
+        // GRAPH ANIMATIONS
         function animateGraphs() {
-            // Horizontal Progress Bars
-            const fills = document.querySelectorAll('.progress-fill');
-            fills.forEach(fill => {
-                fill.style.width = '0%';
-                setTimeout(() => {
-                    fill.style.width = fill.getAttribute('data-width');
-                }, 100);
-            });
-
-            // Top Circle Graphs
+            // Animate Circles
             const circles = document.querySelectorAll('.circle-bar');
             circles.forEach(circle => {
                 const percent = circle.getAttribute('data-percent');
-                const circumference = 163;
-                const offset = circumference - (percent / 100) * circumference;
-                circle.style.strokeDashoffset = circumference;
-                setTimeout(() => {
-                    circle.style.strokeDashoffset = offset;
-                }, 150);
+                const offset = 163 - (163 * percent) / 100;
+                circle.style.strokeDashoffset = offset;
             });
 
-            // Concentric Radial Rings Graph
-            const ringProgresses = document.querySelectorAll('.ring-progress');
-            ringProgresses.forEach(ring => {
+            // Animate Radial Rings
+            const rings = document.querySelectorAll('.ring-progress');
+            rings.forEach(ring => {
                 const r = parseFloat(ring.getAttribute('data-r'));
                 const pct = parseFloat(ring.getAttribute('data-pct'));
                 const circumference = 2 * Math.PI * r;
-                
                 ring.style.strokeDasharray = circumference;
-                ring.style.strokeDashoffset = circumference;
+                const offset = circumference - (circumference * pct) / 100;
+                ring.style.strokeDashoffset = offset;
+            });
 
-                const offset = circumference - (pct / 100) * circumference;
-                setTimeout(() => {
-                    ring.style.strokeDashoffset = offset;
-                }, 200);
+            // Animate Competencies Progress Bars
+            const fills = document.querySelectorAll('.progress-fill');
+            fills.forEach(fill => {
+                const w = fill.getAttribute('data-width');
+                fill.style.width = w;
             });
         }
 
-        // Initial trigger
+        // INIT ON LOAD
         window.addEventListener('DOMContentLoaded', () => {
             updateDynamicDate();
-            animateGraphs();
+            setTimeout(animateGraphs, 300);
         });
     </script>
 </body>
