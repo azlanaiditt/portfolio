@@ -363,32 +363,73 @@
             font-weight: 600;
         }
 
-        /* RADIAL CONCENTRIC CHART */
+        /* SOFTWARE & TOOLS SLIDER CONTAINER */
+        .tools-slider-container {
+            display: flex;
+            gap: 1.2rem;
+            overflow-x: auto;
+            padding: 1rem 0.2rem 1.5rem 0.2rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tools-slider-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .tools-slider-container::-webkit-scrollbar-track {
+            background: var(--pill-bg);
+            border-radius: 10px;
+        }
+
+        .tools-slider-container::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* PERSPECTIVE WRAPPER & TILT CARDS FOR TOOLS SLIDER */
         .perspective-wrapper {
+            flex: 0 0 82%;
+            max-width: 330px;
+            scroll-snap-align: center;
             perspective: 800px;
             cursor: pointer;
-            padding: 10px 0;
         }
 
-        .radial-chart-card {
+        .tilt-card {
             background: var(--bg-card);
             border-radius: 24px;
-            padding: 1.5rem 1rem;
+            padding: 1.25rem 1rem;
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow);
-            transform: rotateX(32deg) rotateY(-12deg) rotateZ(8deg) scale(0.92);
+            transform: rotateX(20deg) rotateY(-8deg) rotateZ(3deg) scale(0.92);
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease, background-color 0.3s ease;
             transform-style: preserve-3d;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .radial-chart-card.upright {
-            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
-            box-shadow: var(--shadow);
+        .tilt-card.upright {
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
+        .card-header-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* RADIAL CONCENTRIC CHART */
         .radial-svg-container {
             width: 100%;
-            max-width: 310px;
+            max-width: 240px;
             margin: 0 auto;
             display: block;
         }
@@ -444,6 +485,42 @@
             height: 10px;
             border-radius: 50%;
             flex-shrink: 0;
+        }
+
+        /* COLORFUL BAR CHART FOR EDITING TOOLS */
+        .colorful-bar-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .c-bar-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .c-bar-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .c-bar-track {
+            width: 100%;
+            height: 10px;
+            background: var(--pill-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .c-bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.1, 0.5, 0.1, 1);
         }
 
         /* ANIMATED GRAPH BARS FOR COMPETENCIES */
@@ -1103,7 +1180,7 @@
                 padding-bottom: 0 !important;
                 height: auto !important;
             }
-            .floating-nav-wrapper, .header-controls, .icon-btn {
+            .floating-nav-wrapper, .header-controls, .icon-btn, .modal-overlay, .hint-badge {
                 display: none !important;
             }
             .app-container {
@@ -1114,13 +1191,29 @@
             .app-section {
                 display: block !important;
                 opacity: 1 !important;
-                page-break-inside: avoid;
+                page-break-inside: auto;
+                margin-bottom: 2rem;
+            }
+            .tools-slider-container {
+                flex-direction: column !important;
+                overflow-x: visible !important;
+                gap: 15px !important;
+            }
+            .perspective-wrapper {
+                flex: none !important;
+                max-width: 100% !important;
+            }
+            .tilt-card {
+                transform: none !important;
+                box-shadow: none !important;
             }
             .exp-expand {
                 max-height: none !important;
+                margin-top: 10px !important;
             }
             .sub-tab-content {
                 display: block !important;
+                margin-bottom: 1.5rem;
             }
             .sub-tab-container {
                 display: none !important;
@@ -1134,11 +1227,16 @@
                 max-width: 100% !important;
                 flex: none !important;
             }
-            .app-card, .profile-card, .wave-chart-container, .circle-graph-item, .radial-chart-card, .lang-card, .achieve-item, .project-card-item {
+            .c-bar-fill, .progress-fill {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+            .app-card, .profile-card, .wave-chart-container, .circle-graph-item, .tilt-card, .lang-card, .achieve-item, .project-card-item {
                 border: 1px solid #cbd5e1 !important;
                 box-shadow: none !important;
                 background: #ffffff !important;
                 color: #0f172a !important;
+                page-break-inside: avoid;
             }
         }
     </style>
@@ -1252,81 +1350,134 @@
                 </div>
             </div>
 
-            <!-- SOFTWARE & TOOLS RADIAL RINGS CHART -->
+            <!-- SOFTWARE & TOOLS SECTION -->
             <div class="section-label">
                 <span><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="softwareTools">Software & Tools</span></span>
-                <span class="hint-badge"><i class="fa-solid fa-hand-pointer"></i> <span data-i18n="tapStraighten">Tap chart to straighten</span></span>
+                <span class="hint-badge"><i class="fa-solid fa-arrows-left-right"></i> <span data-i18n="swipeHint">Swipe & Tap card</span></span>
             </div>
 
-            <div class="perspective-wrapper" onclick="toggleStraighten(this)">
-                <div class="radial-chart-card" id="softwareCard">
-                    
-                    <svg class="radial-svg-container" viewBox="0 0 240 240">
-                        <g transform="rotate(-90 120 120)">
-                            <!-- Ring 1: Illustrator (Radius 100) - Pink -->
-                            <circle class="ring-bg" cx="120" cy="120" r="100"></circle>
-                            <circle class="ring-progress" cx="120" cy="120" r="100" stroke="#ff2a85" data-r="100" data-pct="90"></circle>
-                            
-                            <!-- Ring 2: Photoshop (Radius 86) - Yellow -->
-                            <circle class="ring-bg" cx="120" cy="120" r="86"></circle>
-                            <circle class="ring-progress" cx="120" cy="120" r="86" stroke="#ffb703" data-r="86" data-pct="88"></circle>
-                            
-                            <!-- Ring 3: Flutter (Radius 72) - Cyan/Blue -->
-                            <circle class="ring-bg" cx="120" cy="120" r="72"></circle>
-                            <circle class="ring-progress" cx="120" cy="120" r="72" stroke="#00b4d8" data-r="72" data-pct="85"></circle>
-                            
-                            <!-- Ring 4: Web Dev (Radius 58) - Purple -->
-                            <circle class="ring-bg" cx="120" cy="120" r="58"></circle>
-                            <circle class="ring-progress" cx="120" cy="120" r="58" stroke="#a855f7" data-r="58" data-pct="80"></circle>
-                            
-                            <!-- Ring 5: Plotter/Vinyl Tools (Radius 44) - Green -->
-                            <circle class="ring-bg" cx="120" cy="120" r="44"></circle>
-                            <circle class="ring-progress" cx="120" cy="120" r="44" stroke="#22c55e" data-r="44" data-pct="85"></circle>
-                        </g>
+            <!-- HORIZONTAL SLIDER FOR PROGRAMMING & EDITING TOOLS CARDS -->
+            <div class="tools-slider-container">
+                <!-- CARD 1: PROGRAMMING TOOLS (RADIAL CHART) -->
+                <div class="perspective-wrapper" onclick="toggleStraighten(this)">
+                    <div class="tilt-card" id="progCard">
+                        <div class="card-header-title">
+                            <i class="fa-solid fa-code" style="color: var(--primary);"></i> Programming Tools
+                        </div>
+                        
+                        <svg class="radial-svg-container" viewBox="0 0 240 240">
+                            <g transform="rotate(-90 120 120)">
+                                <!-- Ring 1: PHP/HTML/JS/CSS (Radius 100) - Purple -->
+                                <circle class="ring-bg" cx="120" cy="120" r="100"></circle>
+                                <circle class="ring-progress" cx="120" cy="120" r="100" stroke="#a855f7" data-r="100" data-pct="80"></circle>
+                                
+                                <!-- Ring 2: Flutter (Radius 86) - Cyan -->
+                                <circle class="ring-bg" cx="120" cy="120" r="86"></circle>
+                                <circle class="ring-progress" cx="120" cy="120" r="86" stroke="#00b4d8" data-r="86" data-pct="80"></circle>
+                                
+                                <!-- Ring 3: React.js/Node.Js/Tailwind (Radius 72) - Blue -->
+                                <circle class="ring-bg" cx="120" cy="120" r="72"></circle>
+                                <circle class="ring-progress" cx="120" cy="120" r="72" stroke="#2563eb" data-r="72" data-pct="75"></circle>
+                                
+                                <!-- Ring 4: Android Studio/SDK (Radius 58) - Green -->
+                                <circle class="ring-bg" cx="120" cy="120" r="58"></circle>
+                                <circle class="ring-progress" cx="120" cy="120" r="58" stroke="#22c55e" data-r="58" data-pct="78"></circle>
+                            </g>
 
-                        <!-- Labels plotted vertically in middle -->
-                        <text x="120" y="24" class="ring-label-text" text-anchor="middle">AI</text>
-                        <text x="120" y="38" class="ring-label-text" text-anchor="middle">PS</text>
-                        <text x="120" y="52" class="ring-label-text" text-anchor="middle">PY</text>
-                        <text x="120" y="66" class="ring-label-text" text-anchor="middle">WEB</text>
-                        <text x="120" y="80" class="ring-label-text" text-anchor="middle">CAD</text>
+                            <!-- Labels plotted vertically in middle -->
+                            <text x="120" y="24" class="ring-label-text" text-anchor="middle">WEB</text>
+                            <text x="120" y="38" class="ring-label-text" text-anchor="middle">FLT</text>
+                            <text x="120" y="52" class="ring-label-text" text-anchor="middle">RCT</text>
+                            <text x="120" y="66" class="ring-label-text" text-anchor="middle">AND</text>
 
-                        <!-- Percentages -->
-                        <text x="210" y="123" class="ring-val-text" text-anchor="start">90%</text>
-                        <text x="196" y="123" class="ring-val-text" text-anchor="start">88%</text>
-                        <text x="182" y="123" class="ring-val-text" text-anchor="start">85%</text>
-                        <text x="168" y="123" class="ring-val-text" text-anchor="start">80%</text>
-                        <text x="154" y="123" class="ring-val-text" text-anchor="start">85%</text>
-                    </svg>
+                            <!-- Percentages -->
+                            <text x="210" y="123" class="ring-val-text" text-anchor="start">80%</text>
+                            <text x="196" y="123" class="ring-val-text" text-anchor="start">80%</text>
+                            <text x="182" y="123" class="ring-val-text" text-anchor="start">75%</text>
+                            <text x="168" y="123" class="ring-val-text" text-anchor="start">78%</text>
+                        </svg>
 
-                    <!-- Legend Items List -->
-                    <div class="software-legend-grid">
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #ff2a85;"></span>
-                            <span>Adobe Illustrator (90%)</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #ffb703;"></span>
-                            <span>Adobe Photoshop (88%)</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #00b4d8;"></span>
-                            <span>Flutter Programming (85%)</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #a855f7;"></span>
-                            <span>PHP / HTML / CSS / JS (80%)</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #22c55e;"></span>
-                            <span>Artcut & Silhouette (85%)</span>
-                        </div>
-                        <div class="legend-item">
-                            <span class="legend-dot" style="background: #f43f5e;"></span>
-                            <span>cPanel & CRM System (85%)</span>
+                        <!-- Legend Items List -->
+                        <div class="software-legend-grid">
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #a855f7;"></span>
+                                <span>PHP / HTML / JS / CSS (80%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #00b4d8;"></span>
+                                <span>Flutter (80%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #2563eb;"></span>
+                                <span>React / Node / Tailwind (75%)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-dot" style="background: #22c55e;"></span>
+                                <span>Android Studio / SDK (78%)</span>
+                            </div>
                         </div>
                     </div>
+                </div>
 
+                <!-- CARD 2: EDITING TOOLS (COLORFUL BAR CHART) -->
+                <div class="perspective-wrapper" onclick="toggleStraighten(this)">
+                    <div class="tilt-card" id="editCard">
+                        <div class="card-header-title">
+                            <i class="fa-solid fa-palette" style="color: var(--accent);"></i> Editing Tools
+                        </div>
+
+                        <div class="colorful-bar-list">
+                            <div class="c-bar-item">
+                                <div class="c-bar-info">
+                                    <span>Illustrator</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="c-bar-track">
+                                    <div class="c-bar-fill" style="width: 90%; background: linear-gradient(90deg, #ff2a85, #ff758c);"></div>
+                                </div>
+                            </div>
+
+                            <div class="c-bar-item">
+                                <div class="c-bar-info">
+                                    <span>Photoshop</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="c-bar-track">
+                                    <div class="c-bar-fill" style="width: 88%; background: linear-gradient(90deg, #3182ce, #63b3ed);"></div>
+                                </div>
+                            </div>
+
+                            <div class="c-bar-item">
+                                <div class="c-bar-info">
+                                    <span>Canva</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="c-bar-track">
+                                    <div class="c-bar-fill" style="width: 80%; background: linear-gradient(90deg, #00c4cc, #7d2ae8);"></div>
+                                </div>
+                            </div>
+
+                            <div class="c-bar-item">
+                                <div class="c-bar-info">
+                                    <span>Inkscape / Gravit Design</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="c-bar-track">
+                                    <div class="c-bar-fill" style="width: 80%; background: linear-gradient(90deg, #ffb703, #fb8500);"></div>
+                                </div>
+                            </div>
+
+                            <div class="c-bar-item">
+                                <div class="c-bar-info">
+                                    <span>Capcut / Filmora / Inshot</span>
+                                    <span>88%</span>
+                                </div>
+                                <div class="c-bar-track">
+                                    <div class="c-bar-fill" style="width: 88%; background: linear-gradient(90deg, #10b981, #059669);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1695,7 +1846,6 @@
                             <div class="project-details-text">
                                 An app to transform your bad habit to a good habit. Equipped with daily reminder and customizable app front page with drag & drop functions added.
                             </div>
-                            <!-- Pautan Membuka Video Terus dalam Tab Baharu -->
                             <a href="https://drive.google.com/file/d/1Ou3uzE6WOEtoi5PsshGDq0egL2NtDz6Y/preview" target="_blank" class="view-project-link">
                                 <i class="fa-solid fa-circle-play"></i> <span data-i18n="viewVideoLink">View Video Showcase</span>
                             </a>
@@ -1718,7 +1868,6 @@
                             <div class="project-details-text">
                                 Final year project by Politeknik Ungku Omar's student. DBM is a one stop application to monitor diesels in various sites.
                             </div>
-                            <!-- Pautan Membuka Modal Flipbook DBM -->
                             <a href="javascript:void(0);" onclick="openFlipbook('dbm')" class="view-project-link">
                                 <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
                             </a>
@@ -1741,7 +1890,6 @@
                             <div class="project-details-text">
                                 Order taking & POS System integrated with online payment gateway.
                             </div>
-                            <!-- Pautan Membuka Modal Flipbook Opah Gangnam Stall -->
                             <a href="javascript:void(0);" onclick="openFlipbook('opah')" class="view-project-link">
                                 <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
                             </a>
@@ -1764,7 +1912,6 @@
                             <div class="project-details-text">
                                 Student management system, COOP POS system, two-way communication (parents & school) system.
                             </div>
-                            <!-- Pautan Membuka Modal Flipbook SAMSES Mutaqaddim -->
                             <a href="javascript:void(0);" onclick="openFlipbook('samses')" class="view-project-link">
                                 <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
                             </a>
@@ -1806,7 +1953,6 @@
                             <div class="project-details-text">
                                 Wedding invitation card, birthday invitation card & RSVP
                             </div>
-                            <!-- Pautan Membuka Modal iFrame untuk ansarnadia.netlify.app -->
                             <a href="javascript:void(0);" onclick="openIframeModal('https://ansarnadia.netlify.app', 'Invitation Card / E-Card')" class="view-project-link">
                                 <i class="fa-solid fa-eye"></i> <span data-i18n="viewProjectLink">View Project Overview</span>
                             </a>
@@ -1975,28 +2121,37 @@
 
     <!-- IFRAME PREVIEW MODAL POPUP -->
     <div id="iframeModal" class="modal-overlay" onclick="closeIframeModal()">
-        <div class="modal-box" onclick="event.stopPropagation()">
+        <div class="modal-box" style="max-width: 600px;" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeIframeModal()">&times;</span>
             <h3 id="iframeTitle" style="font-size: 1.1rem; color: var(--text-main); font-weight: 800;">
-                <i class="fa-solid fa-globe" style="color: var(--primary);"></i> Live Web Preview
+                <i class="fa-solid fa-globe" style="color: var(--primary);"></i> Project Preview
             </h3>
-            <p style="font-size: 0.78rem; color: var(--text-sub);">Interactive Website Preview</p>
-            
             <div class="iframe-container">
-                <iframe id="projectIframe" src="" title="Live Preview"></iframe>
-            </div>
-            
-            <div style="margin-top: 12px; text-align: right;">
-                <a id="iframeExternalLink" href="#" target="_blank" class="app-btn app-btn-primary" style="display: inline-flex; font-size: 0.8rem; padding: 8px 14px;">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab
-                </a>
+                <iframe id="projectIframe" src="" title="Project Preview"></iframe>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Interactivity & Bilingual Translation Dictionary -->
     <script>
-        // TRANSLATION DICTIONARY (EN & BM)
+        /* SET CURRENT DATE */
+        const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', options);
+
+        /* THEME TOGGLE (LIGHT / DARK) */
+        const themeBtn = document.getElementById('themeToggle');
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        });
+
+        /* MULTI-LANGUAGE TRANSLATION DICTIONARY */
+        let currentLang = 'en';
         const translations = {
             en: {
                 roleDesc: "Designer & Developer",
@@ -2007,7 +2162,7 @@
                 competencyDash: "Competency Dashboard",
                 overallMetrics: "OVERALL METRICS",
                 softwareTools: "Software & Tools",
-                tapStraighten: "Tap chart to straighten",
+                tapStraighten: "Tap card to expand",
                 profCompetencies: "Professional Competencies",
                 comp1: "Customer Service",
                 comp2: "Sales & Strategy",
@@ -2026,6 +2181,7 @@
                 writtenLabel: "Written",
                 spokenLabel: "Spoken",
                 workExpTitle: "Work Experience",
+                eduExpTitle: "Education",
                 job1Title: "Graphic Design & Web Dev",
                 job1Desc1: "Designed creative materials including stickers, t-shirts, banners, signage, and promotional items.",
                 job1Desc2: "Managed business operations, project management, and quality control.",
@@ -2049,7 +2205,6 @@
                 job5Desc1: "Prepared and processed bills of lading for international shipments.",
                 job5Desc2: "Managed shipping rates, surcharges, and compliance.",
                 job5Desc3: "Maintained accuracy and efficiency in documentation processing.",
-                eduExpTitle: "Education",
                 edu1Title: "Train & Place",
                 edu1Desc: "Specialized training program designed for professional development and industry readiness.",
                 edu2Title: "Food Handling Programme",
@@ -2057,16 +2212,16 @@
                 edu3Title: "Diploma in Multimedia",
                 edu3Desc: "Focused on digital media design, graphic design, interactive media, and web development fundamentals.",
                 edu4Title: "English Intensive Program",
-                edu4Desc: "Comprehensive English language proficiency course covering written communication and public speaking.",
+                edu4Desc: "Comprehensive English language proficiency course covering written communication and public speaking. TOEFL band 4 certification.",
                 edu5Title: "Sijil Pelajaran Malaysia (SPM)",
                 edu5Sub: "High School / Secondary Education",
                 edu5Desc: "Completed Malaysian Certificate of Education (SPM).",
                 honorsTitle: "Honors & Achievements",
+                projectsSectionTitle: "Projects",
+                swipeHint: "Swipe & Tap card",
                 cert1Title: "Outstanding Performance 1st Q/2012",
                 cert2Title: "Outstanding Performance 2nd Q/2012",
                 cert3Title: "Outstanding Performance 1st Q/2013",
-                projectsSectionTitle: "Projects",
-                swipeHint: "Swipe to view",
                 viewProjectLink: "View Project Overview",
                 viewVideoLink: "View Video Showcase",
                 collabTitle: "Let's Collab / Hire Me",
@@ -2078,8 +2233,8 @@
                 exportDesc: "Save this full portfolio as a PDF document or print a hard copy directly.",
                 downloadBtnText: "Download / Print Portfolio",
                 bioModalTitle: "About Me / Biography",
-                bioP1: "Hello! I'm <b>Azlan Aiditt</b>, a versatile Graphic Designer, Web Developer, and Operations Specialist with over a decade of multi-industry experience spanning logistics, customer service, and digital creative solutions.",
-                bioP2: "I specialize in building user-centered web applications, optimizing business workflows, creating impactful visual designs, and scaling brands online through SEO & monetization strategies.",
+                bioP1: "Hello! I'm Azlan Aiditt, a versatile Graphic Designer, Web Developer, and Operations Specialist with over a decade of multi-industry experience.",
+                bioP2: "I specialize in building user-centered web applications, optimizing business workflows, creating impactful visual designs, and scaling brands online.",
                 bioP3: "Always open to exciting creative collaborations, freelance projects, or full-time opportunities where design meets functional technology.",
                 personalBgTitle: "Personal Background",
                 infoName: "Name",
@@ -2090,7 +2245,7 @@
                 infoMajorVal: "Multimedia",
                 infoExp: "Experience",
                 infoExpVal: "16 years",
-                infoMarital: "Status Perkahwinan",
+                infoMarital: "Marital Status",
                 infoMaritalVal: "Married",
                 infoChildren: "No. of Children",
                 infoChildrenVal: "2",
@@ -2102,201 +2257,202 @@
                 nextBtn: "Next"
             },
             bm: {
-                roleDesc: "Pereka & Pembangun Web",
-                availStatus: "Bersedia untuk Tawaran",
+                roleDesc: "Pereka & Pereka Web",
+                availStatus: "Sedia Untuk Diberi Tugasan",
                 collabBtn: "Jom Bekerjasama",
                 emailBtn: "Emel",
-                bioBtn: "Bio Saya",
-                competencyDash: "Papan Pemuka Kecekapan",
+                bioBtn: "Biodata Saya",
+                competencyDash: "Papan Pemuka Kompetensi",
                 overallMetrics: "METRIK KESELURUHAN",
-                softwareTools: "Perisian & Alatan",
-                tapStraighten: "Tekan carta untuk luruskan",
-                profCompetencies: "Kecekapan Profesional",
+                softwareTools: "Perisian & Peralatan",
+                tapStraighten: "Leret & Tekan kad",
+                profCompetencies: "Kompetensi Profesional",
                 comp1: "Khidmat Pelanggan",
                 comp2: "Jualan & Strategi",
                 comp3: "Pemantauan Projek",
-                comp4: "Kerjasama Berpasukan",
-                comp5: "Persembahan & Komunikasi",
+                comp4: "Kerja Berpasukan",
+                comp5: "Pembentangan & Komunikasi",
                 expertVal: "Pakar",
-                advVal: "Mahir",
+                advVal: "Lanjutan",
                 langProf: "Penguasaan Bahasa",
                 langMalay: "Bahasa Melayu",
                 langEnglish: "Bahasa Inggeris",
                 langArabic: "Bahasa Arab",
                 langNative: "Bahasa Ibunda",
                 langPro: "Profesional",
-                langInter: "Pertengahan",
+                langInter: "Sederhana",
                 writtenLabel: "Penulisan",
-                spokenLabel: "Pertuturan",
+                spokenLabel: "Lisan",
                 workExpTitle: "Pengalaman Kerja",
+                eduExpTitle: "Pendidikan",
                 job1Title: "Reka Bentuk Grafik & Pembangunan Web",
-                job1Desc1: "Mereka bentuk bahan kreatif termasuk pelekat, baju T, sepanduk, papan tanda, dan barangan promosi.",
-                job1Desc2: "Menguruskan operasi perniagaan, pengurusan projek, dan kawalan kualiti.",
-                job1Desc3: "Membangunkan laman web responsif dan aplikasi mudah alih yang mesra pengguna.",
+                job1Desc1: "Merekabentuk bahan kreatif seperti pelekat, baju-T, banner, papan tanda, dan bahan promosi.",
+                job1Desc2: "Mengurus operasi perniagaan, pengurusan projek, dan kawalan kualiti.",
+                job1Desc3: "Membina laman web responsif dan aplikasi mudah alih mesra pengguna.",
                 job1Desc4: "Melaksanakan Google AdSense, pengoptimuman SEO, dan strategi pengewangan.",
-                job1Desc5: "Menerajui penambahbaikan proses untuk mengekalkan kelestarian perniagaan.",
-                job2Title: "Unit Khidmat Pelanggan Perusahaan",
-                job2Desc1: "Menyediakan sokongan teknikal dan pelanggan untuk produk perusahaan Maxis.",
-                job2Desc2: "Menyelesaikan isu berkaitan gentian optik dan rangkaian sebagai sokongan teknikal tahap pertama.",
-                job2Desc3: "Mencipta dan mengeskalasi kes kepada jabatan berkaitan.",
-                job2Desc4: "Memastikan khidmat pelanggan yang cemerlang dan memenuhi petunjuk prestasi utama (KPI).",
+                job1Desc5: "Menerajui penambahbaikan proses untuk mengekalkan kemampanan perniagaan.",
+                job2Title: "Unit Khidmat Pelanggan Enterprise",
+                job2Desc1: "Menyediakan sokongan teknikal dan pelanggan untuk produk enterprise Maxis.",
+                job2Desc2: "Menyelesaikan masalah gentian optik dan rangkaian sebagai sokongan teknikal tahap pertama.",
+                job2Desc3: "Membuka dan memajukan kes ke jabatan berkaitan.",
+                job2Desc4: "Memastikan khidmat pelanggan yang cemerlang dan mencapai petunjuk prestasi utama (KPI).",
                 job3Title: "Jualan & Khidmat Pelanggan",
                 job3Desc1: "Membangunkan dan melaksanakan strategi jualan untuk pertumbuhan perniagaan.",
                 job3Desc2: "Mengekalkan hubungan pelanggan dan kecemerlangan perkhidmatan.",
                 job3Desc3: "Menjalankan ramalan jualan bulanan dan program pengekalan pelanggan.",
-                job4Title: "Pengelia Gudang",
-                job4Desc1: "Melia operasi gudang dan inventori stok.",
-                job4Desc2: "Menguruskan logistik, pemenuhan pesanan, dan pematuhan keselamatan.",
-                job4Desc3: "Menyelaraskan pengangkutan untuk penghantaran tempatan dan luar stesen.",
-                job5Title: "Penyelaras Perkapalan Eropah",
+                job4Title: "Penyelia Gudang",
+                job4Desc1: "Menyelia operasi gudang dan inventori stok.",
+                job4Desc2: "Mengurus logistik, pemenuhan pesanan, dan kepatuhan keselamatan.",
+                job4Desc3: "Mengarahkan pengangkutan untuk penghantaran tempatan dan luar kawasan.",
+                job5Title: "Kooridinator Eksport Eropah",
                 job5Desc1: "Menyedia dan memproses bil muatan untuk penghantaran antarabangsa.",
-                job5Desc2: "Menguruskan kadar perkapalan, caj tambahan, dan pematuhan.",
-                job5Desc3: "Mengekalkan ketepatan dan kecekapan dalam pemprosesan dokumentasi.",
-                eduExpTitle: "Pendidikan",
-                edu1Title: "Latihan & Penempatan (Train & Place)",
-                edu1Desc: "Program latihan khusus yang direka untuk pembangunan profesional dan kesediaan industri.",
+                job5Desc2: "Mengurus kadar penghantaran, caj tambahan, dan kepatuhan.",
+                job5Desc3: "Mengekalkan ketepatan dan kecekapan dalam pemprosesan dokumen.",
+                edu1Title: "Train & Place",
+                edu1Desc: "Program latihan khas yang direka untuk pembangunan profesional dan kesediaan industri.",
                 edu2Title: "Program Pengendalian Makanan",
-                edu2Desc: "Latihan bersijil mengenai standard keselamatan makanan, pengurusan kebersihan, dan pematuhan.",
+                edu2Desc: "Latihan diiktiraf mengenai piawaian keselamatan makanan, pengurusan kebersihan, dan kepatuhan pengendalian.",
                 edu3Title: "Diploma Multimedia",
-                edu3Desc: "Berfokus pada reka bentuk media digital, grafik, media interaktif, dan asas pembangunan web.",
+                edu3Desc: "Berfokus pada reka bentuk media digital, reka bentuk grafik, media interaktif, dan asas pembangunan web.",
                 edu4Title: "Program Intensif Bahasa Inggeris",
-                edu4Desc: "Kursus penguasaan bahasa Inggeris komprehensif merangkumi komunikasi bertulis dan ucapan awam. Band 4 TOEFL - Test of English Foreign Language",
+                edu4Desc: "Kursus penguasaan bahasa Inggeris komprehensif merangkumi komunikasi bertulis dan pengucapan awam. Sijil TOEFL band 4.",
                 edu5Title: "Sijil Pelajaran Malaysia (SPM)",
-                edu5Sub: "Sekolah Menengah / Pendidikan Menengah",
-                edu5Desc: "Menamatkan Sijil Pelajaran Malaysia (SPM).",
+                edu5Sub: "Pendidikan Menengah",
+                edu5Desc: "Lulus Sijil Pelajaran Malaysia (SPM).",
                 honorsTitle: "Anugerah & Pencapaian",
-                cert1Title: "Prestasi Cemerlang Q1/2012",
-                cert2Title: "Prestasi Cemerlang Q2/2012",
-                cert3Title: "Prestasi Cemerlang Q1/2013",
                 projectsSectionTitle: "Projek",
-                swipeHint: "Leret ke sisi untuk lihat",
-                viewProjectLink: "Lihat Ringkasan Projek",
-                viewVideoLink: "Tonton Video Showcase",
-                collabTitle: "Jom Bekerjasama / Tawaran Kerja",
+                swipeHint: "Leret & Tekan kad",
+                cert1Title: "Prestasi Cemerlang Suku Pertama/2012",
+                cert2Title: "Prestasi Cemerlang Suku Kedua/2012",
+                cert3Title: "Prestasi Cemerlang Suku Pertama/2013",
+                viewProjectLink: "Lihat Gambaran Projek",
+                viewVideoLink: "Lihat Video Projek",
+                collabTitle: "Mari Bekerjasama",
                 formNameLabel: "Nama / Syarikat Anda",
                 formSubjectLabel: "Subjek / Pertanyaan",
                 formMsgLabel: "Mesej Anda",
-                formSendBtn: "Hantar melalui WhatsApp",
+                formSendBtn: "Hantar Menerusi WhatsApp",
                 exportSectionTitle: "Eksport Portfolio",
-                exportDesc: "Simpan portfolio lengkap ini sebagai dokumen PDF atau cetak salinan fizikal secara terus.",
+                exportDesc: "Simpan keseluruhan portfolio ini sebagai dokumen PDF atau cetak secara terus.",
                 downloadBtnText: "Muat Turun / Cetak Portfolio",
                 bioModalTitle: "Mengenai Saya / Biodata",
-                bioP1: "Helo! Saya <b>Azlan Aiditt</b>, seorang Pereka Grafik, Pembangun Web, and Pakar Operasi serba boleh dengan pengalaman lebih sedekad merangkumi logistik, khidmat pelanggan, dan penyelesaian kreatif digital.",
-                bioP2: "Saya pakar dalam membina aplikasi web berpusatkan pengguna, mengoptimumkan aliran kerja perniagaan, mencipta reka bentuk visual yang berkesan, dan memperluaskan jenama dalam talian melalui SEO.",
-                bioP3: "Sentiasa terbuka kepada kolaborasi kreatif, projek bebas (freelance), atau peluang kerjaya sepenuh masa di mana reka bentuk bertemu teknologi fungsi.",
+                bioP1: "Helo! Saya Azlan Aiditt, seorang Pereka Grafik, Pereka Web, dan Pakar Operasi serba boleh dengan pengalaman lebih satu dekad.",
+                bioP2: "Saya pakar dalam membina aplikasi web berfokuskan pengguna, mengoptimumkan aliran kerja, mencipta reka bentuk visual impak tinggi, dan mengembang jenama secara dalam talian.",
+                bioP3: "Sentiasa terbuka untuk kolaborasi kreatif, projek bebas, atau peluang kerjaya penuh masa.",
                 personalBgTitle: "Latar Belakang Peribadi",
                 infoName: "Nama",
                 infoAge: "Umur",
-                infoEdu: "Kelulusan Tertinggi",
+                infoEdu: "Pendidikan Tertinggi",
                 infoEduVal: "Diploma (2005)",
-                infoMajor: "Pengkhususan",
+                infoMajor: "Jurusan",
                 infoMajorVal: "Multimedia",
                 infoExp: "Pengalaman",
                 infoExpVal: "16 tahun",
                 infoMarital: "Status Perkahwinan",
                 infoMaritalVal: "Berkahwin",
-                infoChildren: "Bil. Anak",
+                infoChildren: "Bilangan Anak",
                 infoChildrenVal: "2",
                 infoBirth: "Tempat Lahir",
                 infoBirthVal: "Klang",
                 infoLocation: "Lokasi Semasa",
                 infoLocationVal: "Pantai Sentral, KL",
-                prevBtn: "Sebelum",
+                prevBtn: "Sebelumnya",
                 nextBtn: "Seterusnya"
             }
         };
 
-        let currentLang = 'en';
-
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'bm' : 'en';
-            document.getElementById('langLabel').innerText = currentLang === 'en' ? 'BM' : 'EN';
+            document.getElementById('langLabel').textContent = currentLang.toUpperCase();
             
-            // Apply translations
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                    el.innerHTML = translations[currentLang][key];
+                    element.textContent = translations[currentLang][key];
                 }
             });
-
-            // Update Dynamic Date Language
-            updateDynamicDate();
         }
 
-        // Display Current Day & Date dynamically based on selected language
-        function updateDynamicDate() {
-            const dateObj = new Date();
-            const locale = currentLang === 'bm' ? 'ms-MY' : 'en-US';
-            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-            const formattedDate = dateObj.toLocaleDateString(locale, options);
-            document.getElementById('currentDate').innerText = formattedDate;
-        }
-
-        // Tab Switcher
+        /* TAB SWITCHER */
         function switchTab(tabId, element) {
-            document.querySelectorAll('.app-section').forEach(sec => {
-                sec.classList.remove('active-section');
-            });
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-
+            document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section'));
             document.getElementById(tabId).classList.add('active-section');
-            if(element && element.classList) {
+
+            if (element && element.classList.contains('nav-link')) {
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
                 element.classList.add('active');
             }
-
-            if(tabId === 'tab-profile') {
-                animateGraphs();
-            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            animateRingsAndBars();
         }
 
-        // Sub Tab Switcher (Scoped to Section)
+        /* SUB TAB SWITCHER */
         function switchSubTab(subTabId, element) {
             const parentSection = element.closest('.app-section');
-            if (parentSection) {
-                parentSection.querySelectorAll('.sub-tab-content').forEach(content => {
-                    content.classList.remove('active-subcontent');
-                });
-                parentSection.querySelectorAll('.sub-tab-btn').forEach(btn => {
-                    btn.classList.remove('active-subtab');
-                });
-            }
+            parentSection.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active-subtab'));
+            parentSection.querySelectorAll('.sub-tab-content').forEach(content => content.classList.remove('active-subcontent'));
 
+            element.classList.add('active-subtab');
             document.getElementById(subTabId).classList.add('active-subcontent');
-            if (element) {
-                element.classList.add('active-subtab');
-            }
         }
 
-        // Toggle Straighten for 3D Chart
+        /* TILT CARD STRAIGHTEN TOGGLE */
         function toggleStraighten(wrapper) {
-            const card = wrapper.querySelector('.radial-chart-card');
+            const card = wrapper.querySelector('.tilt-card');
             card.classList.toggle('upright');
         }
 
-        // Accordion for Experience & Education
+        /* TIMELINE EXPAND TOGGLE */
         function toggleExp(item) {
             item.classList.toggle('active');
         }
 
-        // Bio Modal Handler
+        /* ANIMATE CIRCLES, RINGS & BARS */
+        function animateRingsAndBars() {
+            // Animate Circle Rings
+            document.querySelectorAll('.circle-bar').forEach(circle => {
+                const pct = circle.getAttribute('data-percent');
+                const offset = 163 - (163 * pct) / 100;
+                circle.style.strokeDashoffset = offset;
+            });
+
+            // Animate Radial Rings
+            document.querySelectorAll('.ring-progress').forEach(ring => {
+                const r = ring.getAttribute('data-r');
+                const pct = ring.getAttribute('data-pct');
+                const circumference = 2 * Math.PI * r;
+                ring.style.strokeDasharray = circumference;
+                const offset = circumference - (circumference * pct) / 100;
+                ring.style.strokeDashoffset = offset;
+            });
+
+            // Animate Competency Bars
+            document.querySelectorAll('.progress-fill').forEach(fill => {
+                const width = fill.getAttribute('data-width');
+                fill.style.width = width;
+            });
+        }
+
+        // Run animations on initial load
+        window.addEventListener('load', animateRingsAndBars);
+
+        /* MODAL HANDLERS */
         function openBioModal() {
             document.getElementById('bioModal').style.display = 'flex';
         }
-
         function closeBioModal() {
             document.getElementById('bioModal').style.display = 'none';
         }
 
-        // FLIPBOOK DATA FOR PROJECTS & CERTIFICATES
-        const flipbookDataStore = {
+        /* FLIPBOOK DATA & LOGIC */
+        let currentSlideIndex = 0;
+        let currentSlides = [];
+
+        const flipbookData = {
             dbm: {
-                title: "DBM Project Overview",
-                subtitle: "Diesel Balance Management System Showcase",
-                images: [
+                title: "DBM (Diesel Balance Management)",
+                subtitle: "Mobile Application Overview",
+                slides: [
                     "https://lh3.googleusercontent.com/d/1tq0xXttqmiSryNjLpjd_o-TFDZVYSEa3",
                     "https://lh3.googleusercontent.com/d/1Sc3o4BujeNEA73mPMaXyYHkwA5D6ozGl",
                     "https://lh3.googleusercontent.com/d/1fXYGutI55bqs8s1UXpBdpdSMFx2eVeiq",
@@ -2312,8 +2468,8 @@
             },
             opah: {
                 title: "Opah Gangnam Stall",
-                subtitle: "PWA & Web Based POS Platform",
-                images: [
+                subtitle: "POS & Ordering System Overview",
+                slides: [
                     "https://lh3.googleusercontent.com/d/1MY-sbDp5kD8STsHhXG2I63cpZqWI1u6m",
                     "https://lh3.googleusercontent.com/d/1lsknoMknyevk55cdDn_yihAwCMyQfMDH",
                     "https://lh3.googleusercontent.com/d/1DLqrPpAIX4STwDwSH_cHSp_FZCVtox71",
@@ -2326,8 +2482,8 @@
             },
             samses: {
                 title: "SAMSES Mutaqaddim",
-                subtitle: "EdTech Student & COOP Management",
-                images: [
+                subtitle: "EdTech Platform Showcase",
+                slides: [
                     "https://lh3.googleusercontent.com/d/1Hn5nazqw-WAllWkAfqclHbph0zl6bj2E",
                     "https://lh3.googleusercontent.com/d/1f5GWnuuDUmzYktEfjM1RJst-MYWm8s3B",
                     "https://lh3.googleusercontent.com/d/1169OEIGKTS30tcJbi7fmiFr3uaZQSRgm",
@@ -2338,169 +2494,107 @@
                 ]
             },
             cert1: {
-                title: "Outstanding Performance Q1 2012",
-                subtitle: "APL NOL Global Services Centre",
-                images: [
-                    "https://lh3.googleusercontent.com/d/1lnDDrkts6m6QXonG_uRqjS5pVd9fVxAN"
-                ]
+                title: "Outstanding Performance 1st Q/2012",
+                subtitle: "APL NOL Global Services Certificate",
+                slides: ["https://lh3.googleusercontent.com/d/1lnDDrkts6m6QXonG_uRqjS5pVd9fVxAN"]
             },
             cert2: {
-                title: "Outstanding Performance Q2 2012",
-                subtitle: "APL NOL Global Services Centre",
-                images: [
-                    "https://lh3.googleusercontent.com/d/1htfCuh6Qjc9fofIqM48VD0SnrKPqb-pT"
-                ]
+                title: "Outstanding Performance 2nd Q/2012",
+                subtitle: "APL NOL Global Services Certificate",
+                slides: ["https://lh3.googleusercontent.com/d/1htfCuh6Qjc9fofIqM48VD0SnrKPqb-pT"]
             },
             cert3: {
-                title: "Outstanding Performance Q1 2013",
-                subtitle: "APL NOL Global Services Centre",
-                images: [
-                    "https://lh3.googleusercontent.com/d/15G-lzMehyQwyOY5tY8EBSuFReAuLK0RD"
-                ]
+                title: "Outstanding Performance 1st Q/2013",
+                subtitle: "APL NOL Global Services Certificate",
+                slides: ["https://lh3.googleusercontent.com/d/15G-lzMehyQwyOY5tY8EBSuFReAuLK0RD"]
             }
         };
 
-        let currentFlipbookKey = null;
-        let currentSlideIndex = 0;
-
         function openFlipbook(key) {
-            currentFlipbookKey = key;
-            currentSlideIndex = 0;
-
-            const data = flipbookDataStore[key];
+            const data = flipbookData[key];
             if (!data) return;
 
             document.getElementById('flipbookTitle').innerHTML = `<i class="fa-solid fa-book-open" style="color: var(--primary);"></i> ${data.title}`;
-            document.getElementById('flipbookSubtitle').innerText = data.subtitle;
+            document.getElementById('flipbookSubtitle').textContent = data.subtitle;
 
-            const container = document.getElementById('flipbookSlidesContainer');
-            const controlsArea = document.getElementById('flipbookControlsArea');
-            container.innerHTML = '';
-            controlsArea.style.display = 'flex';
+            currentSlides = data.slides;
+            currentSlideIndex = 0;
+            renderFlipbookSlides();
 
-            const slideItems = data.images.map(imgSrc => ({ type: 'image', src: imgSrc }));
-
-            slideItems.forEach((item, idx) => {
-                const slideDiv = document.createElement('div');
-                slideDiv.className = `flipbook-slide ${idx === 0 ? 'active-slide' : ''}`;
-                slideDiv.innerHTML = `<img src="${item.src}" alt="Slide ${idx + 1}" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fit=crop&w=600&h=400';">`;
-                container.appendChild(slideDiv);
-            });
-
-            updateFlipbookUI();
             document.getElementById('flipbookModal').style.display = 'flex';
         }
 
-        function openCertFlipbook(key) {
-            openFlipbook(key);
+        function openCertFlipbook(certKey) {
+            openFlipbook(certKey);
         }
 
         function closeFlipbook() {
             document.getElementById('flipbookModal').style.display = 'none';
+        }
+
+        function renderFlipbookSlides() {
             const container = document.getElementById('flipbookSlidesContainer');
             container.innerHTML = '';
+
+            currentSlides.forEach((src, idx) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = `flipbook-slide ${idx === currentSlideIndex ? 'active-slide' : ''}`;
+                slideDiv.innerHTML = `<img src="${src}" alt="Page ${idx + 1}">`;
+                container.appendChild(slideDiv);
+            });
+
+            updateFlipbookControls();
         }
 
         function changeSlide(direction) {
-            const data = flipbookDataStore[currentFlipbookKey];
-            if (!data) return;
-            const totalSlides = data.images.length;
-
             currentSlideIndex += direction;
             if (currentSlideIndex < 0) currentSlideIndex = 0;
-            if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+            if (currentSlideIndex >= currentSlides.length) currentSlideIndex = currentSlides.length - 1;
 
             const slides = document.querySelectorAll('.flipbook-slide');
             slides.forEach((slide, idx) => {
                 slide.classList.toggle('active-slide', idx === currentSlideIndex);
             });
 
-            updateFlipbookUI();
+            updateFlipbookControls();
         }
 
-        function updateFlipbookUI() {
-            const data = flipbookDataStore[currentFlipbookKey];
-            if (!data) return;
-            const totalSlides = data.images.length;
-
-            document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${totalSlides}`;
+        function updateFlipbookControls() {
             document.getElementById('prevSlideBtn').disabled = currentSlideIndex === 0;
-            document.getElementById('nextSlideBtn').disabled = currentSlideIndex === totalSlides - 1;
+            document.getElementById('nextSlideBtn').disabled = currentSlideIndex === currentSlides.length - 1;
+            document.getElementById('flipCounter').textContent = `Page ${currentSlideIndex + 1} of ${currentSlides.length}`;
         }
 
-        // IFrame Modal Handlers
-        function openIframeModal(url, titleText) {
+        /* IFRAME MODAL HANDLERS */
+        function openIframeModal(url, title) {
+            document.getElementById('iframeTitle').innerHTML = `<i class="fa-solid fa-globe" style="color: var(--primary);"></i> ${title}`;
             document.getElementById('projectIframe').src = url;
-            document.getElementById('iframeExternalLink').href = url;
-            document.getElementById('iframeTitle').innerHTML = `<i class="fa-solid fa-globe" style="color: var(--primary);"></i> ${titleText}`;
             document.getElementById('iframeModal').style.display = 'flex';
         }
 
         function closeIframeModal() {
-            document.getElementById('iframeModal').style.display = 'none';
             document.getElementById('projectIframe').src = '';
+            document.getElementById('iframeModal').style.display = 'none';
         }
 
-        // Theme Toggle Handler
-        const themeToggleBtn = document.getElementById('themeToggle');
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            if (currentTheme === 'dark') {
-                document.documentElement.removeAttribute('data-theme');
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            }
-        });
-
-        // WhatsApp Form Handler
+        /* SEND TO WHATSAPP */
         function sendToWhatsApp(e) {
             e.preventDefault();
             const name = document.getElementById('waName').value;
             const subject = document.getElementById('waSubject').value;
             const msg = document.getElementById('waMessage').value;
 
-            const text = `Hi Azlan,%0A%0AMy Name: ${encodeURIComponent(name)}%0ASubject: ${encodeURIComponent(subject)}%0AMessage: ${encodeURIComponent(msg)}`;
-            window.open(`https://wa.me/601111280800?text=${text}`, '_blank');
+            const phone = "601110068800"; // Gantikan dengan nombor telefon anda
+            const text = `Hi Azlan Aiditt,\n\nName: ${name}\nSubject: ${subject}\nMessage: ${msg}`;
+            const encodedText = encodeURIComponent(text);
+
+            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
         }
 
-        // Download / Print Portfolio Handler
+        /* PRINT / CONVERT TO PDF FUNCTION */
         function downloadPortfolio() {
             window.print();
         }
-
-        // Graphs Animation Handler
-        function animateGraphs() {
-            // Circle Bars
-            document.querySelectorAll('.circle-bar').forEach(bar => {
-                const percent = bar.getAttribute('data-percent');
-                const offset = 163 - (163 * percent) / 100;
-                bar.style.strokeDashoffset = offset;
-            });
-
-            // Radial Rings
-            document.querySelectorAll('.ring-progress').forEach(ring => {
-                const pct = ring.getAttribute('data-pct');
-                const r = ring.getAttribute('data-r');
-                const circumference = 2 * Math.PI * r;
-                ring.style.strokeDasharray = circumference;
-                const offset = circumference - (pct / 100) * circumference;
-                ring.style.strokeDashoffset = offset;
-            });
-
-            // Progress Fill Bars
-            document.querySelectorAll('.progress-fill').forEach(fill => {
-                const targetWidth = fill.getAttribute('data-width');
-                fill.style.width = targetWidth;
-            });
-        }
-
-        // Initialize on load
-        window.addEventListener('DOMContentLoaded', () => {
-            updateDynamicDate();
-            animateGraphs();
-        });
     </script>
 </body>
 </html>
