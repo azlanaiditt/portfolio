@@ -1695,8 +1695,8 @@
                             <div class="project-details-text">
                                 An app to transform your bad habit to a good habit. Equipped with daily reminder and customizable app front page with drag & drop functions added.
                             </div>
-                            <!-- Pautan Membuka Video Showcase Terus tanpa flipbook -->
-                            <a href="javascript:void(0);" onclick="openFlipbook('habithijrah')" class="view-project-link">
+                            <!-- Pautan Membuka Video Terus dalam Tab Baharu -->
+                            <a href="https://drive.google.com/file/d/1Ou3uzE6WOEtoi5PsshGDq0egL2NtDz6Y/preview" target="_blank" class="view-project-link">
                                 <i class="fa-solid fa-circle-play"></i> <span data-i18n="viewVideoLink">View Video Showcase</span>
                             </a>
                         </div>
@@ -2293,17 +2293,6 @@
 
         // FLIPBOOK DATA FOR PROJECTS & CERTIFICATES
         const flipbookDataStore = {
-            habithijrah: {
-                title: "Habit Hijrah Video Demo",
-                subtitle: "Video Preview (In Development Showcase)",
-                isSingleVideo: true,
-                slides: [
-                    { 
-                        type: 'video', 
-                        src: 'https://drive.google.com/file/d/1Ou3uzE6WOEtoi5PsshGDq0egL2NtDz6Y/preview' 
-                    }
-                ]
-            },
             dbm: {
                 title: "DBM Project Overview",
                 subtitle: "Diesel Balance Management System Showcase",
@@ -2381,44 +2370,24 @@
             const data = flipbookDataStore[key];
             if (!data) return;
 
-            document.getElementById('flipbookTitle').innerHTML = `<i class="fa-solid fa-play" style="color: var(--primary);"></i> ${data.title}`;
+            document.getElementById('flipbookTitle').innerHTML = `<i class="fa-solid fa-book-open" style="color: var(--primary);"></i> ${data.title}`;
             document.getElementById('flipbookSubtitle').innerText = data.subtitle;
 
             const container = document.getElementById('flipbookSlidesContainer');
             const controlsArea = document.getElementById('flipbookControlsArea');
             container.innerHTML = '';
+            controlsArea.style.display = 'flex';
 
-            // Sembunyikan navigasi flipbook jika hanya video tunggal
-            if (data.isSingleVideo) {
-                controlsArea.style.display = 'none';
-            } else {
-                controlsArea.style.display = 'flex';
-            }
-
-            const slideItems = data.slides ? data.slides : data.images.map(imgSrc => ({ type: 'image', src: imgSrc }));
+            const slideItems = data.images.map(imgSrc => ({ type: 'image', src: imgSrc }));
 
             slideItems.forEach((item, idx) => {
                 const slideDiv = document.createElement('div');
                 slideDiv.className = `flipbook-slide ${idx === 0 ? 'active-slide' : ''}`;
-                
-                if (item.type === 'video') {
-                    // Menyembunyikan kawalan muat turun/pemain penuh yang tidak diingini
-                    slideDiv.innerHTML = `<iframe src="${item.src}" style="width:100%; height:100%; border:none;" allow="autoplay"></iframe>`;
-                } else if (item.type === 'local-video') {
-                    slideDiv.innerHTML = `
-                        <video style="width:100%; height:100%; object-fit:contain;" controls controlsList="nodownload nofullscreen noremoteplayback" disablePictureInPicture autoplay>
-                            <source src="${item.src}" type="video/mp4">
-                            Browser anda tidak menyokong pemain video ini.
-                        </video>`;
-                } else {
-                    slideDiv.innerHTML = `<img src="${item.src}" alt="Slide ${idx + 1}" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fit=crop&w=600&h=400';">`;
-                }
+                slideDiv.innerHTML = `<img src="${item.src}" alt="Slide ${idx + 1}" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?fit=crop&w=600&h=400';">`;
                 container.appendChild(slideDiv);
             });
 
-            if (!data.isSingleVideo) {
-                updateFlipbookUI();
-            }
+            updateFlipbookUI();
             document.getElementById('flipbookModal').style.display = 'flex';
         }
 
@@ -2435,7 +2404,7 @@
         function changeSlide(direction) {
             const data = flipbookDataStore[currentFlipbookKey];
             if (!data) return;
-            const totalSlides = data.slides ? data.slides.length : data.images.length;
+            const totalSlides = data.images.length;
 
             currentSlideIndex += direction;
             if (currentSlideIndex < 0) currentSlideIndex = 0;
@@ -2452,7 +2421,7 @@
         function updateFlipbookUI() {
             const data = flipbookDataStore[currentFlipbookKey];
             if (!data) return;
-            const totalSlides = data.slides ? data.slides.length : data.images.length;
+            const totalSlides = data.images.length;
 
             document.getElementById('flipCounter').innerText = `Page ${currentSlideIndex + 1} of ${totalSlides}`;
             document.getElementById('prevSlideBtn').disabled = currentSlideIndex === 0;
@@ -2472,17 +2441,28 @@
             document.getElementById('projectIframe').src = '';
         }
 
+        // Theme Toggle Handler
+        const themeToggleBtn = document.getElementById('themeToggle');
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        });
+
         // WhatsApp Form Handler
         function sendToWhatsApp(e) {
             e.preventDefault();
             const name = document.getElementById('waName').value;
             const subject = document.getElementById('waSubject').value;
-            const message = document.getElementById('waMessage').value;
+            const msg = document.getElementById('waMessage').value;
 
-            const text = `Hello Azlan, my name is ${name}.\nSubject: ${subject}\nMessage: ${message}`;
-            const encoded = encodeURIComponent(text);
-            const whatsappUrl = `https://wa.me/601111111111?text=${encoded}`;
-            window.open(whatsappUrl, '_blank');
+            const text = `Hi Azlan,%0A%0AMy Name: ${encodeURIComponent(name)}%0ASubject: ${encodeURIComponent(subject)}%0AMessage: ${encodeURIComponent(msg)}`;
+            window.open(`https://wa.me/601111280800?text=${text}`, '_blank');
         }
 
         // Download / Print Portfolio Handler
@@ -2490,66 +2470,36 @@
             window.print();
         }
 
-        // Theme Switcher Initialization & Event Listener
-        const themeToggleBtn = document.getElementById('themeToggle');
-        
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-            if (theme === 'dark') {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun" style="color: #f59e0b;"></i>';
-            } else {
-                themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-            }
-        }
-
-        themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            setTheme(newTheme);
-        });
-
-        // Dynamic Graph Animation
+        // Graphs Animation Handler
         function animateGraphs() {
-            // Animate Competency Bars
-            const fills = document.querySelectorAll('.progress-fill');
-            fills.forEach(fill => {
-                const targetWidth = fill.getAttribute('data-width');
-                fill.style.width = targetWidth;
-            });
-
-            // Animate Circular Rings
-            const circleBars = document.querySelectorAll('.circle-bar');
-            circleBars.forEach(bar => {
+            // Circle Bars
+            document.querySelectorAll('.circle-bar').forEach(bar => {
                 const percent = bar.getAttribute('data-percent');
-                const circumference = 163;
-                const offset = circumference - (circumference * percent / 100);
+                const offset = 163 - (163 * percent) / 100;
                 bar.style.strokeDashoffset = offset;
             });
 
-            // Animate Software Radial Rings
-            const ringBars = document.querySelectorAll('.ring-progress');
-            ringBars.forEach(ring => {
+            // Radial Rings
+            document.querySelectorAll('.ring-progress').forEach(ring => {
                 const pct = ring.getAttribute('data-pct');
-                const radius = ring.getAttribute('data-r');
-                const circumference = 2 * Math.PI * radius;
-                const offset = circumference - (circumference * pct / 100);
+                const r = ring.getAttribute('data-r');
+                const circumference = 2 * Math.PI * r;
                 ring.style.strokeDasharray = circumference;
+                const offset = circumference - (pct / 100) * circumference;
                 ring.style.strokeDashoffset = offset;
+            });
+
+            // Progress Fill Bars
+            document.querySelectorAll('.progress-fill').forEach(fill => {
+                const targetWidth = fill.getAttribute('data-width');
+                fill.style.width = targetWidth;
             });
         }
 
-        // On Page Load Initializations
+        // Initialize on load
         window.addEventListener('DOMContentLoaded', () => {
-            // Set saved or preferred theme
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            setTheme(savedTheme);
-
-            // Set Initial Date
             updateDynamicDate();
-
-            // Run initial graph animation
-            setTimeout(animateGraphs, 300);
+            animateGraphs();
         });
     </script>
 </body>
