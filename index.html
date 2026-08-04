@@ -240,30 +240,13 @@
             margin-top: 0.8rem;
         }
 
-        /* SHOW YOUR SUPPORT SECTION */
-        .support-card {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: var(--pill-bg);
-            border: 1px dashed var(--border-color);
-            border-radius: 18px;
-            text-align: center;
-        }
-
-        .support-title {
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
+        /* RECOMMENDATION CONTAINER (TANPA CONTAINER BOX & TANPA TAJUK) */
         .support-actions {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
+            margin-top: 1rem;
         }
 
         .recommend-btn {
@@ -312,6 +295,21 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+        }
+
+        /* ANIMATED HEART BEAT ICON */
+        .animated-heart {
+            color: #ef4444;
+            display: inline-block;
+            animation: heartbeat 1.2s infinite ease-in-out;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.25); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.25); }
+            70% { transform: scale(1); }
         }
 
         .app-btn {
@@ -1254,7 +1252,7 @@
                 padding-bottom: 0 !important;
                 height: auto !important;
             }
-            .floating-nav-wrapper, .header-controls, .icon-btn, .modal-overlay, .hint-badge, .support-card {
+            .floating-nav-wrapper, .header-controls, .icon-btn, .modal-overlay, .hint-badge, .support-actions {
                 display: none !important;
             }
             .app-container {
@@ -1380,20 +1378,15 @@
                     </button>
                 </div>
 
-                <!-- SHOW YOUR SUPPORT / RECOMMENDATION SECTION -->
-                <div class="support-card">
-                    <div class="support-title">
-                        <span data-i18n="supportTitle">Show Your Support - "I Recommend This Portfolio"</span>
-                    </div>
-                    <div class="support-actions">
-                        <button id="recommendBtn" onclick="toggleRecommend()" class="recommend-btn">
-                            <i class="fa-solid fa-thumbs-up animated-thumbs"></i>
-                            <span id="recommendBtnText" data-i18n="recommendBtnText">Recommend</span>
-                        </button>
-                        <div class="recommend-count-badge">
-                            <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
-                            <span id="recommendCount">...</span>
-                        </div>
+                <!-- RECOMMENDATION SECTION (HANYA BUTANG & COUNTER DENGAN ANIMASI HEART BEAT) -->
+                <div class="support-actions">
+                    <button id="recommendBtn" onclick="toggleRecommend()" class="recommend-btn">
+                        <i class="fa-solid fa-thumbs-up animated-thumbs"></i>
+                        <span id="recommendBtnText" data-i18n="recommendBtnText">Recommend</span>
+                    </button>
+                    <div class="recommend-count-badge">
+                        <i class="fa-solid fa-heart animated-heart"></i>
+                        <span id="recommendCount">...</span>
                     </div>
                 </div>
             </div>
@@ -2280,7 +2273,6 @@
                 collabBtn: "Let's Collab",
                 emailBtn: "Email",
                 bioBtn: "My Bio",
-                supportTitle: "Show Your Support - \"I Recommend This Portfolio\"",
                 recommendBtnText: "Recommend",
                 recommendedBtnText: "Recommended!",
                 competencyDash: "Competency Dashboard",
@@ -2386,7 +2378,6 @@
                 collabBtn: "Jom Bekerjasama",
                 emailBtn: "Emel",
                 bioBtn: "Biodata Saya",
-                supportTitle: "Tunjukkan Sokongan - \"Saya Disyorkan Portfolio Ini\"",
                 recommendBtnText: "Syor Portfolio Ini",
                 recommendedBtnText: "Disyorkan!",
                 competencyDash: "Papan Pemuka Kompetensi",
@@ -2510,18 +2501,22 @@
         }
 
         /* RECOMMENDATION LOGIC WITH GOOGLE APPS SCRIPT */
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxP3-Kfy4Eb8BzIzkoh5pG4oxPbYgk4NrgSCoQUbaUC-APJAjguIewLwkM7Pd9OoioI/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxAnYsrUz64HeJ_KXrm93LFzLT9u30iQJUGYfUfDKMtd-wxdzeE-6i8F45KVCzjM8HZ/exec";
 
         function initRecommendation() {
             // Fetch live recommendation count from Google Sheet
             fetch(SCRIPT_URL)
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('recommendCount').textContent = data.count;
+                    if (data && data.count !== undefined) {
+                        document.getElementById('recommendCount').textContent = data.count;
+                    }
                 })
                 .catch(err => {
                     console.error("Error fetching count:", err);
-                    document.getElementById('recommendCount').textContent = "128";
+                    if (document.getElementById('recommendCount').textContent === "...") {
+                        document.getElementById('recommendCount').textContent = "128";
+                    }
                 });
 
             // Check if user already recommended from this browser
@@ -2538,21 +2533,25 @@
 
             if (userRecommended) return; // Elak pengguna tekan banyak kali jika sudah disyorkan
 
+            // Kemaskini UI secara serta-merta
+            let countElem = document.getElementById('recommendCount');
+            let currentCount = parseInt(countElem.textContent) || 0;
+            countElem.textContent = currentCount + 1;
+
+            localStorage.setItem('portfolioRecommended', 'true');
+            
+            const btn = document.getElementById('recommendBtn');
+            btn.classList.add('recommended');
+            document.getElementById('recommendBtnText').setAttribute('data-i18n', 'recommendedBtnText');
+            document.getElementById('recommendBtnText').textContent = translations[currentLang]['recommendedBtnText'];
+
             // Post update to Google Sheet
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 mode: 'no-cors'
             }).then(() => {
-                let countElem = document.getElementById('recommendCount');
-                let currentCount = parseInt(countElem.textContent) || 0;
-                countElem.textContent = currentCount + 1;
-
-                localStorage.setItem('portfolioRecommended', 'true');
-                
-                const btn = document.getElementById('recommendBtn');
-                btn.classList.add('recommended');
-                document.getElementById('recommendBtnText').setAttribute('data-i18n', 'recommendedBtnText');
-                document.getElementById('recommendBtnText').textContent = translations[currentLang]['recommendedBtnText'];
+                // Selaraskan nilai terbaru secara live
+                initRecommendation();
             }).catch(err => {
                 console.error("Error updating count:", err);
             });
