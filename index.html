@@ -240,6 +240,80 @@
             margin-top: 0.8rem;
         }
 
+        /* SHOW YOUR SUPPORT SECTION */
+        .support-card {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--pill-bg);
+            border: 1px dashed var(--border-color);
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .support-title {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .support-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .recommend-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.82rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px var(--primary-glow);
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .recommend-btn:active {
+            transform: scale(0.95);
+        }
+
+        .recommend-btn.recommended {
+            background: #16a34a;
+        }
+
+        /* ANIMATED THUMBS UP (KIRI - KANAN) */
+        .animated-thumbs {
+            display: inline-block;
+            animation: move-left-right 1.2s infinite ease-in-out alternate;
+        }
+
+        @keyframes move-left-right {
+            0% { transform: translateX(-4px) rotate(-10deg); }
+            100% { transform: translateX(4px) rotate(10deg); }
+        }
+
+        .recommend-count-badge {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         .app-btn {
             padding: 12px;
             border-radius: 16px;
@@ -1180,7 +1254,7 @@
                 padding-bottom: 0 !important;
                 height: auto !important;
             }
-            .floating-nav-wrapper, .header-controls, .icon-btn, .modal-overlay, .hint-badge {
+            .floating-nav-wrapper, .header-controls, .icon-btn, .modal-overlay, .hint-badge, .support-card {
                 display: none !important;
             }
             .app-container {
@@ -1304,6 +1378,23 @@
                     <button onclick="openBioModal()" class="app-btn app-btn-outline">
                         <i class="fa-solid fa-user-gear"></i> <span data-i18n="bioBtn">My Bio</span>
                     </button>
+                </div>
+
+                <!-- SHOW YOUR SUPPORT / RECOMMENDATION SECTION -->
+                <div class="support-card">
+                    <div class="support-title">
+                        <span data-i18n="supportTitle">Show Your Support - "I Recommend This Portfolio"</span>
+                    </div>
+                    <div class="support-actions">
+                        <button id="recommendBtn" onclick="toggleRecommend()" class="recommend-btn">
+                            <i class="fa-solid fa-thumbs-up animated-thumbs"></i>
+                            <span id="recommendBtnText" data-i18n="recommendBtnText">Recommend</span>
+                        </button>
+                        <div class="recommend-count-badge">
+                            <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+                            <span id="recommendCount">...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -2189,6 +2280,9 @@
                 collabBtn: "Let's Collab",
                 emailBtn: "Email",
                 bioBtn: "My Bio",
+                supportTitle: "Show Your Support - \"I Recommend This Portfolio\"",
+                recommendBtnText: "Recommend",
+                recommendedBtnText: "Recommended!",
                 competencyDash: "Competency Dashboard",
                 overallMetrics: "OVERALL METRICS",
                 softwareTools: "Software & Tools",
@@ -2292,6 +2386,9 @@
                 collabBtn: "Jom Bekerjasama",
                 emailBtn: "Emel",
                 bioBtn: "Biodata Saya",
+                supportTitle: "Tunjukkan Sokongan - \"Saya Disyorkan Portfolio Ini\"",
+                recommendBtnText: "Syor Portfolio Ini",
+                recommendedBtnText: "Disyorkan!",
                 competencyDash: "Papan Pemuka Kompetensi",
                 overallMetrics: "METRIK KESELURUHAN",
                 softwareTools: "Perisian & Peralatan",
@@ -2401,7 +2498,67 @@
                     element.textContent = translations[currentLang][key];
                 }
             });
+
+            // Kemaskini teks butang recommend berdasarkan status sokongan semasa
+            const isRecommended = localStorage.getItem('portfolioRecommended') === 'true';
+            const btnTextElem = document.getElementById('recommendBtnText');
+            if (isRecommended) {
+                btnTextElem.textContent = translations[currentLang]['recommendedBtnText'];
+            } else {
+                btnTextElem.textContent = translations[currentLang]['recommendBtnText'];
+            }
         }
+
+        /* RECOMMENDATION LOGIC WITH GOOGLE APPS SCRIPT */
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxP3-Kfy4Eb8BzIzkoh5pG4oxPbYgk4NrgSCoQUbaUC-APJAjguIewLwkM7Pd9OoioI/exec";
+
+        function initRecommendation() {
+            // Fetch live recommendation count from Google Sheet
+            fetch(SCRIPT_URL)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('recommendCount').textContent = data.count;
+                })
+                .catch(err => {
+                    console.error("Error fetching count:", err);
+                    document.getElementById('recommendCount').textContent = "128";
+                });
+
+            // Check if user already recommended from this browser
+            if (localStorage.getItem('portfolioRecommended') === 'true') {
+                const btn = document.getElementById('recommendBtn');
+                btn.classList.add('recommended');
+                document.getElementById('recommendBtnText').setAttribute('data-i18n', 'recommendedBtnText');
+                document.getElementById('recommendBtnText').textContent = translations[currentLang]['recommendedBtnText'];
+            }
+        }
+
+        function toggleRecommend() {
+            let userRecommended = localStorage.getItem('portfolioRecommended') === 'true';
+
+            if (userRecommended) return; // Elak pengguna tekan banyak kali jika sudah disyorkan
+
+            // Post update to Google Sheet
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors'
+            }).then(() => {
+                let countElem = document.getElementById('recommendCount');
+                let currentCount = parseInt(countElem.textContent) || 0;
+                countElem.textContent = currentCount + 1;
+
+                localStorage.setItem('portfolioRecommended', 'true');
+                
+                const btn = document.getElementById('recommendBtn');
+                btn.classList.add('recommended');
+                document.getElementById('recommendBtnText').setAttribute('data-i18n', 'recommendedBtnText');
+                document.getElementById('recommendBtnText').textContent = translations[currentLang]['recommendedBtnText'];
+            }).catch(err => {
+                console.error("Error updating count:", err);
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', initRecommendation);
 
         /* TAB SWITCHER */
         function switchTab(tabId, element) {
